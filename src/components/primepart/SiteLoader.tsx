@@ -36,6 +36,7 @@ export default function SiteLoader() {
   const [progress, setProgress] = useState(0);
   const [exiting, setExiting] = useState(false);
   const startedAt = useRef(0);
+  const exitStarted = useRef(false);
 
 
   // Decide on the client whether this visit shows the intro at all.
@@ -125,13 +126,20 @@ export default function SiteLoader() {
   }, [mounted]);
 
   // Part the panels once the readout hits 100.
+  //
+  // `exiting` is deliberately not a dependency, and the one-shot is
+  // guarded by a ref instead. Listing it meant `setExiting(true)` re-ran
+  // this effect, whose cleanup cancelled the very timeout that unmounts
+  // the overlay — the guard then returned early without rescheduling, so
+  // the intro stayed up forever with the page scroll-locked behind it.
   useEffect(() => {
-    if (!mounted || progress < 100 || exiting) return;
+    if (!mounted || progress < 100 || exitStarted.current) return;
+    exitStarted.current = true;
     setExiting(true);
     document.documentElement.classList.remove("intro-active");
     const id = window.setTimeout(() => setMounted(false), EXIT_DURATION);
     return () => window.clearTimeout(id);
-  }, [mounted, progress, exiting]);
+  }, [mounted, progress]);
 
   if (!mounted) return null;
 
