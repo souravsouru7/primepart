@@ -29,11 +29,10 @@ const glyphs = {
  * The facility and the gold annotations above it, both in the same box
  * so the connector threads always land on the roofline.
  *
- * `hero-factory-building.png` is the supplied transparent cutout, so it
- * composites straight onto the navy with no plate edge. It is a
- * recreated approximation of the approved render rather than the
- * original layer, so it is placed to occupy the reference's visual zone
- * rather than matched pixel for pixel.
+ * The supplied composition is a transparent cutout at the same 4:3 the
+ * box already used, so it drops into the reference's visual zone with
+ * no layout change. Its own warm rim light carries most of the lift; a
+ * soft drop shadow seats it on the navy.
  */
 const boxed =
   "xl:absolute xl:left-[calc((100%_-_var(--u)*1000)*0.756)] xl:top-[17.1%] xl:w-[calc(var(--u)*1000)]";
@@ -47,12 +46,13 @@ export default function HeroVisual() {
       >
         <div className="hero2-float h-full w-full">
           <Image
-            src="/primepart/hero/facility.png"
-            alt="Illustration of a PrimePart distribution and machining facility at dusk"
-            fill
+            src="/primepart/hero/hero-replacement-industrial-composition.png"
+            alt="Cutting tools, hydraulic and pneumatic components, bearings and a robotic arm arranged on machined plinths"
+            width={1448}
+            height={1086}
             priority
             sizes="(max-width: 1280px) 100vw, 62vw"
-            className="object-contain object-center drop-shadow-[0_40px_60px_rgba(0,0,0,0.45)]"
+            className="h-full w-full object-contain object-center drop-shadow-[0_34px_55px_rgba(0,0,0,0.5)]"
           />
         </div>
       </div>
@@ -112,7 +112,9 @@ export default function HeroVisual() {
               />
             </span>
 
-            <span>
+            {/* the composition is far busier than open sky, so the label
+                carries a faint scrim to stay legible wherever it lands */}
+            <span className="rounded-[calc(var(--u)*7)] bg-[#040E14]/45 px-[calc(var(--u)*8)] py-[calc(var(--u)*5)] backdrop-blur-[2px]">
               <span className="hero2-sheen block text-[calc(var(--u)*13.2)] font-bold uppercase leading-[1.15] tracking-[0.05em] text-white">
                 {annotation.title}
               </span>

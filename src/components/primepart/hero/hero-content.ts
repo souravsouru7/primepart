@@ -93,9 +93,11 @@ export const categories: {
 ];
 
 /**
- * Gold annotations floating in the sky above the facility. `position`
- * is a percentage of the facility box, `thread` the length of the
- * connector dropping to the roofline in reference pixels.
+ * Gold annotations over the industrial composition. `position` is a
+ * percentage of the visual box and `thread` the length of the connector
+ * in reference pixels, each aimed so its dot lands on the component it
+ * names: the end mills, the hydraulic manifolds and the pneumatic
+ * cylinders. Both are only applied from `xl` up.
  */
 export const annotations: {
   key: "cutting" | "hydraulics" | "pneumatics";
@@ -108,22 +110,22 @@ export const annotations: {
     key: "cutting",
     title: "Cutting Tools",
     lines: ["High performance", "machining"],
-    position: "xl:left-[25.9%] xl:top-[-3.3%]",
-    thread: 85,
+    position: "xl:left-[25%] xl:top-[-4%]",
+    thread: 120,
   },
   {
     key: "hydraulics",
     title: "Hydraulics",
     lines: ["Power in motion"],
-    position: "xl:left-[45.9%] xl:top-[0.3%]",
-    thread: 72,
+    position: "xl:left-[49%] xl:top-[19%]",
+    thread: 95,
   },
   {
     key: "pneumatics",
     title: "Pneumatics",
     lines: ["Cleaner. Smarter.", "Automation."],
-    position: "xl:left-[66.2%] xl:top-[6.4%]",
-    thread: 60,
+    position: "xl:left-[60%] xl:top-[40%]",
+    thread: 80,
   },
 ];
 
