@@ -42,7 +42,7 @@ export default function HeroVisual() {
   return (
     <>
       <div
-        className={`hero2-pop relative z-0 mt-10 aspect-[4/3] w-full xl:mt-0 ${boxed}`}
+        className={`hero2-pop relative z-0 aspect-[4/3] w-full xl:mt-0 ${boxed}`}
         style={{ "--d": "150ms" } as React.CSSProperties}
       >
         <div className="hero2-float h-full w-full">
@@ -56,6 +56,31 @@ export default function HeroVisual() {
           />
         </div>
       </div>
+
+      {/* Below `xl` the floating markers would be illegibly small, so the
+          same three labels ride under the facility as chips. */}
+      <ul className="hero2-in mt-5 flex snap-x snap-mandatory gap-2.5 overflow-x-auto pb-1 [scrollbar-width:none] xl:hidden [&::-webkit-scrollbar]:hidden">
+        {annotations.map((annotation) => (
+          <li key={annotation.key} className="shrink-0 snap-start">
+            <span className="flex items-center gap-2 rounded-full border border-[#F4AE13]/35 bg-white/[0.06] px-3.5 py-2 backdrop-blur-sm">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#F8C544"
+                strokeWidth="1.7"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="h-[17px] w-[17px] shrink-0"
+              >
+                {glyphs[annotation.key]}
+              </svg>
+              <span className="text-[11px] font-bold uppercase tracking-[0.1em] text-white">
+                {annotation.title}
+              </span>
+            </span>
+          </li>
+        ))}
+      </ul>
 
       {/* annotation layer — reference detail, desktop only */}
       <div aria-hidden className={`hidden aspect-[4/3] xl:z-10 xl:block ${boxed}`}>

@@ -32,18 +32,18 @@ const icons: Record<CategoryKey, typeof Cog> = {
  */
 export default function HeroCategoryRail() {
   return (
-    <div className="relative z-20 mt-10 xl:absolute xl:right-[calc(var(--u)*46)] xl:top-[6.64%] xl:mt-0 xl:w-[calc(var(--u)*265)]">
-      <ul className="-mx-5 flex min-w-0 snap-x snap-mandatory gap-3 overflow-x-auto overscroll-x-contain px-5 pb-2 [scrollbar-width:none] sm:mx-0 sm:grid sm:grid-cols-2 sm:gap-3 sm:overflow-visible sm:px-0 sm:pb-0 xl:flex xl:flex-col xl:gap-[calc(var(--u)*12)] [&::-webkit-scrollbar]:hidden">
+    <div className="relative z-20 mt-6 xl:absolute xl:right-[calc(var(--u)*46)] xl:top-[6.64%] xl:mt-0 xl:w-[calc(var(--u)*265)]">
+      <ul className="-mx-5 flex min-w-0 snap-x snap-mandatory gap-3 overflow-x-auto overscroll-x-contain scroll-px-5 px-5 pb-2 [scrollbar-width:none] sm:-mx-7 sm:scroll-px-7 sm:px-7 md:mx-0 md:grid md:grid-cols-2 md:gap-3 md:overflow-visible md:px-0 md:pb-0 xl:flex xl:flex-col xl:gap-[calc(var(--u)*12)] [&::-webkit-scrollbar]:hidden">
         {categories.map((category) => {
           const Icon = icons[category.key];
           return (
             <li
               key={category.key}
-              className="w-[72%] shrink-0 snap-start sm:w-auto sm:shrink"
+              className="w-[78%] shrink-0 snap-start sm:w-[58%] md:w-auto md:shrink"
             >
               <a
                 href={category.href}
-                className="group relative flex h-[86px] items-center overflow-hidden rounded-xl border border-white/12 bg-[#0A141B]/85 backdrop-blur-sm transition-all duration-200 hover:border-[#F4AE13]/55 hover:bg-[#0A141B]/95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F4AE13] xl:h-[calc(var(--u)*108)] xl:rounded-[calc(var(--u)*14)] xl:hover:-translate-x-1"
+                className="group relative flex h-[88px] items-center overflow-hidden rounded-xl border border-white/12 bg-[#0A141B]/85 backdrop-blur-sm transition-all duration-200 hover:border-[#F4AE13]/55 hover:bg-[#0A141B]/95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F4AE13] xl:h-[calc(var(--u)*108)] xl:rounded-[calc(var(--u)*14)] xl:hover:-translate-x-1"
               >
                 {/* photo on the right half of the card */}
                 <span className="absolute inset-y-0 right-0 w-[52%] overflow-hidden">

@@ -20,7 +20,7 @@ const icons = {
 export default function HeroTrustStrip() {
   return (
     <>
-      <ul className="relative z-20 mt-12 flex flex-wrap items-start justify-center gap-x-6 gap-y-5 sm:gap-x-10 xl:absolute xl:left-[calc((100%_-_var(--u)*700)*0.574)] xl:top-[86.6%] xl:mt-0 xl:w-[calc(var(--u)*700)] xl:flex-nowrap xl:justify-between xl:gap-0 xl:pt-[calc(var(--u)*21)]">
+      <ul className="relative z-20 mt-10 grid grid-cols-2 items-start gap-x-4 gap-y-7 sm:grid-cols-4 sm:gap-x-6 xl:flex xl:absolute xl:left-[calc((100%_-_var(--u)*700)*0.574)] xl:top-[86.6%] xl:mt-0 xl:w-[calc(var(--u)*700)] xl:flex-nowrap xl:justify-between xl:gap-0 xl:pt-[calc(var(--u)*21)]">
         {trustMarkers.map((marker, index) => {
           const Icon = icons[marker.key];
           return (
@@ -43,7 +43,7 @@ export default function HeroTrustStrip() {
       <a
         href="#products"
         style={{ "--d": "900ms" } as React.CSSProperties}
-        className="hero2-in group relative z-20 mt-8 flex items-center justify-between gap-4 rounded-2xl border border-white/10 bg-[#0C1821] px-5 py-4 text-white shadow-[0_24px_50px_-28px_rgba(0,0,0,0.9)] transition-colors duration-200 hover:bg-[#122029] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F4AE13] focus-visible:ring-offset-2 sm:mx-auto sm:max-w-md xl:absolute xl:right-[calc(var(--u)*37)] xl:top-[86.6%] xl:mt-0 xl:h-[calc(var(--u)*101)] xl:w-[calc(var(--u)*310)] xl:max-w-none xl:rounded-[calc(var(--u)*16)] xl:px-[calc(var(--u)*20)] xl:py-0"
+        className="hero2-in group relative z-20 mt-9 flex items-center justify-between gap-4 rounded-2xl border border-white/10 bg-[#0C1821] px-5 py-4 text-white shadow-[0_24px_50px_-28px_rgba(0,0,0,0.9)] transition-colors duration-200 hover:bg-[#122029] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F4AE13] focus-visible:ring-offset-2 sm:mx-auto sm:max-w-md xl:absolute xl:right-[calc(var(--u)*37)] xl:top-[86.6%] xl:mt-0 xl:h-[calc(var(--u)*101)] xl:w-[calc(var(--u)*310)] xl:max-w-none xl:rounded-[calc(var(--u)*16)] xl:px-[calc(var(--u)*20)] xl:py-0"
       >
         <span className="flex items-center gap-3 xl:gap-[calc(var(--u)*15)]">
           <Package className="h-7 w-7 shrink-0 text-white/85 xl:h-[calc(var(--u)*35)] xl:w-[calc(var(--u)*35)]" strokeWidth={1.4} />

@@ -63,10 +63,26 @@ export default function HeroSection() {
 
         <HeroSidebar />
         <HeroHeader />
-        <HeroVisual />
-        <HeroCategoryRail />
-        <HeroExperience />
-        <HeroTrustStrip />
+
+        {/* Below `xl` the composition is stacked into the same two tones
+            as the desktop split: the facility and its category rail on
+            navy, the experience and trust marks back on pearl. `contents`
+            dissolves these wrappers at `xl`, so the children become direct
+            children of the stage again and the absolute reference grid is
+            untouched. */}
+        <div className="relative -mx-5 mt-9 overflow-hidden rounded-t-[28px] bg-[linear-gradient(165deg,#0B1E29_0%,#06161F_52%,#030E14_100%)] px-5 pb-8 pt-9 sm:-mx-7 sm:px-7 xl:contents">
+          <div
+            aria-hidden
+            className="pointer-events-none absolute left-1/2 top-[6%] h-[52%] w-[120%] -translate-x-1/2 rounded-[50%] bg-[radial-gradient(closest-side,rgba(244,174,19,0.22),rgba(244,174,19,0.07)_58%,transparent_78%)] xl:hidden"
+          />
+          <HeroVisual />
+          <HeroCategoryRail />
+        </div>
+
+        <div className="relative -mx-5 overflow-hidden bg-[linear-gradient(180deg,#FFFFFF_0%,#F2F6F8_100%)] px-5 pb-2 pt-10 sm:-mx-7 sm:px-7 xl:contents">
+          <HeroExperience />
+          <HeroTrustStrip />
+        </div>
 
         {/* language */}
         <button

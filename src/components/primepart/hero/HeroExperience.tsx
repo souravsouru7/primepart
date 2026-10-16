@@ -14,7 +14,7 @@ export default function HeroExperience() {
   return (
     <div
       style={{ "--d": "620ms" } as React.CSSProperties}
-      className="hero2-in relative z-20 mt-12 xl:absolute xl:left-[calc(var(--u)*78)] xl:top-[calc(var(--u)*591)] xl:mt-0 xl:w-[calc(var(--u)*380)]"
+      className="hero2-in relative z-20 xl:absolute xl:left-[calc(var(--u)*78)] xl:top-[calc(var(--u)*591)] xl:mt-0 xl:w-[calc(var(--u)*380)]"
     >
       <p className="sr-only">Two plus years of industrial excellence</p>
 
@@ -24,7 +24,7 @@ export default function HeroExperience() {
         aria-hidden
         width={2244}
         height={1937}
-        className="h-auto w-[58%] max-w-[230px] xl:w-[calc(var(--u)*212)] xl:max-w-none"
+        className="h-auto w-[48%] max-w-[190px] xl:w-[calc(var(--u)*212)] xl:max-w-none"
       />
 
       <p className="mt-4 text-[13px] font-bold uppercase leading-none tracking-[0.02em] text-[#0B1017] xl:ml-[calc(var(--u)*6)] xl:mt-[calc(var(--u)*10)] xl:text-[calc(var(--u)*22)]">
