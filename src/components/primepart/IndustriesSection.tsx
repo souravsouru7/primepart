@@ -49,7 +49,7 @@ export default function IndustriesSection() {
 
   return (
     <section id="industries" className="w-full bg-[#FFFCFD] py-12 sm:py-14 lg:py-18">
-      <div className="mx-auto grid w-full max-w-[1500px] gap-9 px-5 sm:gap-10 sm:px-6 lg:grid-cols-[26%_minmax(0,1fr)] lg:items-center lg:gap-10 xl:px-10">
+      <div className="mx-auto grid w-full max-w-[1500px] min-w-0 gap-9 px-5 sm:gap-10 sm:px-6 lg:grid-cols-[26%_minmax(0,1fr)] lg:items-center lg:gap-10 xl:px-10">
         {/* Intro */}
         <div>
           <Reveal>
@@ -82,7 +82,7 @@ export default function IndustriesSection() {
         </div>
 
         {/* Cards */}
-        <ul className="-mx-5 flex snap-x snap-mandatory gap-3.5 overflow-x-auto px-5 pb-2 [scrollbar-width:none] sm:-mx-6 sm:gap-4 sm:px-6 xl:mx-0 xl:grid xl:grid-cols-5 xl:overflow-visible xl:px-0 xl:pb-0 [&::-webkit-scrollbar]:hidden">
+        <ul className="-mx-5 flex min-w-0 snap-x snap-mandatory gap-3.5 overflow-x-auto overscroll-x-contain px-5 pb-2 [scrollbar-width:none] sm:-mx-6 sm:gap-4 sm:px-6 xl:mx-0 xl:grid xl:grid-cols-5 xl:overflow-visible xl:px-0 xl:pb-0 [&::-webkit-scrollbar]:hidden">
           {industries.map((industry, index) => {
             const Icon = industry.icon;
             return (

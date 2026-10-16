@@ -85,7 +85,7 @@ const ProductCarousel = forwardRef<CarouselHandle, ProductCarouselProps>(
       <ul
         ref={trackRef}
         onScroll={readEdges}
-        className="-mx-1 flex snap-x snap-mandatory gap-5 overflow-x-auto px-1 pb-2 [scrollbar-width:none] md:gap-6 [&::-webkit-scrollbar]:hidden"
+        className="-mx-1 flex min-w-0 snap-x snap-mandatory gap-5 overflow-x-auto overscroll-x-contain px-1 pb-2 [scrollbar-width:none] md:gap-6 [&::-webkit-scrollbar]:hidden"
       >
         {products.map((product, index) => (
           <li

@@ -22,7 +22,7 @@ export default function BrandsSection() {
 
   return (
     <section id="brands" className="w-full bg-[#FFFDFE] py-12 sm:py-14">
-      <div className="mx-auto grid w-full max-w-[1500px] items-center gap-8 px-5 sm:px-6 lg:grid-cols-[30%_minmax(0,1fr)] lg:gap-6 xl:px-10">
+      <div className="mx-auto grid w-full max-w-[1500px] min-w-0 items-center gap-8 px-5 sm:px-6 lg:grid-cols-[30%_minmax(0,1fr)] lg:gap-6 xl:px-10">
         {/* Intro */}
         <div>
           <Reveal>
@@ -56,7 +56,7 @@ export default function BrandsSection() {
           <ul
             ref={trackRef}
             onScroll={readEdges}
-            className="flex flex-1 snap-x snap-mandatory gap-2.5 overflow-x-auto py-2 [scrollbar-width:none] sm:gap-3 [&::-webkit-scrollbar]:hidden"
+            className="flex min-w-0 flex-1 snap-x snap-mandatory gap-2.5 overflow-x-auto overscroll-x-contain py-2 [scrollbar-width:none] sm:gap-3 [&::-webkit-scrollbar]:hidden"
           >
             {brands.map((brand, index) => (
               <Reveal

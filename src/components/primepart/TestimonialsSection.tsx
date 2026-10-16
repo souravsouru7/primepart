@@ -74,7 +74,7 @@ export default function TestimonialsSection() {
       aria-label="Customer testimonials"
       className="w-full bg-[#F3EFEB] py-12 sm:py-14"
     >
-      <div className="mx-auto grid w-full max-w-[1500px] items-center gap-8 px-5 sm:px-6 lg:grid-cols-[26%_minmax(0,1fr)_auto] lg:gap-6 xl:px-10">
+      <div className="mx-auto grid w-full max-w-[1500px] min-w-0 items-center gap-8 px-5 sm:px-6 lg:grid-cols-[26%_minmax(0,1fr)_auto] lg:gap-6 xl:px-10">
         {/* Intro */}
         <div>
           <Reveal>
@@ -105,7 +105,7 @@ export default function TestimonialsSection() {
           onMouseLeave={() => setPaused(false)}
           onFocusCapture={() => setPaused(true)}
           onBlurCapture={() => setPaused(false)}
-          className="-mx-5 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 py-2 [scrollbar-width:none] sm:-mx-6 sm:px-6 lg:mx-0 lg:px-0 [&::-webkit-scrollbar]:hidden"
+          className="-mx-5 flex min-w-0 snap-x snap-mandatory gap-4 overflow-x-auto overscroll-x-contain px-5 py-2 [scrollbar-width:none] sm:-mx-6 sm:px-6 lg:mx-0 lg:px-0 [&::-webkit-scrollbar]:hidden"
         >
           {testimonials.map((testimonial, index) => (
             <Reveal

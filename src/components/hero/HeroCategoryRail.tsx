@@ -43,7 +43,7 @@ export default function HeroCategoryRail({
       </div>
 
       <div className="flex w-full items-stretch gap-4">
-        <ul className="-mx-1 flex w-full snap-x snap-mandatory gap-3 overflow-x-auto px-1 pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:mx-0 sm:grid sm:grid-cols-4 sm:gap-4 sm:overflow-visible sm:px-0 sm:pb-0 lg:flex lg:w-auto lg:flex-col lg:gap-[clamp(0.4rem,1.3vh,0.9rem)]">
+        <ul className="-mx-1 flex w-full min-w-0 snap-x snap-mandatory gap-3 overflow-x-auto overscroll-x-contain px-1 pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:mx-0 sm:grid sm:grid-cols-4 sm:gap-4 sm:overflow-visible sm:px-0 sm:pb-0 lg:flex lg:w-auto lg:flex-col lg:gap-[clamp(0.4rem,1.3vh,0.9rem)]">
           {categories.map((category, index) => {
             const slideIndex = index + 1;
             const isActive = activeIndex === slideIndex;
