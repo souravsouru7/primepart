@@ -393,3 +393,10 @@ html.lenis body {
 .intro-skip [data-primepart-intro] {
   display: none !important;
 }
+
+/* Nothing may widen the document past the viewport */
+html,
+body {
+  overflow-x: clip;
+  max-width: 100%;
+}

@@ -18,7 +18,10 @@ export function getLenis() {
 export default function SmoothScroll() {
   useEffect(() => {
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
-    if (reduced.matches) return;
+    // Phones and tablets already have excellent native momentum; wrapping
+    // it adds nothing and risks leaving the page in a non-scrollable state.
+    const coarse = window.matchMedia("(pointer: coarse)");
+    if (reduced.matches || coarse.matches) return;
 
     const lenis = new Lenis({
       duration: 1.05,
@@ -43,6 +46,9 @@ export default function SmoothScroll() {
       cancelAnimationFrame(frame);
       lenis.destroy();
       instance = null;
+      // destroy() can leave the stopped class behind, which our CSS maps
+      // to overflow: clip — that would kill scrolling for good.
+      document.documentElement.classList.remove("lenis-stopped");
     };
   }, []);
 

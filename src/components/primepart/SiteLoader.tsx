@@ -82,7 +82,18 @@ export default function SiteLoader() {
     return () => {
       document.body.style.overflow = previous;
       getLenis()?.start();
+      // Belt and braces: if the Lenis instance went away mid-cycle its
+      // stopped class can survive and leave the page unscrollable.
+      document.documentElement.classList.remove("lenis-stopped");
     };
+  }, [mounted]);
+
+  // Safety valve: if `load` never fires (stalled asset, flaky network),
+  // tear the overlay down anyway rather than trapping the page.
+  useEffect(() => {
+    if (!mounted) return;
+    const id = window.setTimeout(() => setProgress(100), 7000);
+    return () => window.clearTimeout(id);
   }, [mounted]);
 
   // Drive progress from document readiness.

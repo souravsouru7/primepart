@@ -4,6 +4,7 @@ import "./globals.css";
 import SiteLoader from "@/components/primepart/SiteLoader";
 import SmoothScroll from "@/components/primepart/SmoothScroll";
 import ScrollProgress from "@/components/primepart/ScrollProgress";
+import OverflowAudit from "@/components/primepart/OverflowAudit";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -41,6 +42,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <ScrollProgress />
         <SiteLoader />
         {children}
+        <OverflowAudit />
       </body>
     </html>
   );
