@@ -17,7 +17,7 @@ export default function ProductsSection() {
   const [edges, setEdges] = useState({ prev: false, next: true });
 
   return (
-    <section id="products" className="relative z-10 -mt-6 w-full lg:-mt-8">
+    <section id="products" className="relative z-10 w-full">
       <div className="rounded-t-[28px] bg-[#FDFCFB] pb-14 pt-12 lg:rounded-t-[36px] lg:pb-16 lg:pt-14">
         <div className="mx-auto w-full max-w-[1500px] px-6 xl:px-10">
           {/* Header */}

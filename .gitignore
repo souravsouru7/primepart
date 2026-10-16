@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# hero asset handoff packages (source material; derived files live in public/)
+/PrimePart_*_Hero_*/

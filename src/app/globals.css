@@ -400,3 +400,258 @@ body {
   overflow-x: clip;
   max-width: 100%;
 }
+
+/* ---------------------------------------------------------------
+   Hero v2 (split-screen reference build)
+---------------------------------------------------------------- */
+
+@keyframes hero2-line {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 0.5em, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes hero2-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 12px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes hero2-dot {
+  0%,
+  100% {
+    opacity: 0.5;
+    transform: translateX(-50%) scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: translateX(-50%) scale(1.5);
+  }
+}
+
+@keyframes hero2-sheen {
+  0%,
+  70%,
+  100% {
+    background-position: -140% 0;
+  }
+  35% {
+    background-position: 240% 0;
+  }
+}
+
+/* headline reveals upward from behind its own line box */
+.hero2-line {
+  overflow: hidden;
+  animation: hero2-line 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: var(--d, 0ms);
+}
+
+.hero2-in {
+  animation: hero2-in 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: var(--d, 0ms);
+}
+
+.hero2-dot {
+  animation: hero2-dot 3.5s ease-in-out infinite;
+}
+
+/* slow warm reflection across the gold annotation labels */
+.hero2-sheen {
+  background-image: linear-gradient(
+    100deg,
+    #ffffff 0%,
+    #ffffff 40%,
+    #ffe6a8 50%,
+    #ffffff 60%,
+    #ffffff 100%
+  );
+  background-size: 240% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: hero2-sheen 7s ease-in-out infinite;
+}
+
+/* hold the hero intro until the opening sequence clears */
+@keyframes hero2-pop {
+  from {
+    opacity: 0;
+    transform: scale(1.035);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.hero2-pop {
+  animation: hero2-pop 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: var(--d, 0ms);
+}
+
+.intro-active .hero2-line,
+.intro-active .hero2-pop,
+.intro-active .hero2-in {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero2-line,
+  .hero2-in,
+  .hero2-pop,
+  .hero2-dot,
+  .hero2-sheen {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .hero2-sheen {
+    color: #ffffff;
+  }
+}
+
+/* ---------------------------------------------------------------
+   Hero stage
+
+   The reference composition is 1536 x 1024. From `xl` the stage spans
+   the full viewport width and height, and `--u` is the uniform scale of
+   one reference pixel: everything is sized with `calc(var(--u) * N)`,
+   where N is the measurement straight off the reference.
+
+   Horizontal placement is anchored rather than proportional — the left
+   column to the left edge, the rail to the right edge, the facility and
+   the trust band to the centre — so a viewport wider than 3:2 gains sky
+   instead of empty gutters beside a letterboxed canvas.
+---------------------------------------------------------------- */
+
+.hero-stage {
+  --u: 1px;
+}
+
+@media (min-width: 1280px) {
+  .hero-stage {
+    --stage-h: max(640px, 100svh);
+    --u: min(calc(var(--stage-h) / 1024), calc(100vw / 1536));
+    height: var(--stage-h);
+    width: 100%;
+  }
+}
+
+/* thin gold connector that drops from an annotation to the machinery */
+@keyframes hero2-thread {
+  0%,
+  100% {
+    opacity: 0.45;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.hero2-thread {
+  animation: hero2-thread 6s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero2-thread {
+    animation: none !important;
+    opacity: 1 !important;
+  }
+}
+
+/* soft edges for the hero plates (prefixed for WebKit) */
+.hero-mask-split {
+  /* iso-lines leaned so the white edge runs x=425 at the top to x=580 by
+     mid-height, matching the approved reference */
+  --split: linear-gradient(
+    62deg,
+    transparent 0%,
+    transparent 44%,
+    rgba(0, 0, 0, 0.45) 48%,
+    rgba(0, 0, 0, 0.88) 53%,
+    #000 60%
+  );
+
+
+  -webkit-mask-image: var(--split);
+  mask-image: var(--split);
+}
+
+.hero-mask-sky-x {
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    #000 32%,
+    #000 86%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    #000 32%,
+    #000 86%,
+    transparent 100%
+  );
+}
+
+.hero-mask-sky-y {
+  -webkit-mask-image: linear-gradient(to bottom, #000 42%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 42%, transparent 100%);
+}
+
+.hero-mask-facility-x {
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 9%);
+  mask-image: linear-gradient(to right, transparent 0%, #000 9%);
+}
+
+.hero-mask-facility-y {
+  -webkit-mask-image: linear-gradient(to bottom, #000 84%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 84%, transparent 100%);
+}
+
+/* soften the silk drape where its cut edge meets the navy */
+.hero-mask-silk {
+  --silk: linear-gradient(to right, #000 0%, #000 84%, rgba(0, 0, 0, 0.6) 95%, transparent 100%);
+  -webkit-mask-image: var(--silk);
+  mask-image: var(--silk);
+}
+
+/* slow float on the facility cutout */
+@keyframes hero2-float {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -1.1%, 0);
+  }
+}
+
+.hero2-float {
+  animation: hero2-float 9s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero2-float {
+    animation: none !important;
+  }
+}
+
+/* the bottom wash fades in from the ribbon crest, never a hard edge */
+.hero-mask-wash {
+  --wash: linear-gradient(to bottom, transparent 0%, #000 42%, #000 100%);
+  -webkit-mask-image: var(--wash);
+  mask-image: var(--wash);
+}
