@@ -535,15 +535,19 @@ body {
    the trust band to the centre — so a viewport wider than 3:2 gains sky
    instead of empty gutters beside a letterboxed canvas.
 
-   The stage never falls below the reference's own 1024. A laptop is
-   typically some 700px tall, and tying the scale to that shrank every
-   measurement to about 70%: the rail read at 10.5px instead of 15, and
-   because only the height was squeezed, the slack came back as dead
-   space across the middle. The hero now renders at the size it was
-   drawn at and runs on past the fold, which is the ordinary bargain
-   for a full-bleed hero. On a display tall enough for the whole
-   composition nothing changes — at 1024 the floor is already met, so
-   the reference still resolves to exactly 1:1.
+   The scale divides the stage by 900, not by the reference's 1024.
+   A laptop is typically some 700px tall, and measuring against the
+   full 1024 shrank everything to about 70% — the rail read at 10.5px
+   instead of 15 — while the slack came back as dead space, because
+   only the height was being squeezed.
+
+   915 is what the composition actually needs once the idle band under
+   the "2+" figure is closed and the language control is brought up to
+   meet it (see HeroExperience and the control in HeroSection, whose
+   anchors moved for this). Nothing is cut off and the hero still ends
+   at the fold; everything in it is simply about 14% larger. Above
+   1536 x 900 the width takes over as the limit, so the reference
+   still resolves to 1:1.
 ---------------------------------------------------------------- */
 
 .hero-stage {
@@ -552,8 +556,8 @@ body {
 
 @media (min-width: 1280px) {
   .hero-stage {
-    --stage-h: max(1024px, 100svh);
-    --u: min(calc(var(--stage-h) / 1024), calc(100vw / 1536));
+    --stage-h: max(640px, 100svh);
+    --u: min(calc(var(--stage-h) / 915), calc(100vw / 1536));
     height: var(--stage-h);
     width: 100%;
   }

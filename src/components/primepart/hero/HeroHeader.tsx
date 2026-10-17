@@ -5,19 +5,22 @@ import WatchStoryButton from "./WatchStoryButton";
 
 /**
  * Left column: eyebrow, headline, supporting copy and the two calls to
- * action (reference headline x182-541/y193-412, copy y432-489,
- * CTAs y511-563).
+ * action (reference headline y193-412, copy y432-489, CTAs y511-563).
+ *
+ * The column starts at 240 rather than the reference's 182. The rail
+ * beside it runs to 204, so the two were touching with nothing between
+ * them; this opens a clear channel and the headline keeps its width.
  */
 export default function HeroHeader() {
   return (
-    <div className="relative z-20 mt-8 xl:absolute xl:left-[calc(var(--u)*182)] xl:top-[calc(var(--u)*155)] xl:mt-0 xl:w-[calc(var(--u)*410)]">
-      <p className="hero2-in flex flex-wrap gap-x-5 text-[11px] font-semibold uppercase tracking-[0.26em] text-[#5A6572] xl:gap-x-[calc(var(--u)*21)] xl:text-[calc(var(--u)*11)]">
+    <div className="relative z-20 mt-8 xl:absolute xl:left-[calc(var(--u)*268)] xl:top-[calc(var(--u)*155)] xl:mt-0 xl:w-[calc(var(--u)*420)]">
+      <p className="hero2-in flex flex-wrap gap-x-5 text-[11px] font-semibold uppercase tracking-[0.26em] text-[#5A6572] xl:gap-x-[calc(var(--u)*21)] xl:text-[calc(var(--u)*11.8)]">
         <span>Components</span>
         <span>Solutions</span>
         <span>Support</span>
       </p>
 
-      <h1 className="mt-4 text-[clamp(2.25rem,8vw,3.4rem)] font-extrabold uppercase leading-[0.88] tracking-[-0.025em] text-[#0B1017] xl:mt-[calc(var(--u)*22)] xl:text-[calc(var(--u)*64)]">
+      <h1 className="mt-4 text-[clamp(2.25rem,8vw,3.4rem)] font-extrabold uppercase leading-[0.88] tracking-[-0.025em] text-[#0B1017] xl:mt-[calc(var(--u)*22)] xl:text-[calc(var(--u)*70)]">
         <span className="hero2-line block" style={{ "--d": "80ms" } as React.CSSProperties}>
           Precision
         </span>
@@ -36,7 +39,7 @@ export default function HeroHeader() {
       </h1>
 
       <p
-        className="hero2-in mt-5 max-w-[26rem] text-[15px] leading-[1.45] text-[#4A545F] xl:mt-[calc(var(--u)*21)] xl:w-[calc(var(--u)*352)] xl:max-w-none xl:text-[calc(var(--u)*14.4)] xl:leading-[1.28]"
+        className="hero2-in mt-5 max-w-[26rem] text-[15px] leading-[1.45] text-[#4A545F] xl:mt-[calc(var(--u)*21)] xl:w-[calc(var(--u)*390)] xl:max-w-none xl:text-[calc(var(--u)*15.4)] xl:leading-[1.28]"
         style={{ "--d": "420ms" } as React.CSSProperties}
       >
         Industrial components, hydraulics, pneumatics, cutting tools and

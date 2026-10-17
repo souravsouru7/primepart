@@ -33,7 +33,7 @@ const glyphs = {
  * own stage around the same loop.
  */
 const boxed =
-  "xl:absolute xl:left-[calc((100%_-_var(--u)*1000)*0.756)] xl:top-[17.1%] xl:w-[calc(var(--u)*1000)]";
+  "xl:absolute xl:left-[calc((100%_-_var(--u)*870)*0.756)] xl:top-[17.1%] xl:w-[calc(var(--u)*870)]";
 
 const artwork =
   "block h-full w-full object-contain object-center drop-shadow-[0_34px_55px_rgba(0,0,0,0.5)]";
