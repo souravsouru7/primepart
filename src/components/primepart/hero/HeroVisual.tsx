@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { useSyncExternalStore } from "react";
 import { annotations } from "./hero-content";
 
 /** Gold line glyphs matching the reference annotation markers. */
@@ -29,15 +30,73 @@ const glyphs = {
  * The facility and the gold annotations above it, both in the same box
  * so the connector threads always land on the roofline.
  *
- * The supplied composition is a transparent cutout at the same 4:3 the
- * box already used, so it drops into the reference's visual zone with
- * no layout change. Its own warm rim light carries most of the lift; a
- * soft drop shadow seats it on the navy.
+ * The composition is a 4:3 loop, keyed off the flat #F6F6F6 it was
+ * delivered on, so the navy split, the warm glow and the silk drape all
+ * read through it the way they did behind the still.
+ *
+ * Transparency is why the loop is only VP9/WebM: Safari plays WebM but
+ * drops its alpha channel and paints the cutout black, and the one
+ * format it does key — HEVC with alpha — can only be encoded on Apple
+ * hardware. So every WebKit browser, and anyone asking for reduced
+ * motion, gets the
+ * matching transparent still instead. The still is also what the server
+ * renders, and the loop's own poster, so the swap after hydration is
+ * frame-identical.
+ *
+ * Layout is the same 4:3 box at every width — only the weight of the
+ * file changes, since a phone has no use for the desktop cut.
  */
 const boxed =
   "xl:absolute xl:left-[calc((100%_-_var(--u)*1000)*0.756)] xl:top-[17.1%] xl:w-[calc(var(--u)*1000)]";
 
+const description =
+  "Cutting tools, hydraulic and pneumatic components, bearings and a robotic arm arranged on machined plinths";
+
+const artwork =
+  "block h-full w-full object-contain object-center drop-shadow-[0_34px_55px_rgba(0,0,0,0.5)]";
+
+/** A phone pulls 1.5MB over cell data instead of the desktop cut's 3.8MB. */
+const cuts = {
+  wide: {
+    src: "/primepart/hero/machines-alive.webm",
+    poster: "/primepart/hero/machines-alive-poster.webp",
+  },
+  phone: {
+    src: "/primepart/hero/machines-alive-sm.webm",
+    poster: "/primepart/hero/machines-alive-poster-sm.webp",
+  },
+} as const;
+
+const wide = "(min-width: 768px)";
+
+/** Only the width can change after load, so that is all we listen to. */
+const watchWidth = (onChange: () => void) => {
+  const query = window.matchMedia(wide);
+  query.addEventListener("change", onChange);
+  return () => query.removeEventListener("change", onChange);
+};
+
+const onServer = () => "still" as const;
+
+/**
+ * Every browser on iOS is WebKit underneath, Chrome and Firefox included,
+ * so the engine is what has to be read, not the brand in the UA string.
+ * `vendor` stays Apple's for all of them and turns into Google's or an
+ * empty string everywhere else.
+ */
+const onWebKit = () =>
+  navigator.vendor === "Apple Computer, Inc." ||
+  /iP(hone|ad|od)/.test(navigator.userAgent);
+
+const inBrowser = () => {
+  if (onWebKit()) return "still" as const;
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return "still" as const;
+  return window.matchMedia(wide).matches ? "wide" : "phone";
+};
+
 export default function HeroVisual() {
+  const variant = useSyncExternalStore(watchWidth, inBrowser, onServer);
+
   return (
     <>
       <div
@@ -45,15 +104,30 @@ export default function HeroVisual() {
         style={{ "--d": "150ms" } as React.CSSProperties}
       >
         <div className="hero2-float h-full w-full">
-          <Image
-            src="/primepart/hero/hero-replacement-industrial-composition.png"
-            alt="Cutting tools, hydraulic and pneumatic components, bearings and a robotic arm arranged on machined plinths"
-            width={1448}
-            height={1086}
-            priority
-            sizes="(max-width: 1280px) 100vw, 62vw"
-            className="h-full w-full object-contain object-center drop-shadow-[0_34px_55px_rgba(0,0,0,0.5)]"
-          />
+          {variant !== "still" ? (
+            <video
+              key={variant}
+              src={cuts[variant].src}
+              poster={cuts[variant].poster}
+              autoPlay
+              loop
+              muted
+              playsInline
+              preload="auto"
+              aria-label={description}
+              className={artwork}
+            />
+          ) : (
+            <Image
+              src="/primepart/hero/machines-alive.png"
+              alt={description}
+              width={1440}
+              height={1080}
+              priority
+              sizes="(max-width: 1280px) 100vw, 62vw"
+              className={artwork}
+            />
+          )}
         </div>
       </div>
 
