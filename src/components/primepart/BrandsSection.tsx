@@ -1,8 +1,8 @@
 "use client";
 
 import Image from "next/image";
+import { useCallback, useEffect, useRef } from "react";
 import Reveal from "./Reveal";
-import { useScrollCarousel } from "./useScrollCarousel";
 
 const brands = [
   { name: "Parker", logo: "/images/primepart/brands/brand-parker.png" },
@@ -16,9 +16,122 @@ const brands = [
   { name: "NACHi", logo: "/images/primepart/brands/brand-nachi.png" },
 ];
 
+/** Pixels per second. Slow enough to read a logo as it goes by. */
+const SPEED = 36;
+
+/** How long the drift waits after someone takes the rail themselves. */
+const HOLD_AFTER_INPUT = 1200;
+
 export default function BrandsSection() {
-  const { trackRef, edges, readEdges, scrollByItem } =
-    useScrollCarousel<HTMLUListElement>();
+  const trackRef = useRef<HTMLUListElement>(null);
+  /** Drift resumes once the clock passes this. */
+  const holdUntil = useRef(0);
+  const loopLength = useRef(0);
+
+  const hold = useCallback((ms = HOLD_AFTER_INPUT) => {
+    holdUntil.current = Math.max(holdUntil.current, performance.now() + ms);
+  }, []);
+
+  /**
+   * The strip runs itself, endlessly.
+   *
+   * The brands are rendered twice, so the rail can be wound back by
+   * exactly one pass the moment the second copy reaches the position
+   * the first one started from — the seam lands on identical pixels and
+   * never shows. One pass is the strip's own width plus the gap that
+   * follows it, not half the scroll width, or the wind-back would be
+   * out by half a gap on every lap.
+   */
+  useEffect(() => {
+    const track = trackRef.current;
+    if (!track) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const measure = () => {
+      const gap = Number.parseFloat(getComputedStyle(track).columnGap || "0");
+      loopLength.current = (track.scrollWidth + gap) / 2;
+    };
+    measure();
+
+    let frame = 0;
+    let last = 0;
+    let onScreen = true;
+    /**
+     * The position is carried here as a float rather than accumulated
+     * onto `scrollLeft`. A frame's worth of travel is well under a
+     * pixel, and the scroller rounds what it stores, so adding to the
+     * property reads the rounding back each frame and the strip stalls
+     * a pixel in.
+     */
+    let position = track.scrollLeft;
+
+    const tick = (now: number) => {
+      // a long frame (a background tab waking up) must not teleport it
+      const elapsed = last ? Math.min(now - last, 64) : 0;
+      last = now;
+
+      const lap = loopLength.current;
+      const drifting = onScreen && !document.hidden && now >= holdUntil.current;
+
+      if (drifting) {
+        position += (SPEED * elapsed) / 1000;
+        if (lap > 0) {
+          // wound both ways, so a backwards swipe never dead-ends
+          if (position >= lap) position -= lap;
+          else if (position < 0) position += lap;
+        }
+        track.scrollLeft = position;
+      } else {
+        // someone else has the rail — follow wherever they put it
+        position = track.scrollLeft;
+        if (lap > 0 && position >= lap) {
+          position -= lap;
+          track.scrollLeft = position;
+        }
+      }
+
+      frame = requestAnimationFrame(tick);
+    };
+
+    frame = requestAnimationFrame(tick);
+
+    const resizes = new ResizeObserver(measure);
+    resizes.observe(track);
+
+    // nothing animates while the section is off screen
+    const visibility = new IntersectionObserver(
+      (entries) => {
+        onScreen = entries.some((entry) => entry.isIntersecting);
+      },
+      { threshold: 0 },
+    );
+    visibility.observe(track);
+
+    return () => {
+      cancelAnimationFrame(frame);
+      resizes.disconnect();
+      visibility.disconnect();
+    };
+  }, []);
+
+  /** One logo further along, and hands the rail back after a moment. */
+  const step = (direction: 1 | -1) => {
+    const track = trackRef.current;
+    const item = track?.firstElementChild as HTMLElement | undefined;
+    if (!track || !item) return;
+
+    const gap = Number.parseFloat(getComputedStyle(track).columnGap || "0");
+    const distance = item.getBoundingClientRect().width + gap;
+
+    // going back from the very start would hit the scroller's own floor,
+    // so wind forward a lap first and travel from there instead
+    if (direction === -1 && track.scrollLeft < distance && loopLength.current) {
+      track.scrollLeft += loopLength.current;
+    }
+
+    hold(900);
+    track.scrollBy({ left: direction * distance, behavior: "smooth" });
+  };
 
   return (
     <section id="brands" className="w-full bg-[#FFFDFE] py-12 sm:py-14">
@@ -50,42 +163,58 @@ export default function BrandsSection() {
           <CarouselButton
             icon="/images/primepart/brands/button-arrow-left.png"
             label="Previous brands"
-            disabled={!edges.prev}
-            onClick={() => scrollByItem(-1)}
+            onClick={() => step(-1)}
           />
 
-          <ul
-            ref={trackRef}
-            onScroll={readEdges}
-            className="flex min-w-0 flex-1 snap-x snap-mandatory gap-2.5 overflow-x-auto overscroll-x-contain py-2 [scrollbar-width:none] sm:gap-3 [&::-webkit-scrollbar]:hidden"
-          >
-            {brands.map((brand, index) => (
-              <Reveal
-                key={brand.name}
-                delay={index * 0.07}
-                y={16}
-                className="shrink-0 snap-start"
-              >
-                <li className="list-none">
-                  <span className="relative block h-[82px] w-[124px] transition-transform duration-300 hover:-translate-y-1 sm:h-[92px] sm:w-[140px] xl:h-[100px] xl:w-[152px]">
-                    <Image
-                      src={brand.logo}
-                      alt={brand.name}
-                      fill
-                      sizes="152px"
-                      className="object-contain"
-                    />
-                  </span>
-                </li>
-              </Reveal>
-            ))}
-          </ul>
+          {/* The drift stands aside for anyone reading or driving the
+              rail: a pointer over it, keyboard focus inside it, a swipe
+              or a wheel. The reveal wraps the whole strip rather than
+              each logo, since per-item entrances cannot settle on a
+              rail that never stops. */}
+          <Reveal className="min-w-0 flex-1" y={16}>
+            <ul
+              ref={trackRef}
+              onPointerEnter={() => hold(10 ** 7)}
+              onPointerLeave={() => {
+                holdUntil.current = 0;
+              }}
+              onFocusCapture={() => hold(10 ** 7)}
+              onBlurCapture={() => {
+                holdUntil.current = 0;
+              }}
+              onPointerDown={() => hold()}
+              onTouchStart={() => hold()}
+              onWheel={() => hold()}
+              className="flex gap-2.5 overflow-x-auto overscroll-x-contain py-2 [scrollbar-width:none] sm:gap-3 [&::-webkit-scrollbar]:hidden"
+            >
+              {/* two identical passes — the second is scenery, and is
+                  not read out a second time */}
+              {[0, 1].map((pass) =>
+                brands.map((brand) => (
+                  <li
+                    key={`${pass}-${brand.name}`}
+                    aria-hidden={pass === 1}
+                    className="shrink-0 list-none"
+                  >
+                    <span className="relative block h-[82px] w-[124px] transition-transform duration-300 hover:-translate-y-1 sm:h-[92px] sm:w-[140px] xl:h-[100px] xl:w-[152px]">
+                      <Image
+                        src={brand.logo}
+                        alt={pass === 1 ? "" : brand.name}
+                        fill
+                        sizes="152px"
+                        className="object-contain"
+                      />
+                    </span>
+                  </li>
+                )),
+              )}
+            </ul>
+          </Reveal>
 
           <CarouselButton
             icon="/images/primepart/brands/button-arrow-right.png"
             label="Next brands"
-            disabled={!edges.next}
-            onClick={() => scrollByItem(1)}
+            onClick={() => step(1)}
           />
         </div>
       </div>
@@ -93,24 +222,22 @@ export default function BrandsSection() {
   );
 }
 
+/** The rail loops, so neither direction is ever a dead end to disable. */
 function CarouselButton({
   icon,
   label,
-  disabled,
   onClick,
 }: {
   icon: string;
   label: string;
-  disabled: boolean;
   onClick: () => void;
 }) {
   return (
     <button
       type="button"
       aria-label={label}
-      disabled={disabled}
       onClick={onClick}
-      className="relative h-10 w-10 shrink-0 rounded-full transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_8px_20px_-10px_rgba(11,15,25,0.6)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0E39EE] focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-35 disabled:hover:scale-100 disabled:hover:shadow-none sm:h-11 sm:w-11"
+      className="relative h-10 w-10 shrink-0 rounded-full transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_8px_20px_-10px_rgba(11,15,25,0.6)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0E39EE] focus-visible:ring-offset-2 sm:h-11 sm:w-11"
     >
       <Image src={icon} alt="" fill sizes="44px" className="object-contain" />
     </button>
