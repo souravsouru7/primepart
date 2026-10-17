@@ -40,7 +40,7 @@ export default function WatchStoryButton({ tone = "light" }: { tone?: "light" | 
         }`}
       >
         <span
-          className={`relative flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[#F4AE13] xl:h-[calc(var(--u)*44)] xl:w-[calc(var(--u)*44)] transition-colors duration-200 group-hover:bg-[#F4AE13]/10 ${
+          className={`relative flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[#F4AE13] xl:h-[calc(var(--u)*48)] xl:w-[calc(var(--u)*48)] transition-colors duration-200 group-hover:bg-[#F4AE13]/10 ${
             dark ? "bg-white/[0.06] text-[#F8C544]" : "text-[#B47C06]"
           }`}
         >
@@ -49,10 +49,10 @@ export default function WatchStoryButton({ tone = "light" }: { tone?: "light" | 
             aria-hidden
             className="absolute inset-0 rounded-full border border-[#F4AE13] opacity-0 transition-all duration-500 group-hover:scale-125 group-hover:opacity-0 group-hover:[animation:none] motion-safe:group-hover:opacity-60"
           />
-          <Play className="h-4 w-4 translate-x-[1px] fill-current xl:h-[calc(var(--u)*16)] xl:w-[calc(var(--u)*16)]" />
+          <Play className="h-4 w-4 translate-x-[1px] fill-current xl:h-[calc(var(--u)*17.5)] xl:w-[calc(var(--u)*17.5)]" />
         </span>
         <span
-          className={`whitespace-nowrap text-[13px] font-semibold leading-[1.3] xl:text-[calc(var(--u)*12.6)] ${
+          className={`whitespace-nowrap text-[13px] font-semibold leading-[1.3] xl:text-[calc(var(--u)*14)] ${
             dark ? "text-white/85" : "text-[#0B1017]"
           }`}
         >

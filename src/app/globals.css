@@ -541,7 +541,7 @@ body {
    instead of 15 — while the slack came back as dead space, because
    only the height was being squeezed.
 
-   915 is what the composition actually needs once the idle band under
+   927 is what the composition actually needs once the idle band under
    the "2+" figure is closed and the language control is brought up to
    meet it (see HeroExperience and the control in HeroSection, whose
    anchors moved for this). Nothing is cut off and the hero still ends
@@ -557,7 +557,7 @@ body {
 @media (min-width: 1280px) {
   .hero-stage {
     --stage-h: max(640px, 100svh);
-    --u: min(calc(var(--stage-h) / 915), calc(100vw / 1536));
+    --u: min(calc(var(--stage-h) / 927), calc(100vw / 1536));
     height: var(--stage-h);
     width: 100%;
   }

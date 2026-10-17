@@ -19,7 +19,7 @@ export default function HeroExperience() {
   return (
     <div
       style={{ "--d": "620ms" } as React.CSSProperties}
-      className="hero2-in relative z-20 xl:absolute xl:left-[calc(var(--u)*78)] xl:top-[calc(var(--u)*600)] xl:mt-0 xl:w-[calc(var(--u)*380)]"
+      className="hero2-in relative z-20 xl:absolute xl:left-[calc(var(--u)*78)] xl:top-[calc(var(--u)*630)] xl:mt-0 xl:w-[calc(var(--u)*240)]"
     >
       <p className="sr-only">Two plus years of industrial excellence</p>
 
@@ -35,7 +35,7 @@ export default function HeroExperience() {
       <p className="mt-4 text-[13px] font-bold uppercase leading-none tracking-[0.02em] text-[#0B1017] xl:ml-[calc(var(--u)*6)] xl:mt-[calc(var(--u)*7)] xl:text-[calc(var(--u)*22)]">
         Years of
       </p>
-      <p className="mt-1.5 text-[12px] font-medium uppercase tracking-[0.22em] text-[#5A6572] xl:ml-[calc(var(--u)*8)] xl:mt-[calc(var(--u)*4)] xl:text-[calc(var(--u)*15)]">
+      <p className="mt-1.5 text-[12px] font-medium uppercase tracking-[0.22em] text-[#5A6572] xl:ml-[calc(var(--u)*8)] xl:mt-[calc(var(--u)*4)] xl:text-[calc(var(--u)*13.5)]">
         Industrial Excellence
       </p>
 

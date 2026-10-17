@@ -44,7 +44,7 @@ export default function HeroBackdrop() {
           </div>
 
           {/* warm ambient light over the facility */}
-          <div className="absolute left-[calc((100%_-_var(--u)*870)*0.756)] top-[4%] h-[74%] w-[calc(var(--u)*1180)] ml-[calc(var(--u)*-90)] rounded-[50%] bg-[radial-gradient(closest-side,rgba(244,174,19,0.22),rgba(244,174,19,0.07)_58%,transparent_78%)]" />
+          <div className="absolute left-[calc((100%_-_var(--u)*800)*0.756)] top-[4%] h-[74%] w-[calc(var(--u)*1180)] ml-[calc(var(--u)*-90)] rounded-[50%] bg-[radial-gradient(closest-side,rgba(244,174,19,0.22),rgba(244,174,19,0.07)_58%,transparent_78%)]" />
         </div>
       </div>
 

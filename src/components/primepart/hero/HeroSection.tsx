@@ -97,7 +97,7 @@ export default function HeroSection() {
         {/* language */}
         <button
           type="button"
-          className="relative z-20 mt-10 hidden items-center gap-2 rounded-full border border-black/10 bg-white px-4 py-2 text-[12px] xl:flex font-semibold text-[#2C3640] shadow-[0_6px_18px_-10px_rgba(11,16,23,0.5)] transition-colors hover:border-[#F4AE13]/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F4AE13] xl:absolute xl:left-[calc(var(--u)*50)] xl:top-[calc(var(--u)*860)] xl:mt-0 xl:gap-[calc(var(--u)*8)] xl:px-[calc(var(--u)*18)] xl:py-[calc(var(--u)*13)] xl:text-[calc(var(--u)*14)]"
+          className="relative z-20 mt-10 hidden items-center gap-2 rounded-full border border-black/10 bg-white px-4 py-2 text-[12px] xl:flex font-semibold text-[#2C3640] shadow-[0_6px_18px_-10px_rgba(11,16,23,0.5)] transition-colors hover:border-[#F4AE13]/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F4AE13] xl:absolute xl:left-[calc(var(--u)*50)] xl:top-[calc(var(--u)*872)] xl:mt-0 xl:gap-[calc(var(--u)*8)] xl:px-[calc(var(--u)*18)] xl:py-[calc(var(--u)*13)] xl:text-[calc(var(--u)*14)]"
         >
           <Globe
             className="h-4 w-4 text-[#5A6572] xl:h-[calc(var(--u)*15)] xl:w-[calc(var(--u)*15)]"
