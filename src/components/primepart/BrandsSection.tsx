@@ -114,25 +114,6 @@ export default function BrandsSection() {
     };
   }, []);
 
-  /** One logo further along, and hands the rail back after a moment. */
-  const step = (direction: 1 | -1) => {
-    const track = trackRef.current;
-    const item = track?.firstElementChild as HTMLElement | undefined;
-    if (!track || !item) return;
-
-    const gap = Number.parseFloat(getComputedStyle(track).columnGap || "0");
-    const distance = item.getBoundingClientRect().width + gap;
-
-    // going back from the very start would hit the scroller's own floor,
-    // so wind forward a lap first and travel from there instead
-    if (direction === -1 && track.scrollLeft < distance && loopLength.current) {
-      track.scrollLeft += loopLength.current;
-    }
-
-    hold(900);
-    track.scrollBy({ left: direction * distance, behavior: "smooth" });
-  };
-
   return (
     <section id="brands" className="w-full bg-[#FFFDFE] py-12 sm:py-14">
       <div className="mx-auto grid w-full max-w-[1500px] min-w-0 items-center gap-8 px-5 sm:px-6 lg:grid-cols-[30%_minmax(0,1fr)] lg:gap-6 xl:px-10">
@@ -157,21 +138,16 @@ export default function BrandsSection() {
           </Reveal>
         </div>
 
-        {/* Brand carousel — `min-w-0` or the grid item takes its width
-            from the full strip of logos instead of the column */}
-        <div className="flex min-w-0 items-center gap-2 sm:gap-3">
-          <CarouselButton
-            icon="/images/primepart/brands/button-arrow-left.png"
-            label="Previous brands"
-            onClick={() => step(-1)}
-          />
+        {/* Brand carousel. `min-w-0` or the grid item takes its width
+            from the full strip of logos instead of the column.
 
-          {/* The drift stands aside for anyone reading or driving the
-              rail: a pointer over it, keyboard focus inside it, a swipe
-              or a wheel. The reveal wraps the whole strip rather than
-              each logo, since per-item entrances cannot settle on a
-              rail that never stops. */}
-          <Reveal className="min-w-0 flex-1" y={16}>
+            There are no arrows: the rail carries itself, and it still
+            answers a swipe or a wheel. The drift stands aside for
+            anyone reading or driving it — a pointer over it, keyboard
+            focus inside it, a swipe or a wheel. The reveal wraps the
+            whole strip rather than each logo, since per-item entrances
+            cannot settle on a rail that never stops. */}
+        <Reveal className="min-w-0" y={16}>
             <ul
               ref={trackRef}
               onPointerEnter={() => hold(10 ** 7)}
@@ -209,37 +185,8 @@ export default function BrandsSection() {
                 )),
               )}
             </ul>
-          </Reveal>
-
-          <CarouselButton
-            icon="/images/primepart/brands/button-arrow-right.png"
-            label="Next brands"
-            onClick={() => step(1)}
-          />
-        </div>
+        </Reveal>
       </div>
     </section>
-  );
-}
-
-/** The rail loops, so neither direction is ever a dead end to disable. */
-function CarouselButton({
-  icon,
-  label,
-  onClick,
-}: {
-  icon: string;
-  label: string;
-  onClick: () => void;
-}) {
-  return (
-    <button
-      type="button"
-      aria-label={label}
-      onClick={onClick}
-      className="relative h-10 w-10 shrink-0 rounded-full transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_8px_20px_-10px_rgba(11,15,25,0.6)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0E39EE] focus-visible:ring-offset-2 sm:h-11 sm:w-11"
-    >
-      <Image src={icon} alt="" fill sizes="44px" className="object-contain" />
-    </button>
   );
 }
