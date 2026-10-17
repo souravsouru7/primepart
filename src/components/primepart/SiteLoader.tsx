@@ -1,13 +1,14 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { getLenis } from "./SmoothScroll";
 
 /**
  * Opening sequence for the site: a precision-instrument "boot" built
- * from the product language — a rotating bearing race, a caliper scale
- * that measures progress, and machined panels that part to reveal the
- * hero.
+ * from the product language — a rotating bearing race carrying the
+ * brand mark at its hub, a caliper scale that measures progress, and
+ * machined panels that part to reveal the hero.
  *
  * Progress tracks real document readiness: it eases toward 90% while the
  * page is still loading and completes on the window `load` event, with a
@@ -248,21 +249,30 @@ export default function SiteLoader() {
             />
           </svg>
 
-          {/* PrimePart mark at the hub */}
-          <span className="absolute left-1/2 top-1/2 flex h-10 w-10 -translate-x-1/2 -translate-y-1/2 items-center justify-center">
-            <span className="absolute inset-0 rotate-45 rounded-[11px] bg-gradient-to-br from-[#FFC72C] via-[#F7B500] to-[#8a5a00]" />
-            <span className="absolute inset-[5px] rotate-45 rounded-[7px] bg-[#070B10]" />
-            <span className="absolute inset-[9px] rotate-45 rounded-[5px] bg-gradient-to-br from-[#FFD36A] to-[#F7B500]" />
+          {/* the brand mark itself at the hub */}
+          <span className="absolute left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2 items-center justify-center">
+            <Image
+              src="/primepart/hero/logo-mark-light.png"
+              alt=""
+              width={280}
+              height={373}
+              priority
+              className="h-9 w-auto sm:h-10"
+            />
           </span>
         </div>
 
-        {/* Wordmark */}
-        <p className="primepart-wordmark-in mt-7 text-[22px] font-extrabold tracking-tight text-white sm:text-[26px]">
-          Prime<span className="text-[#F7B500]">Part</span>
-        </p>
-        <p className="mt-1.5 text-[9px] font-medium uppercase tracking-[0.34em] text-white/35">
-          Quality at your doorstep
-        </p>
+        {/* Wordmark — the supplied logo, lifted to white for the dark
+            panel during asset prep. The tagline is part of the artwork,
+            so it is not set again underneath. */}
+        <Image
+          src="/primepart/hero/logo-wordmark-light.png"
+          alt="PrimePart — Quality at your doorstep"
+          width={2203}
+          height={569}
+          priority
+          className="primepart-wordmark-in mt-7 h-auto w-[196px] sm:w-[224px]"
+        />
 
         {/* Caliper scale */}
         <div className="mt-9 w-full max-w-[340px] sm:max-w-[400px]">
