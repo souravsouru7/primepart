@@ -9,7 +9,8 @@ import { STORY_VIDEO_URL } from "./hero-content";
  * accessible dialog; without one it opens the same dialog stating that
  * the film is not available yet, rather than faking a player.
  */
-export default function WatchStoryButton() {
+export default function WatchStoryButton({ tone = "light" }: { tone?: "light" | "dark" }) {
+  const dark = tone === "dark";
   const [open, setOpen] = useState(false);
   const closeRef = useRef<HTMLButtonElement>(null);
   const openerRef = useRef<HTMLButtonElement>(null);
@@ -34,9 +35,15 @@ export default function WatchStoryButton() {
         ref={openerRef}
         type="button"
         onClick={() => setOpen(true)}
-        className="group flex shrink-0 items-center gap-3 rounded-full text-left xl:gap-[calc(var(--u)*12)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F4AE13] focus-visible:ring-offset-2"
+        className={`group flex shrink-0 items-center gap-3 rounded-full text-left xl:gap-[calc(var(--u)*12)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F4AE13] ${
+          dark ? "" : "focus-visible:ring-offset-2"
+        }`}
       >
-        <span className="relative flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[#F4AE13] text-[#B47C06] xl:h-[calc(var(--u)*44)] xl:w-[calc(var(--u)*44)] transition-colors duration-200 group-hover:bg-[#F4AE13]/10">
+        <span
+          className={`relative flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[#F4AE13] xl:h-[calc(var(--u)*44)] xl:w-[calc(var(--u)*44)] transition-colors duration-200 group-hover:bg-[#F4AE13]/10 ${
+            dark ? "bg-white/[0.06] text-[#F8C544]" : "text-[#B47C06]"
+          }`}
+        >
           {/* single ripple on hover */}
           <span
             aria-hidden
@@ -44,7 +51,11 @@ export default function WatchStoryButton() {
           />
           <Play className="h-4 w-4 translate-x-[1px] fill-current xl:h-[calc(var(--u)*16)] xl:w-[calc(var(--u)*16)]" />
         </span>
-        <span className="whitespace-nowrap text-[13px] font-semibold leading-[1.3] text-[#0B1017] xl:text-[calc(var(--u)*12.6)]">
+        <span
+          className={`whitespace-nowrap text-[13px] font-semibold leading-[1.3] xl:text-[calc(var(--u)*12.6)] ${
+            dark ? "text-white/85" : "text-[#0B1017]"
+          }`}
+        >
           Watch
           <br />
           Our Story

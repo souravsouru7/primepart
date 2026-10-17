@@ -1,7 +1,6 @@
 "use client";
 
-import Image from "next/image";
-import { useSyncExternalStore } from "react";
+import HeroLoop from "./HeroLoop";
 import { annotations } from "./hero-content";
 
 /** Gold line glyphs matching the reference annotation markers. */
@@ -30,73 +29,16 @@ const glyphs = {
  * The facility and the gold annotations above it, both in the same box
  * so the connector threads always land on the roofline.
  *
- * The composition is a 4:3 loop, keyed off the flat #F6F6F6 it was
- * delivered on, so the navy split, the warm glow and the silk drape all
- * read through it the way they did behind the still.
- *
- * Transparency is why the loop is only VP9/WebM: Safari plays WebM but
- * drops its alpha channel and paints the cutout black, and the one
- * format it does key — HEVC with alpha — can only be encoded on Apple
- * hardware. So every WebKit browser, and anyone asking for reduced
- * motion, gets the
- * matching transparent still instead. The still is also what the server
- * renders, and the loop's own poster, so the swap after hydration is
- * frame-identical.
- *
- * Layout is the same 4:3 box at every width — only the weight of the
- * file changes, since a phone has no use for the desktop cut.
+ * This is the desktop composition; below `xl` HeroMobile renders its
+ * own stage around the same loop.
  */
 const boxed =
   "xl:absolute xl:left-[calc((100%_-_var(--u)*1000)*0.756)] xl:top-[17.1%] xl:w-[calc(var(--u)*1000)]";
 
-const description =
-  "Cutting tools, hydraulic and pneumatic components, bearings and a robotic arm arranged on machined plinths";
-
 const artwork =
   "block h-full w-full object-contain object-center drop-shadow-[0_34px_55px_rgba(0,0,0,0.5)]";
 
-/** A phone pulls 1.5MB over cell data instead of the desktop cut's 3.8MB. */
-const cuts = {
-  wide: {
-    src: "/primepart/hero/machines-alive.webm",
-    poster: "/primepart/hero/machines-alive-poster.webp",
-  },
-  phone: {
-    src: "/primepart/hero/machines-alive-sm.webm",
-    poster: "/primepart/hero/machines-alive-poster-sm.webp",
-  },
-} as const;
-
-const wide = "(min-width: 768px)";
-
-/** Only the width can change after load, so that is all we listen to. */
-const watchWidth = (onChange: () => void) => {
-  const query = window.matchMedia(wide);
-  query.addEventListener("change", onChange);
-  return () => query.removeEventListener("change", onChange);
-};
-
-const onServer = () => "still" as const;
-
-/**
- * Every browser on iOS is WebKit underneath, Chrome and Firefox included,
- * so the engine is what has to be read, not the brand in the UA string.
- * `vendor` stays Apple's for all of them and turns into Google's or an
- * empty string everywhere else.
- */
-const onWebKit = () =>
-  navigator.vendor === "Apple Computer, Inc." ||
-  /iP(hone|ad|od)/.test(navigator.userAgent);
-
-const inBrowser = () => {
-  if (onWebKit()) return "still" as const;
-  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return "still" as const;
-  return window.matchMedia(wide).matches ? "wide" : "phone";
-};
-
 export default function HeroVisual() {
-  const variant = useSyncExternalStore(watchWidth, inBrowser, onServer);
-
   return (
     <>
       <div
@@ -104,59 +46,11 @@ export default function HeroVisual() {
         style={{ "--d": "150ms" } as React.CSSProperties}
       >
         <div className="hero2-float h-full w-full">
-          {variant !== "still" ? (
-            <video
-              key={variant}
-              src={cuts[variant].src}
-              poster={cuts[variant].poster}
-              autoPlay
-              loop
-              muted
-              playsInline
-              preload="auto"
-              aria-label={description}
-              className={artwork}
-            />
-          ) : (
-            <Image
-              src="/primepart/hero/machines-alive.png"
-              alt={description}
-              width={1440}
-              height={1080}
-              priority
-              sizes="(max-width: 1280px) 100vw, 62vw"
-              className={artwork}
-            />
-          )}
+          <HeroLoop className={artwork} sizes="(max-width: 1280px) 100vw, 62vw" />
         </div>
       </div>
 
-      {/* Below `xl` the floating markers would be illegibly small, so the
-          same three labels ride under the facility as chips. */}
-      <ul className="hero2-in mt-5 flex snap-x snap-mandatory gap-2.5 overflow-x-auto pb-1 [scrollbar-width:none] xl:hidden [&::-webkit-scrollbar]:hidden">
-        {annotations.map((annotation) => (
-          <li key={annotation.key} className="shrink-0 snap-start">
-            <span className="flex items-center gap-2 rounded-full border border-[#F4AE13]/35 bg-white/[0.06] px-3.5 py-2 backdrop-blur-sm">
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="#F8C544"
-                strokeWidth="1.7"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="h-[17px] w-[17px] shrink-0"
-              >
-                {glyphs[annotation.key]}
-              </svg>
-              <span className="text-[11px] font-bold uppercase tracking-[0.1em] text-white">
-                {annotation.title}
-              </span>
-            </span>
-          </li>
-        ))}
-      </ul>
-
-      {/* annotation layer — reference detail, desktop only */}
+      {/* annotation layer */}
       <div aria-hidden className={`hidden aspect-[4/3] xl:z-10 xl:block ${boxed}`}>
         {annotations.map((annotation, index) => (
           <div

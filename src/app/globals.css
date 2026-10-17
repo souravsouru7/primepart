@@ -655,3 +655,233 @@ body {
   -webkit-mask-image: var(--wash);
   mask-image: var(--wash);
 }
+
+/* ---------------------------------------------------------------
+   Mobile hero
+
+   The phone composition is its own design: an instrument panel around
+   the loop rather than the desktop reference stacked into a column.
+   Everything here is ambient motion on a handful of elements, and all
+   of it is switched off under `prefers-reduced-motion` at the end of
+   the block.
+---------------------------------------------------------------- */
+
+/* faint engineering grid, fading out before it reaches the edges */
+.herom-grid {
+  --line: rgba(244, 174, 19, 0.07);
+  background-image:
+    linear-gradient(to right, var(--line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--line) 1px, transparent 1px);
+  background-size: 46px 46px;
+  -webkit-mask-image: radial-gradient(ellipse 80% 55% at 50% 32%, #000 0%, transparent 100%);
+  mask-image: radial-gradient(ellipse 80% 55% at 50% 32%, #000 0%, transparent 100%);
+}
+
+/* the forge light over the work, breathing */
+@keyframes herom-breathe {
+  0%,
+  100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.07);
+  }
+}
+
+.herom-breathe {
+  animation: herom-breathe 8s ease-in-out infinite;
+}
+
+/* sparks rising off the plinths */
+@keyframes herom-spark {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 0, 0) scale(0.5);
+  }
+  14% {
+    opacity: 1;
+  }
+  76% {
+    opacity: 0.85;
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(var(--dx, 10px), -150px, 0) scale(1.15);
+  }
+}
+
+.herom-spark {
+  animation: herom-spark var(--dur, 7s) linear infinite;
+  animation-delay: var(--d, 0s);
+}
+
+/* inspection sweep down the frame */
+@keyframes herom-scan {
+  0% {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  8%,
+  82% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(700%);
+  }
+}
+
+.herom-scan {
+  animation: herom-scan 6.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* the live dot on the location chip */
+@keyframes herom-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(244, 174, 19, 0.6);
+  }
+  70% {
+    box-shadow: 0 0 0 7px rgba(244, 174, 19, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(244, 174, 19, 0);
+  }
+}
+
+.herom-pulse {
+  animation: herom-pulse 2.4s ease-out infinite;
+}
+
+/* readout markers, sampling one after another */
+@keyframes herom-blip {
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.herom-blip {
+  animation: herom-blip 3.3s ease-in-out infinite;
+  animation-delay: var(--d, 0s);
+}
+
+/* molten sheen across the gold word of the headline */
+@keyframes herom-gold {
+  0%,
+  72%,
+  100% {
+    background-position: -130% 0;
+  }
+  36% {
+    background-position: 230% 0;
+  }
+}
+
+.herom-gold {
+  background-image: linear-gradient(
+    100deg,
+    #f4ae13 0%,
+    #f4ae13 38%,
+    #fff3cf 50%,
+    #f4ae13 62%,
+    #f4ae13 100%
+  );
+  background-size: 240% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: herom-gold 7s ease-in-out infinite;
+}
+
+/* the gleam that crosses the primary button — a moving background
+   rather than a travelling element, so nothing ever reports a box
+   outside the viewport to the overflow audit */
+@keyframes herom-sheen {
+  0%,
+  62%,
+  100% {
+    background-position: -120% 0;
+  }
+  31% {
+    background-position: 220% 0;
+  }
+}
+
+.herom-sheen {
+  background-image: linear-gradient(
+    102deg,
+    transparent 40%,
+    rgba(255, 255, 255, 0.5) 50%,
+    transparent 60%
+  );
+  background-size: 260% 100%;
+  background-repeat: no-repeat;
+  animation: herom-sheen 5.5s ease-in-out infinite;
+}
+
+/* trust ticker — the track holds two identical passes */
+@keyframes herom-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.herom-marquee {
+  animation: herom-marquee 26s linear infinite;
+}
+
+/* the loop drifts against the scroll where the browser can drive it
+   off the scroll position rather than a timer */
+@supports (animation-timeline: view()) {
+  @keyframes herom-parallax {
+    from {
+      transform: translateY(-3.5%) scale(1.04);
+    }
+    to {
+      transform: translateY(3.5%) scale(1);
+    }
+  }
+
+  .herom-parallax {
+    animation: herom-parallax linear both;
+    animation-timeline: view();
+    animation-range: cover 0% cover 100%;
+  }
+
+  /* the timer-driven float would fight the scroll-driven drift */
+  .herom-parallax.hero2-float {
+    animation-name: herom-parallax;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .herom-breathe,
+  .herom-spark,
+  .herom-scan,
+  .herom-pulse,
+  .herom-blip,
+  .herom-gold,
+  .herom-sheen,
+  .herom-marquee,
+  .herom-parallax {
+    animation: none !important;
+    transform: none !important;
+  }
+
+  .herom-spark,
+  .herom-scan {
+    opacity: 0 !important;
+  }
+
+  .herom-gold {
+    color: #f4ae13;
+  }
+}

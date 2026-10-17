@@ -6,6 +6,7 @@ import HeroBackdrop from "./HeroBackdrop";
 import HeroCategoryRail from "./HeroCategoryRail";
 import HeroExperience from "./HeroExperience";
 import HeroHeader from "./HeroHeader";
+import HeroMobile from "./HeroMobile";
 import HeroMobileNav from "./HeroMobileNav";
 import HeroSidebar from "./HeroSidebar";
 import HeroTrustStrip from "./HeroTrustStrip";
@@ -17,16 +18,25 @@ import HeroVisual from "./HeroVisual";
  *
  * From `xl` the stage fills the viewport and `--u` carries the uniform
  * scale of one reference pixel, so every measurement below is the
- * number read straight off the 1536 x 1024 approved reference. Below
- * `xl` everything falls back to document flow in reading order.
+ * number read straight off the 1536 x 1024 approved reference.
+ *
+ * Below `xl` none of it renders. A 1536 x 1024 composition has no
+ * honest reduction to a phone, and stacking its pieces into a column
+ * was what made the old mobile hero read as an afterthought, so the
+ * phone gets its own composition in HeroMobile. The wrapper here goes
+ * `display: none` on a phone and `display: contents` at `xl`, which
+ * dissolves it so the reference grid still hangs off the stage.
  */
 export default function HeroSection() {
   return (
     <section
       id="home"
-      className="relative isolate w-full overflow-hidden bg-[#F7FAFA] text-[#0B1017]"
+      className="relative isolate w-full overflow-hidden bg-[#05121A] text-[#0B1017] xl:bg-[#F7FAFA]"
     >
-      <div className="hero-stage relative w-full px-5 py-10 sm:px-7 xl:px-0 xl:py-0">
+      <HeroMobile />
+
+      <div className="hero-stage relative w-full xl:px-0 xl:py-0">
+        <div className="hidden xl:contents">
         <HeroBackdrop />
 
         {/* brand + hamburger share a top bar below xl; at xl the logo
@@ -96,6 +106,7 @@ export default function HeroSection() {
           EN
           <ChevronDown className="h-3.5 w-3.5 opacity-60 xl:h-[calc(var(--u)*14)] xl:w-[calc(var(--u)*14)]" />
         </button>
+        </div>
       </div>
     </section>
   );
