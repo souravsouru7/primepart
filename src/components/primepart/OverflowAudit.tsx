@@ -5,10 +5,18 @@ import { useEffect, useState } from "react";
 type Offender = { label: string; width: number };
 
 /**
- * Development-only diagnostic. Finds any element that extends past the
- * viewport width (the usual cause of a phone shrinking the whole page to
- * fit) and names it on screen, so it can be identified on a real device
- * without a desktop console.
+ * Development-only diagnostic. Names, on screen, whatever is making the
+ * page scroll sideways — the usual cause of a phone shrinking the whole
+ * layout to fit — so it can be found on a real device without a desktop
+ * console.
+ *
+ * It skips any element a container already clips, because a panel that
+ * cries wolf gets closed and then ignored. A skyline bled to 130%, a
+ * drape hanging off the canvas, a button sheen parked off-screen until
+ * it sweeps, the cards queued to the right of a carousel — each sits
+ * inside an `overflow` box and cannot widen the page by a single pixel.
+ * What is left is the real thing: an element reaching past the edge
+ * with nothing but the root's own `overflow-x: clip` hiding it.
  *
  * Renders nothing in production builds.
  */
@@ -18,6 +26,24 @@ export default function OverflowAudit() {
 
   useEffect(() => {
     if (process.env.NODE_ENV !== "development") return;
+
+    /**
+     * True once some container between the element and the page cuts it
+     * off. The walk stops below `body` on purpose: html and body both
+     * carry `overflow-x: clip`, which is the very band-aid hiding the
+     * faults this tool is looking for, so counting them would mark
+     * every element on the page as safe.
+     */
+    const isClipped = (node: HTMLElement) => {
+      for (
+        let parent = node.parentElement;
+        parent && parent !== document.body;
+        parent = parent.parentElement
+      ) {
+        if (getComputedStyle(parent).overflowX !== "visible") return true;
+      }
+      return false;
+    };
 
     const scan = () => {
       const limit = document.documentElement.clientWidth;
@@ -29,6 +55,7 @@ export default function OverflowAudit() {
         if (rect.width === 0) return;
         const overhang = Math.max(rect.right - limit, -rect.left);
         if (overhang <= 1) return;
+        if (isClipped(node)) return;
 
         const tag = node.tagName.toLowerCase();
         const id = node.id ? `#${node.id}` : "";
@@ -61,7 +88,7 @@ export default function OverflowAudit() {
   return (
     <div className="fixed bottom-2 left-2 right-2 z-[200] max-h-[40vh] overflow-auto rounded-lg border border-red-400/60 bg-red-950/95 p-3 font-mono text-[10px] leading-snug text-red-100 shadow-xl">
       <div className="mb-1 flex items-center justify-between gap-2">
-        <strong>{offenders.length} element(s) wider than viewport</strong>
+        <strong>{offenders.length} element(s) widening the page</strong>
         <button
           type="button"
           onClick={() => setOpen(false)}

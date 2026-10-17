@@ -44,8 +44,9 @@ export default function BrandsSection() {
           </Reveal>
         </div>
 
-        {/* Brand carousel */}
-        <div className="flex items-center gap-2 sm:gap-3">
+        {/* Brand carousel — `min-w-0` or the grid item takes its width
+            from the full strip of logos instead of the column */}
+        <div className="flex min-w-0 items-center gap-2 sm:gap-3">
           <CarouselButton
             icon="/images/primepart/brands/button-arrow-left.png"
             label="Previous brands"

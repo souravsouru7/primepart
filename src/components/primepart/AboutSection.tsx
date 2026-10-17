@@ -36,7 +36,7 @@ const benefits = [
 export default function AboutSection() {
   return (
     <section id="about" className="w-full bg-[#FFFAF8] py-12 sm:py-14 lg:py-20">
-      <div className="mx-auto grid w-full max-w-[1500px] gap-9 px-5 sm:gap-10 sm:px-6 lg:grid-cols-[31%_41%_28%] lg:items-center lg:gap-8 xl:px-10">
+      <div className="mx-auto grid w-full max-w-[1500px] gap-9 px-5 sm:gap-10 sm:px-6 lg:grid-cols-[31fr_41fr_28fr] lg:items-center lg:gap-8 xl:px-10">
         {/* Intro */}
         <div>
           <Reveal>
