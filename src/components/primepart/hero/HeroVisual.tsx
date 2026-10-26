@@ -45,13 +45,15 @@ export default function HeroVisual() {
         className={`hero2-pop relative z-0 aspect-[4/3] w-full xl:mt-0 ${boxed}`}
         style={{ "--d": "150ms" } as React.CSSProperties}
       >
-        <div className="hero2-float h-full w-full">
-          <HeroLoop className={artwork} sizes="(max-width: 1280px) 100vw, 62vw" />
+        <div className="hero2-depth-visual h-full w-full">
+          <div className="hero2-float h-full w-full">
+            <HeroLoop className={artwork} sizes="(max-width: 1280px) 100vw, 62vw" />
+          </div>
         </div>
       </div>
 
       {/* annotation layer */}
-      <div aria-hidden className={`hidden aspect-[4/3] xl:z-10 xl:block ${boxed}`}>
+      <div aria-hidden className={`hero2-depth-visual hidden aspect-[4/3] xl:z-10 xl:block ${boxed}`}>
         {annotations.map((annotation, index) => (
           <div
             key={annotation.key}

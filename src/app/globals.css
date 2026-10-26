@@ -10,14 +10,201 @@
   --color-foreground: var(--foreground);
   --color-gold: #f7b500;
   --color-gold-light: #ffc72c;
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-ink: #0a0f14;
+  --color-steel: #121a20;
+  --color-paper: #f2f1ec;
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-jet);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+}
+
+/* ---------------------------------------------------------------
+   Products — "the circuit"
+
+   The products page is drawn as one hydraulic circuit. The rail is a
+   real fluid line: gold dashes travel down it continuously, nodes
+   energise when their station is live, and the heat band under the
+   cooling station breathes. Everything here is ambient motion and is
+   switched off under prefers-reduced-motion at the end of the block.
+---------------------------------------------------------------- */
+
+@keyframes pp-fluid {
+  to {
+    background-position: 0 28px;
+  }
+}
+
+/* travelling fluid inside the circuit rail */
+.pp-fluid {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    rgba(247, 181, 0, 0.95) 0 9px,
+    rgba(247, 181, 0, 0) 9px 28px
+  );
+  background-size: 100% 28px;
+  animation: pp-fluid 1.15s linear infinite;
+}
+
+/* a node on the circuit that currently has pressure behind it */
+@keyframes pp-node {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(247, 181, 0, 0.45);
+  }
+  60% {
+    box-shadow: 0 0 0 16px rgba(247, 181, 0, 0);
+  }
+}
+
+.pp-node-live {
+  animation: pp-node 2.6s ease-out infinite;
+}
+
+/* pump rotors */
+@keyframes pp-spin {
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+.pp-spin {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: pp-spin 5s linear infinite;
+}
+
+/* the heat the cooling station is there to reject */
+@keyframes pp-heat {
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.72;
+  }
+}
+
+.pp-heat {
+  animation: pp-heat 4.2s ease-in-out infinite;
+}
+
+/* sensor tiles sampling one after another */
+@keyframes pp-sample {
+  0%,
+  100% {
+    opacity: 0.25;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.pp-sample {
+  animation: pp-sample 2.8s ease-in-out infinite;
+  animation-delay: var(--d, 0s);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pp-fluid,
+  .pp-node-live,
+  .pp-spin,
+  .pp-heat,
+  .pp-sample {
+    animation: none !important;
+  }
+
+  .pp-fluid {
+    background-image: linear-gradient(
+      to bottom,
+      rgba(247, 181, 0, 0.5),
+      rgba(247, 181, 0, 0.5)
+    );
+  }
+}
+
+/* ---------------------------------------------------------------
+   Services — the incident console
+
+   The services page runs against a clock: a line is down, and scroll
+   is time passing. The caret blinks in the sourcing terminal, the
+   alert dot pulses while the line is down, and the dispatch rows
+   sweep. All of it is off under prefers-reduced-motion.
+---------------------------------------------------------------- */
+
+@keyframes pp-caret {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
+.pp-caret {
+  animation: pp-caret 1s steps(1) infinite;
+}
+
+@keyframes pp-alert {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(229, 72, 77, 0.55);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(229, 72, 77, 0);
+  }
+}
+
+.pp-alert {
+  animation: pp-alert 1.8s ease-out infinite;
+}
+
+@keyframes pp-ok {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(247, 181, 0, 0.5);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(247, 181, 0, 0);
+  }
+}
+
+.pp-ok {
+  animation: pp-ok 2.4s ease-out infinite;
+}
+
+/* a slow sweep across the dispatch board */
+@keyframes pp-sweep {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(300%);
+  }
+}
+
+.pp-sweep {
+  animation: pp-sweep 5.5s ease-in-out infinite;
+  animation-delay: var(--d, 0s);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pp-caret,
+  .pp-alert,
+  .pp-ok,
+  .pp-sweep {
+    animation: none !important;
+  }
+
+  .pp-sweep {
+    opacity: 0 !important;
+  }
 }
 
 /* ---------------------------------------------------------------
@@ -147,6 +334,10 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .about-pressure-line {
+    transform: none !important;
+  }
+
   .hero-rise,
   .hero-slide-left,
   .hero-fade-in,
@@ -657,9 +848,204 @@ body {
   animation: hero2-float 9s ease-in-out infinite;
 }
 
+/* Live telemetry layered over the supplied hydraulic powerpack. */
+@keyframes hero-machine-hum {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  48% {
+    transform: translate3d(0.5px, -0.5px, 0);
+  }
+  52% {
+    transform: translate3d(-0.5px, 0.5px, 0);
+  }
+}
+
+@keyframes hero-machine-pressure {
+  to {
+    stroke-dashoffset: -1;
+  }
+}
+
+@keyframes hero-machine-fan {
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+@keyframes hero-machine-gauges {
+  0%,
+  100% {
+    transform: rotate(-3deg);
+  }
+  50% {
+    transform: rotate(4deg);
+  }
+}
+
+@keyframes hero-machine-scan {
+  0%,
+  18% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+  28% {
+    opacity: 0.8;
+  }
+  68% {
+    opacity: 0.18;
+  }
+  80%,
+  100% {
+    opacity: 0;
+    transform: translateY(720px);
+  }
+}
+
+.hero-machine-live > img {
+  animation: hero-machine-hum 0.22s linear infinite;
+}
+
+.hero-machine-pressure path {
+  stroke-dasharray: 0.07 0.93;
+  stroke-dashoffset: 0;
+  filter: drop-shadow(0 0 8px rgba(248, 197, 68, 0.95));
+  animation: hero-machine-pressure 2.6s linear infinite;
+}
+
+.hero-machine-pressure path:nth-child(2) {
+  animation-delay: -0.9s;
+}
+
+.hero-machine-pressure path:nth-child(3) {
+  animation-delay: -1.8s;
+}
+
+.hero-machine-fan {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: hero-machine-fan 1.5s linear infinite;
+}
+
+.hero-machine-gauges {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: hero-machine-gauges 2.8s ease-in-out infinite;
+  filter: drop-shadow(0 0 6px rgba(248, 197, 68, 0.8));
+}
+
+.hero-machine-scan {
+  background: linear-gradient(90deg, transparent, rgba(248, 197, 68, 0.9), transparent);
+  box-shadow: 0 0 18px rgba(248, 197, 68, 0.45);
+  animation: hero-machine-scan 7s ease-in-out infinite;
+}
+
+/* Desktop motion field. The numbers are written directly by the hero's
+   requestAnimationFrame loop, keeping pointer movement out of React's render
+   path. Each plane moves by a different amount to create quiet, physical
+   depth rather than a card-like tilt effect. */
+.hero2-motion-field {
+  --hero-depth-x: 0px;
+  --hero-depth-y: 0px;
+  --hero-back-x: 0px;
+  --hero-back-y: 0px;
+  --hero-copy-x: 0px;
+  --hero-copy-y: 0px;
+  --hero-rail-x: 0px;
+  --hero-rail-y: 0px;
+  --hero-rotate-x: 0deg;
+  --hero-rotate-y: 0deg;
+  --hero-light-x: 72%;
+  --hero-light-y: 38%;
+  perspective: 1400px;
+}
+
+@media (min-width: 1280px) and (hover: hover) and (pointer: fine) {
+  .hero2-depth-back {
+    transform: translate3d(var(--hero-back-x), var(--hero-back-y), 0) scale(1.025);
+    transform-origin: 64% 38%;
+    will-change: transform;
+  }
+
+  .hero2-depth-visual {
+    transform: translate3d(var(--hero-depth-x), var(--hero-depth-y), 0)
+      rotateX(var(--hero-rotate-x)) rotateY(var(--hero-rotate-y));
+    transform-origin: 52% 58%;
+    transform-style: preserve-3d;
+    will-change: transform;
+  }
+
+  .hero2-depth-copy {
+    transform: translate3d(var(--hero-copy-x), var(--hero-copy-y), 0);
+    will-change: transform;
+  }
+
+  .hero2-depth-rail {
+    transform: translate3d(var(--hero-rail-x), var(--hero-rail-y), 0);
+    will-change: transform;
+  }
+
+  .hero2-depth-silk {
+    transform: translate3d(var(--hero-copy-x), var(--hero-copy-y), 0);
+    will-change: transform;
+  }
+}
+
+.hero2-pointer-light {
+  background: radial-gradient(
+    circle 310px at var(--hero-light-x) var(--hero-light-y),
+    rgba(255, 211, 105, 0.15),
+    rgba(244, 174, 19, 0.055) 38%,
+    transparent 72%
+  );
+  mix-blend-mode: screen;
+  opacity: 0;
+  transition: opacity 500ms ease;
+}
+
+.hero2-motion-field[data-pointer-active="true"] .hero2-pointer-light {
+  opacity: 1;
+}
+
+/* A single travelling glint suggests energy moving through the composition;
+   the long quiet gap keeps it from competing with the product loop. */
+@keyframes hero2-energy-trace {
+  from {
+    stroke-dashoffset: 1;
+  }
+  to {
+    stroke-dashoffset: -1;
+  }
+}
+
+.hero2-energy-trace {
+  stroke-dasharray: 0.055 0.945;
+  animation: hero2-energy-trace 6.5s linear infinite;
+  filter: drop-shadow(0 0 5px rgba(244, 174, 19, 0.75));
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .hero2-float {
+  .hero2-float,
+  .hero2-energy-trace,
+  .hero-machine-live > img,
+  .hero-machine-pressure path,
+  .hero-machine-fan,
+  .hero-machine-gauges,
+  .hero-machine-scan {
     animation: none !important;
+  }
+
+  .hero2-depth-back,
+  .hero2-depth-visual,
+  .hero2-depth-copy,
+  .hero2-depth-rail,
+  .hero2-depth-silk {
+    transform: none !important;
+  }
+
+  .hero2-pointer-light {
+    display: none;
   }
 }
 

@@ -10,12 +10,18 @@ import { getLenis } from "./SmoothScroll";
  * brand mark at its hub, a caliper scale that measures progress, and
  * machined panels that part to reveal the hero.
  *
- * Progress tracks real document readiness: it eases toward 90% while the
- * page is still loading and completes on the window `load` event, with a
- * floor on total display time so the sequence never flickers.
+ * Progress tracks real document readiness: it eases toward 92% while the
+ * document is still parsing and completes once the document is parsed,
+ * with a floor on total display time so the sequence never flickers.
+ *
+ * It deliberately does NOT wait for the window `load` event. `load` only
+ * fires once every eager image, font and script has finished, and the
+ * overlay holds a scroll lock the whole time - so a hero plate that took
+ * a second to optimise used to keep the entire site unusable behind a
+ * spinner. Readiness of the markup is what the reveal actually needs.
  */
 
-const MIN_DURATION = 1600;
+const MIN_DURATION = 900;
 const EXIT_DURATION = 900;
 const SESSION_KEY = "primepart:intro-seen";
 
@@ -90,11 +96,11 @@ export default function SiteLoader() {
     };
   }, [mounted]);
 
-  // Safety valve: if `load` never fires (stalled asset, flaky network),
-  // tear the overlay down anyway rather than trapping the page.
+  // Safety valve: if readiness never arrives (stalled parse, flaky
+  // network), tear the overlay down anyway rather than trapping the page.
   useEffect(() => {
     if (!mounted) return;
-    const id = window.setTimeout(() => setProgress(100), 7000);
+    const id = window.setTimeout(() => setProgress(100), 2500);
     return () => window.clearTimeout(id);
   }, [mounted]);
 
@@ -102,11 +108,14 @@ export default function SiteLoader() {
   useEffect(() => {
     if (!mounted) return;
 
-    let loaded = document.readyState === "complete";
-    const onLoad = () => {
+    // "interactive" means the markup is parsed and this component is
+    // hydrated — everything the reveal needs. Images below continue to
+    // stream in behind the hero, which is where they belong.
+    let loaded = document.readyState !== "loading";
+    const onReady = () => {
       loaded = true;
     };
-    window.addEventListener("load", onLoad);
+    document.addEventListener("DOMContentLoaded", onReady);
 
     const id = window.setInterval(() => {
       setProgress((current) => {
@@ -122,7 +131,7 @@ export default function SiteLoader() {
 
     return () => {
       window.clearInterval(id);
-      window.removeEventListener("load", onLoad);
+      document.removeEventListener("DOMContentLoaded", onReady);
     };
   }, [mounted]);
 
@@ -256,7 +265,7 @@ export default function SiteLoader() {
               alt=""
               width={280}
               height={373}
-              priority
+              fetchPriority="high"
               className="h-9 w-auto sm:h-10"
             />
           </span>
@@ -268,9 +277,11 @@ export default function SiteLoader() {
         <Image
           src="/primepart/hero/logo-wordmark-light.png"
           alt="PrimePart — Quality at your doorstep"
-          width={2203}
-          height={569}
-          priority
+          // the wordmark renders at 224px at most; declaring its native
+          // 2203px asked the optimiser for a 1920px render of it
+          width={448}
+          height={116}
+          fetchPriority="high"
           className="primepart-wordmark-in mt-7 h-auto w-[196px] sm:w-[224px]"
         />
 

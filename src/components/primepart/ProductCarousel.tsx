@@ -95,7 +95,7 @@ const ProductCarousel = forwardRef<CarouselHandle, ProductCarouselProps>(
             <ProductCard
               product={product}
               index={index}
-              priority={index === 0}
+              eager={index === 0}
             />
           </li>
         ))}

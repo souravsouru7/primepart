@@ -9,21 +9,21 @@ import Reveal from "./Reveal";
 const contactCards = [
   {
     icon: Phone,
-    value: "+91 98765 43210",
+    value: "+91 95796 39978",
     label: "Call Us",
-    href: "tel:+919876543210",
+    href: "tel:+919579639978",
   },
   {
     icon: Mail,
-    value: "info@primepart.com",
+    value: "primepart.official@gmail.com",
     label: "Email Us",
-    href: "mailto:info@primepart.com",
+    href: "mailto:primepart.official@gmail.com",
   },
   {
     icon: MapPin,
-    value: "Industrial Area, Bangalore, India",
+    value: "Gandhi Square, Gumgoan, Nagpur 441122",
     label: "Our Location",
-    href: "https://maps.google.com/?q=Industrial+Area+Bangalore+India",
+    href: "https://maps.google.com/?q=Gandhi+Square+Gumgoan+Nagpur+441122+Maharashtra+India",
   },
 ];
 
@@ -46,7 +46,7 @@ export default function ContactSection() {
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setStatus(
-      "This form is not connected to an enquiry endpoint yet — reach us on info@primepart.com meanwhile.",
+      "For a full technical enquiry use the contact page form, or reach us directly on primepart.official@gmail.com / +91 95796 39978.",
     );
   };
 
@@ -110,7 +110,7 @@ export default function ContactSection() {
                 <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
               </a>
               <a
-                href="tel:+919876543210"
+                href="tel:+919579639978"
                 className="inline-flex items-center justify-center gap-3 rounded-xl border border-white/25 bg-white/[0.04] px-6 py-3.5 text-[15px] font-semibold text-white backdrop-blur-md transition-all duration-300 hover:scale-[1.02] hover:border-[#FDD144]/60 hover:text-[#FDD144] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FDD144] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0A161F]"
               >
                 <Headset className="h-[18px] w-[18px]" strokeWidth={1.7} />

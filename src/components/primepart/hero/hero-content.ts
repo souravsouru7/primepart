@@ -17,12 +17,12 @@ export type NavKey =
 
 export const navItems: { key: NavKey; label: string; href: string }[] = [
   { key: "home", label: "Home", href: "#home" },
-  { key: "products", label: "Products", href: "#products" },
-  { key: "brands", label: "Brands", href: "#brands" },
-  { key: "industries", label: "Industries", href: "#industries" },
-  { key: "about", label: "About", href: "#about" },
-  { key: "support", label: "Support", href: "#contact" },
-  { key: "contact", label: "Contact", href: "#quick-enquiry" },
+  { key: "products", label: "Products", href: "/products" },
+  { key: "brands", label: "Team", href: "/team" },
+  { key: "industries", label: "Industries", href: "#products" },
+  { key: "about", label: "About", href: "/about" },
+  { key: "support", label: "Services", href: "/services" },
+  { key: "contact", label: "Contact", href: "/contact" },
 ];
 
 export type CategoryKey =

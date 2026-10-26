@@ -38,11 +38,15 @@ export default function HeroSidebar() {
       className="relative z-20 mt-8 hidden xl:absolute xl:block xl:left-[calc(var(--u)*42)] xl:top-[calc(var(--u)*174)] xl:mt-0 xl:w-[calc(var(--u)*204)]"
     >
       <ul className="-mx-5 flex min-w-0 snap-x gap-1 overflow-x-auto overscroll-x-contain px-5 pb-1 [scrollbar-width:none] sm:-mx-7 sm:px-7 xl:mx-0 xl:block xl:overflow-visible xl:px-0 xl:pb-0 [&::-webkit-scrollbar]:hidden">
-        {navItems.map((item) => {
+        {navItems.map((item, index) => {
           const Icon = icons[item.key];
           const isActive = active === item.key;
           return (
-            <li key={item.key} className="shrink-0 snap-start xl:shrink">
+            <li
+              key={item.key}
+              style={{ "--d": `${390 + index * 45}ms` } as React.CSSProperties}
+              className="hero2-in shrink-0 snap-start xl:shrink"
+            >
               <a
                 href={item.href}
                 onClick={() => setActive(item.key)}

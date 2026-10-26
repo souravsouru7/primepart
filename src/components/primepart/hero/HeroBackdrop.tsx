@@ -37,14 +37,23 @@ export default function HeroBackdrop() {
                 alt=""
                 width={3840}
                 height={1150}
-                priority
-                className="absolute left-[-12%] top-0 w-[130%] max-w-none opacity-55"
+                // Only the top 23% band of this plate is ever on screen,
+                // behind the content at 55% opacity - it is not the LCP
+                // element and has no business preloading ahead of the
+                // product. `xl:block` also means phones never show it.
+                sizes="130vw"
+                quality={60}
+                className="hero2-depth-back absolute left-[-12%] top-0 w-[130%] max-w-none opacity-55"
               />
             </div>
           </div>
 
           {/* warm ambient light over the facility */}
-          <div className="absolute left-[calc((100%_-_var(--u)*800)*0.756)] top-[4%] h-[74%] w-[calc(var(--u)*1180)] ml-[calc(var(--u)*-90)] rounded-[50%] bg-[radial-gradient(closest-side,rgba(244,174,19,0.22),rgba(244,174,19,0.07)_58%,transparent_78%)]" />
+          <div className="hero2-depth-back absolute left-[calc((100%_-_var(--u)*800)*0.756)] top-[4%] h-[74%] w-[calc(var(--u)*1180)] ml-[calc(var(--u)*-90)] rounded-[50%] bg-[radial-gradient(closest-side,rgba(244,174,19,0.22),rgba(244,174,19,0.07)_58%,transparent_78%)]" />
+
+          {/* A restrained task-light follows a fine pointer. It stays
+              transparent until the desktop motion field is active. */}
+          <div className="hero2-pointer-light absolute inset-0" />
         </div>
       </div>
 
@@ -53,12 +62,13 @@ export default function HeroBackdrop() {
         {/* the drape's own white stops short of the trust row's right end,
             so a soft wash carries it to the reference edge */}
         <div className="hero-mask-wash absolute inset-x-0 bottom-0 h-[20%] bg-[linear-gradient(to_right,#FFFFFF_0%,#FBFDFE_52%,rgba(250,252,253,0.9)_64%,rgba(250,252,253,0)_80%)]" />
-        <div className="absolute bottom-[calc(var(--u)*-41)] left-[calc(var(--u)*-154)] right-[calc(var(--u)*210)] h-[calc(var(--u)*735)]">
+        <div className="hero2-depth-silk absolute bottom-[calc(var(--u)*-41)] left-[calc(var(--u)*-154)] right-[calc(var(--u)*210)] h-[calc(var(--u)*735)]">
           <Image
             src="/primepart/hero/silk-wave.png"
             alt=""
             fill
             sizes="100vw"
+            quality={60}
             className="hero-mask-silk object-fill"
           />
         </div>
@@ -82,6 +92,16 @@ export default function HeroBackdrop() {
             stroke="#F8C544"
             strokeWidth="1.6"
             vectorEffect="non-scaling-stroke"
+          />
+          <path
+            d="M812 886c200-40 414-74 724-62"
+            fill="none"
+            stroke="#FFF4CF"
+            strokeWidth="2.4"
+            strokeLinecap="round"
+            pathLength="1"
+            vectorEffect="non-scaling-stroke"
+            className="hero2-energy-trace"
           />
         </svg>
       </div>

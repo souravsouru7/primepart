@@ -109,9 +109,9 @@ export default function HeroMobile() {
             <Image
               src="/primepart/hero/logo.png"
               alt="PrimePart — Quality at your doorstep"
-              width={2517}
-              height={580}
-              priority
+              width={760}
+              height={175}
+              fetchPriority="high"
               className="h-9 w-auto sm:h-10"
             />
           </a>

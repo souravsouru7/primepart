@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { ChevronDown, Globe, MapPin } from "lucide-react";
+import { useEffect, useRef } from "react";
 import HeroBackdrop from "./HeroBackdrop";
 import HeroCategoryRail from "./HeroCategoryRail";
 import HeroExperience from "./HeroExperience";
@@ -28,10 +29,94 @@ import HeroVisual from "./HeroVisual";
  * dissolves it so the reference grid still hangs off the stage.
  */
 export default function HeroSection() {
+  const heroRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const hero = heroRef.current;
+    if (!hero) return;
+
+    const canTrack = window.matchMedia(
+      "(min-width: 1280px) and (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)",
+    );
+
+    let frame = 0;
+    let targetX = 0;
+    let targetY = 0;
+    let currentX = 0;
+    let currentY = 0;
+    let bounds = hero.getBoundingClientRect();
+
+    const paint = () => {
+      currentX += (targetX - currentX) * 0.085;
+      currentY += (targetY - currentY) * 0.085;
+
+      hero.style.setProperty("--hero-depth-x", `${currentX * 15}px`);
+      hero.style.setProperty("--hero-depth-y", `${currentY * 10}px`);
+      hero.style.setProperty("--hero-back-x", `${currentX * -7}px`);
+      hero.style.setProperty("--hero-back-y", `${currentY * -4}px`);
+      hero.style.setProperty("--hero-copy-x", `${currentX * -3}px`);
+      hero.style.setProperty("--hero-copy-y", `${currentY * -2}px`);
+      hero.style.setProperty("--hero-rail-x", `${currentX * 4}px`);
+      hero.style.setProperty("--hero-rail-y", `${currentY * 3}px`);
+      hero.style.setProperty("--hero-rotate-x", `${currentY * -1.15}deg`);
+      hero.style.setProperty("--hero-rotate-y", `${currentX * 1.35}deg`);
+
+      const moving =
+        Math.abs(targetX - currentX) > 0.001 ||
+        Math.abs(targetY - currentY) > 0.001;
+      frame = moving ? window.requestAnimationFrame(paint) : 0;
+    };
+
+    const requestPaint = () => {
+      if (!frame) frame = window.requestAnimationFrame(paint);
+    };
+
+    const onPointerMove = (event: PointerEvent) => {
+      if (!canTrack.matches) return;
+      targetX = Math.max(-1, Math.min(1, ((event.clientX - bounds.left) / bounds.width - 0.5) * 2));
+      targetY = Math.max(-1, Math.min(1, ((event.clientY - bounds.top) / bounds.height - 0.5) * 2));
+      hero.style.setProperty(
+        "--hero-light-x",
+        `${((event.clientX - bounds.left) / bounds.width) * 100}%`,
+      );
+      hero.style.setProperty(
+        "--hero-light-y",
+        `${((event.clientY - bounds.top) / bounds.height) * 100}%`,
+      );
+      hero.dataset.pointerActive = "true";
+      requestPaint();
+    };
+
+    const refreshBounds = () => {
+      bounds = hero.getBoundingClientRect();
+    };
+
+    const onPointerLeave = () => {
+      targetX = 0;
+      targetY = 0;
+      delete hero.dataset.pointerActive;
+      requestPaint();
+    };
+
+    hero.addEventListener("pointerenter", refreshBounds, { passive: true });
+    hero.addEventListener("pointermove", onPointerMove, { passive: true });
+    hero.addEventListener("pointerleave", onPointerLeave);
+    window.addEventListener("resize", refreshBounds, { passive: true });
+
+    return () => {
+      hero.removeEventListener("pointerenter", refreshBounds);
+      hero.removeEventListener("pointermove", onPointerMove);
+      hero.removeEventListener("pointerleave", onPointerLeave);
+      window.removeEventListener("resize", refreshBounds);
+      if (frame) window.cancelAnimationFrame(frame);
+    };
+  }, []);
+
   return (
     <section
+      ref={heroRef}
       id="home"
-      className="relative isolate w-full overflow-hidden bg-[#05121A] text-[#0B1017] xl:bg-[#F7FAFA]"
+      className="hero2-motion-field relative isolate w-full overflow-hidden bg-[#05121A] text-[#0B1017] xl:bg-[#F7FAFA]"
     >
       <HeroMobile />
 
@@ -44,14 +129,18 @@ export default function HeroSection() {
         <div className="relative z-20 flex items-center justify-between gap-4 xl:block">
         <a
           href="#home"
-          className="inline-block xl:absolute xl:left-[calc(var(--u)*74)] xl:top-[calc(var(--u)*45)]"
+          style={{ "--d": "20ms" } as React.CSSProperties}
+          className="hero2-in inline-block xl:absolute xl:left-[calc(var(--u)*74)] xl:top-[calc(var(--u)*45)]"
         >
           <Image
             src="/primepart/hero/logo.png"
             alt="PrimePart — Quality at your doorstep"
-            width={2517}
-            height={580}
-            priority
+            // The logo never renders wider than ~285px. Declaring its
+            // native 2517px made the optimiser build a 1920px render of a
+            // wordmark and preload it ahead of the hero plate.
+            width={760}
+            height={175}
+            fetchPriority="high"
             className="h-11 w-auto sm:h-14 xl:h-auto xl:w-[calc(var(--u)*285)]"
           />
         </a>
@@ -61,7 +150,8 @@ export default function HeroSection() {
         {/* location */}
         <button
           type="button"
-          className="relative z-20 mt-6 hidden items-center gap-1.5 rounded-full text-[11.5px] xl:flex font-semibold uppercase tracking-[0.16em] text-[#0B1017] transition-colors hover:text-[#F4AE13] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F4AE13] xl:absolute xl:right-[calc(var(--u)*54)] xl:top-[2.9%] xl:mt-0 xl:gap-[calc(var(--u)*6)] xl:text-[calc(var(--u)*13)] xl:text-white/90"
+          style={{ "--d": "580ms" } as React.CSSProperties}
+          className="hero2-in relative z-20 mt-6 hidden items-center gap-1.5 rounded-full text-[11.5px] xl:flex font-semibold uppercase tracking-[0.16em] text-[#0B1017] transition-colors hover:text-[#F4AE13] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F4AE13] xl:absolute xl:right-[calc(var(--u)*54)] xl:top-[2.9%] xl:mt-0 xl:gap-[calc(var(--u)*6)] xl:text-[calc(var(--u)*13)] xl:text-white/90"
         >
           <MapPin
             className="h-4 w-4 text-[#F4AE13] xl:h-[calc(var(--u)*16)] xl:w-[calc(var(--u)*16)]"
@@ -97,7 +187,8 @@ export default function HeroSection() {
         {/* language */}
         <button
           type="button"
-          className="relative z-20 mt-10 hidden items-center gap-2 rounded-full border border-black/10 bg-white px-4 py-2 text-[12px] xl:flex font-semibold text-[#2C3640] shadow-[0_6px_18px_-10px_rgba(11,16,23,0.5)] transition-colors hover:border-[#F4AE13]/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F4AE13] xl:absolute xl:left-[calc(var(--u)*50)] xl:top-[calc(var(--u)*872)] xl:mt-0 xl:gap-[calc(var(--u)*8)] xl:px-[calc(var(--u)*18)] xl:py-[calc(var(--u)*13)] xl:text-[calc(var(--u)*14)]"
+          style={{ "--d": "920ms" } as React.CSSProperties}
+          className="hero2-in relative z-20 mt-10 hidden items-center gap-2 rounded-full border border-black/10 bg-white px-4 py-2 text-[12px] xl:flex font-semibold text-[#2C3640] shadow-[0_6px_18px_-10px_rgba(11,16,23,0.5)] transition-colors hover:border-[#F4AE13]/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F4AE13] xl:absolute xl:left-[calc(var(--u)*50)] xl:top-[calc(var(--u)*872)] xl:mt-0 xl:gap-[calc(var(--u)*8)] xl:px-[calc(var(--u)*18)] xl:py-[calc(var(--u)*13)] xl:text-[calc(var(--u)*14)]"
         >
           <Globe
             className="h-4 w-4 text-[#5A6572] xl:h-[calc(var(--u)*15)] xl:w-[calc(var(--u)*15)]"

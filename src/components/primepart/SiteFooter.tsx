@@ -17,29 +17,29 @@ const columns = [
   {
     title: "Quick Links",
     links: [
-      { label: "Home", href: "#home" },
-      { label: "About Us", href: "#about" },
-      { label: "Products", href: "#products" },
-      { label: "Brands", href: "#brands" },
-      { label: "Industries", href: "#industries" },
+      { label: "Home", href: "/" },
+      { label: "About Us", href: "/about" },
+      { label: "Products", href: "/#products" },
+      { label: "Our Team", href: "/team" },
+      { label: "Industries", href: "/#products" },
     ],
   },
   {
     title: "Our Services",
     links: [
-      { label: "Cutting Tools", href: "#products" },
-      { label: "Hydraulic Solutions", href: "#products" },
-      { label: "Pneumatic Spare Parts", href: "#products" },
-      { label: "Industrial Components", href: "#products" },
+      { label: "Cutting Tools", href: "/#products" },
+      { label: "Hydraulic Solutions", href: "/#products" },
+      { label: "Pneumatic Spare Parts", href: "/#products" },
+      { label: "Industrial Components", href: "/#products" },
     ],
   },
   {
     title: "Support",
     links: [
-      { label: "Partner Login", href: "#contact" },
-      { label: "Request a Quote", href: "#quick-enquiry" },
-      { label: "Terms & Conditions", href: "#contact" },
-      { label: "Privacy Policy", href: "#contact" },
+      { label: "Technical Services", href: "/services" },
+      { label: "Request a Quote", href: "/contact" },
+      { label: "FAQ", href: "/faq" },
+      { label: "Privacy Policy", href: "/#contact" },
     ],
   },
 ];

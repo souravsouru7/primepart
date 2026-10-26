@@ -13,7 +13,7 @@ import WatchStoryButton from "./WatchStoryButton";
  */
 export default function HeroHeader() {
   return (
-    <div className="relative z-20 mt-8 xl:absolute xl:left-[calc(var(--u)*330)] xl:top-[calc(var(--u)*155)] xl:mt-0 xl:w-[calc(var(--u)*480)]">
+    <div className="hero2-depth-copy relative z-20 mt-8 xl:absolute xl:left-[calc(var(--u)*330)] xl:top-[calc(var(--u)*155)] xl:mt-0 xl:w-[calc(var(--u)*480)]">
       <p className="hero2-in flex flex-wrap gap-x-5 text-[11px] font-semibold uppercase tracking-[0.26em] text-[#5A6572] xl:gap-x-[calc(var(--u)*21)] xl:text-[calc(var(--u)*13)]">
         <span>Components</span>
         <span>Solutions</span>

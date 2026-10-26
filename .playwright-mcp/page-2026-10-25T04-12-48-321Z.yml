@@ -1,0 +1,216 @@
+- generic [active] [ref=f11e1]:
+  - generic [ref=f11e2]:
+    - generic [ref=f11e3]:
+      - banner [ref=f11e4]:
+        - generic [ref=f11e5]:
+          - link "PrimePart home" [ref=f11e6] [cursor=pointer]:
+            - /url: /
+            - img "PrimePart" [ref=f11e7]
+          - button "Open menu" [ref=f11e8] [cursor=pointer]
+      - main [ref=f11e10]:
+        - region [ref=f11e11]:
+          - generic [ref=f11e17]:
+            - generic [ref=f11e18]:
+              - paragraph [ref=f11e19]: PrimePart / FittingFlick portfolio
+              - heading "Engineering confidence into motion." [level=1] [ref=f11e20]:
+                - generic [ref=f11e21]: Engineering
+                - generic [ref=f11e23]: confidence
+                - generic [ref=f11e25]: into motion.
+              - paragraph [ref=f11e27]: We bring technical understanding and global sourcing together for the systems that keep heavy industry moving.
+              - generic [ref=f11e28]:
+                - link "Discover PrimePart" [ref=f11e29] [cursor=pointer]:
+                  - /url: "#story"
+                - generic [ref=f11e33]: Established 2025 — India
+            - generic "Industrial sectors served by PrimePart" [ref=f11e34]:
+              - img "Metal forging" [ref=f11e36]
+              - img "Hydroelectric operations" [ref=f11e38]
+              - img "Earthmoving equipment" [ref=f11e40]
+        - region [ref=f11e41]:
+          - generic [ref=f11e42]:
+            - paragraph [ref=f11e43]: Where we work
+            - heading "Industrial strength. Sector by sector." [level=2] [ref=f11e44]
+            - paragraph [ref=f11e45]: Fluid power for demanding, high-pressure and critical industrial environments.
+          - generic [ref=f11e46]:
+            - button "Hydroelectric power Dependable fluid control for dam operations, turbine control and large-scale water management. What we supply" [pressed] [ref=f11e47] [cursor=pointer]:
+              - generic [ref=f11e49]:
+                - strong [ref=f11e50]: Hydroelectric power
+                - generic [ref=f11e51]: Dependable fluid control for dam operations, turbine control and large-scale water management.
+                - generic [ref=f11e52]: What we supply
+            - button "Metal forging & steel Components specified to withstand heat, force and continuous duty in foundries and stamping lines. What we supply" [ref=f11e55] [cursor=pointer]:
+              - generic [ref=f11e57]:
+                - strong [ref=f11e58]: Metal forging & steel
+                - generic [ref=f11e59]: Components specified to withstand heat, force and continuous duty in foundries and stamping lines.
+                - generic [ref=f11e60]: What we supply
+            - button "Paper & pulp Precision drives and continuous filtration that help keep process lines running without costly interruptions. What we supply" [ref=f11e63] [cursor=pointer]:
+              - generic [ref=f11e65]:
+                - strong [ref=f11e66]: Paper & pulp
+                - generic [ref=f11e67]: Precision drives and continuous filtration that help keep process lines running without costly interruptions.
+                - generic [ref=f11e68]: What we supply
+          - generic [ref=f11e71]:
+            - group "Select an industry" [ref=f11e72]:
+              - button "Hydroelectric" [pressed] [ref=f11e73] [cursor=pointer]
+              - button "Metal & steel" [ref=f11e74] [cursor=pointer]
+              - button "Paper & pulp" [ref=f11e75] [cursor=pointer]
+              - button "Earthmoving" [ref=f11e76] [cursor=pointer]
+            - generic [ref=f11e77]:
+              - generic [ref=f11e78]: What we supply
+              - strong [ref=f11e79]: High-pressure accumulators / large valving / fluid control
+        - region [ref=f11e80]:
+          - generic [ref=f11e82]:
+            - paragraph [ref=f11e83]: How we work
+            - heading "The workable equation." [level=2] [ref=f11e84]
+            - paragraph [ref=f11e85]: We build long-term engineering partnerships around the real requirement, whether it is a hard-to-find replacement or a new hydraulic power unit.
+            - generic [ref=f11e86]:
+              - link "Discover PrimePart" [ref=f11e87] [cursor=pointer]:
+                - /url: "#story"
+              - link "Start a conversation" [ref=f11e91] [cursor=pointer]:
+                - /url: /#quick-enquiry
+        - region [ref=f11e94]:
+          - generic [ref=f11e95]:
+            - img "Steel foundry in operation" [ref=f11e97]
+            - img "Paper mill production line" [ref=f11e99]
+          - generic [ref=f11e101]:
+            - paragraph [ref=f11e102]: The reason we exist
+            - heading "A supplier that understands the system." [level=2] [ref=f11e103]
+            - paragraph [ref=f11e104]: PrimePart was established in 2025 as a dedicated proprietorship within the FittingFlick portfolio. We saw the gap between buying a component and understanding the engineering problem it needs to solve.
+            - paragraph [ref=f11e105]: Our team works beyond standard hydraulics, drawing on distinguished vendors across the global market to find products that are technically sound, durable and efficient.
+            - generic [ref=f11e106]:
+              - generic [ref=f11e107]: "2025"
+              - paragraph [ref=f11e108]: Established with a clear purpose:make technical sourcing more dependable.
+        - region "The workable equation components" [ref=f11e109]:
+          - generic [ref=f11e110]:
+            - generic [ref=f11e111]:
+              - generic [ref=f11e112]: "01"
+              - heading "Your requirement" [level=3] [ref=f11e113]
+              - paragraph [ref=f11e114]: A technical problem, a performance target, or a machine that needs to keep running.
+            - generic [ref=f11e115]:
+              - generic [ref=f11e116]: +
+              - heading "Our engineering reach" [level=3] [ref=f11e117]
+              - paragraph [ref=f11e118]: Product knowledge, established manufacturers and sourcing across global markets.
+            - generic [ref=f11e119]:
+              - generic [ref=f11e120]: =
+              - heading "A workable result" [level=3] [ref=f11e121]
+              - paragraph [ref=f11e122]: A considered component or custom solution that fits the application.
+          - blockquote [ref=f11e123]: “We do not view you as a transaction. We view you as an engineering partner.”
+        - region [ref=f11e124]:
+          - img "Earthmoving equipment in operation" [ref=f11e126]
+          - generic [ref=f11e127]:
+            - paragraph [ref=f11e128]: Where we work
+            - heading "Mobile & earthmoving" [level=2] [ref=f11e129]
+            - paragraph [ref=f11e130]: Rugged fluid power for off-road machinery working through construction sites and mining environments.
+            - generic [ref=f11e131]:
+              - generic [ref=f11e132]: What we supply
+              - strong [ref=f11e133]: Gear pumps / directional control / hydraulic accessories
+        - region [ref=f11e134]:
+          - generic [ref=f11e135]:
+            - generic [ref=f11e136]:
+              - paragraph [ref=f11e137]: At a glance
+              - heading "The details behind the commitment." [level=2] [ref=f11e138]
+              - paragraph [ref=f11e139]: Everything your procurement team needs to know to start working with us.
+            - generic [ref=f11e140]:
+              - generic [ref=f11e141]:
+                - term [ref=f11e142]: Business
+                - definition [ref=f11e143]: Technical sourcing partner, supplier and distributor
+              - generic [ref=f11e144]:
+                - term [ref=f11e145]: Firm
+                - definition [ref=f11e146]: Proprietorship
+              - generic [ref=f11e147]:
+                - term [ref=f11e148]: Established
+                - definition [ref=f11e149]: "2025"
+              - generic [ref=f11e150]:
+                - term [ref=f11e151]: PAN
+                - definition [ref=f11e152]: TRQPS5708K
+              - generic [ref=f11e153]:
+                - term [ref=f11e154]: GST
+                - definition [ref=f11e155]: 27TRQPS5708K1ZH
+              - generic [ref=f11e156]:
+                - term [ref=f11e157]: Bank
+                - definition [ref=f11e158]: Bank of Baroda
+        - region [ref=f11e159]:
+          - paragraph [ref=f11e160]: Have a complex requirement?
+          - heading "Let’s make it work." [level=2] [ref=f11e161]
+          - link "Talk to our team" [ref=f11e162] [cursor=pointer]:
+            - /url: /#quick-enquiry
+    - contentinfo [ref=f11e165]:
+      - generic [ref=f11e166]:
+        - generic [ref=f11e167]:
+          - generic [ref=f11e169]:
+            - generic [ref=f11e175]:
+              - generic [ref=f11e176]: PrimePart
+              - generic [ref=f11e177]: Quality at your doorstep
+            - paragraph [ref=f11e178]: Your trusted partner for quality industrial parts, reliable solutions, and dependable technical support.
+            - list [ref=f11e179]:
+              - listitem [ref=f11e180]:
+                - link "PrimePart on LinkedIn" [ref=f11e181] [cursor=pointer]:
+                  - /url: "#contact"
+              - listitem [ref=f11e184]:
+                - link "PrimePart on YouTube" [ref=f11e185] [cursor=pointer]:
+                  - /url: "#contact"
+              - listitem [ref=f11e188]:
+                - link "PrimePart on Instagram" [ref=f11e189] [cursor=pointer]:
+                  - /url: "#contact"
+              - listitem [ref=f11e192]:
+                - link "PrimePart on Facebook" [ref=f11e193] [cursor=pointer]:
+                  - /url: "#contact"
+          - navigation "Quick Links" [ref=f11e197]:
+            - heading "Quick Links" [level=2] [ref=f11e198]
+            - list [ref=f11e199]:
+              - listitem [ref=f11e200]:
+                - link "Home" [ref=f11e201] [cursor=pointer]:
+                  - /url: /
+              - listitem [ref=f11e202]:
+                - link "About Us" [ref=f11e203] [cursor=pointer]:
+                  - /url: /about
+              - listitem [ref=f11e204]:
+                - link "Products" [ref=f11e205] [cursor=pointer]:
+                  - /url: /#products
+              - listitem [ref=f11e206]:
+                - link "Brands" [ref=f11e207] [cursor=pointer]:
+                  - /url: /#brands
+              - listitem [ref=f11e208]:
+                - link "Industries" [ref=f11e209] [cursor=pointer]:
+                  - /url: /about#industries-served
+          - navigation "Our Services" [ref=f11e211]:
+            - heading "Our Services" [level=2] [ref=f11e212]
+            - list [ref=f11e213]:
+              - listitem [ref=f11e214]:
+                - link "Cutting Tools" [ref=f11e215] [cursor=pointer]:
+                  - /url: /#products
+              - listitem [ref=f11e216]:
+                - link "Hydraulic Solutions" [ref=f11e217] [cursor=pointer]:
+                  - /url: /#products
+              - listitem [ref=f11e218]:
+                - link "Pneumatic Spare Parts" [ref=f11e219] [cursor=pointer]:
+                  - /url: /#products
+              - listitem [ref=f11e220]:
+                - link "Industrial Components" [ref=f11e221] [cursor=pointer]:
+                  - /url: /#products
+          - navigation "Support" [ref=f11e223]:
+            - heading "Support" [level=2] [ref=f11e224]
+            - list [ref=f11e225]:
+              - listitem [ref=f11e226]:
+                - link "Partner Login" [ref=f11e227] [cursor=pointer]:
+                  - /url: /#contact
+              - listitem [ref=f11e228]:
+                - link "Request a Quote" [ref=f11e229] [cursor=pointer]:
+                  - /url: /#quick-enquiry
+              - listitem [ref=f11e230]:
+                - link "Terms & Conditions" [ref=f11e231] [cursor=pointer]:
+                  - /url: /#contact
+              - listitem [ref=f11e232]:
+                - link "Privacy Policy" [ref=f11e233] [cursor=pointer]:
+                  - /url: /#contact
+          - generic [ref=f11e235]:
+            - heading "Stay Updated" [level=2] [ref=f11e236]
+            - paragraph [ref=f11e237]: Get the latest product updates and industry insights.
+            - generic [ref=f11e239]:
+              - generic [ref=f11e240]: Email address
+              - textbox "Email address" [ref=f11e241]:
+                - /placeholder: Enter your email
+              - button "Subscribe to the newsletter" [ref=f11e242]
+        - generic [ref=f11e245]:
+          - paragraph [ref=f11e246]: © 2026 PrimePart. All Rights Reserved.
+          - paragraph [ref=f11e247]: Designed for Industry, Built for Performance.
+      - button "Back to top" [ref=f11e248]
+  - button "Open Next.js Dev Tools" [ref=f11e257] [cursor=pointer]
+  - alert [ref=f11e261]

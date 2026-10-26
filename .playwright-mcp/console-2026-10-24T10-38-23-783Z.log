@@ -1,0 +1,393 @@
+[   15096ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[   15284ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[   15663ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[   15667ms] [LOG] [Fast Refresh] done in 117ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[   37995ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[   38196ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[   38419ms] [ERROR] A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <SegmentViewNode type="page" pagePath="about/page...">
+      <SegmentTrieNode>
+      <AboutPage>
+        <header>
+        <main>
+        <SiteFooter>
+          <footer className="relative w...">
+            <img>
+            <img>
+            <div className="relative m...">
+              <div className="grid gap-9...">
+                <Reveal>
+                <Reveal>
+                <Reveal>
+                <Reveal>
+                <Reveal delay={0.32} className="sm:col-spa...">
+                  <motion.div initial={{opacity:0,y:20,x:0,scale:1}} whileInView={{opacity:1,y:0,x:0,scale:1}} ...>
+                    <div className="sm:col-spa..." style={{opacity:0, ...}} ref={function useMotionRef.useCallback}>
+                      <div>
+                        <h2>
+                        <p>
+                        <form onSubmit={function handleSubscribe} className="mt-5">
+                          <div className="flex items...">
+                            <label>
+                            <input
+                              id="newsletter-email"
+                              name="email"
+                              type="email"
+                              required={true}
+                              autoComplete="email"
+                              placeholder="Enter your email"
+                              className="min-w-0 flex-1 bg-transparent px-4 py-3.5 text-[13.5px] text-white placeholde..."
+-                             style={{caret-color:"transparent"}}
+                            >
+                            ...
+              ...
+            ...
+    ...
+ @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:995
+[   38690ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[   38699ms] [LOG] [Fast Refresh] done in 120ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[   49444ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[   49478ms] [LOG] [Fast Refresh] done in 134ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[   51676ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[   52153ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[   55228ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[   55309ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[  171103ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[  171189ms] [LOG] [Fast Refresh] done in 40ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[  171530ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3000/about?_rsc=5bcMWos9h2Ooc43Y:0
+[  171777ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3000/about:0
+[  172027ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[  172090ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[  173274ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[  173500ms] [ERROR] ./src/app/about/page.tsx:2:1
+Error: Module not found: Can't resolve '@/components/primepart/about/AboutExperience'
+  1 | ...ort type { Metadata } from "next";
+> 2 | ...ort AboutExperience from "@/components/primepart/about/AboutExperien...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  3 | ...ort SiteFooter from "@/components/primepart/SiteFooter";
+  4 | ...
+  5 | ...ort const metadata: Metadata = {
+
+Import map: aliased to relative './src/components/primepart/about/AboutExperience' inside of [project]/
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:995
+[  174043ms] [ERROR] ./src/app/about/page.tsx:2:1
+Error: Module not found: Can't resolve '@/components/primepart/about/AboutExperience'
+  1 | ...ort type { Metadata } from "next";
+> 2 | ...ort AboutExperience from "@/components/primepart/about/AboutExperien...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  3 | ...ort SiteFooter from "@/components/primepart/SiteFooter";
+  4 | ...
+  5 | ...ort const metadata: Metadata = {
+
+Import map: aliased to relative './src/components/primepart/about/AboutExperience' inside of [project]/
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:995
+[  174173ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[  175284ms] [ERROR] ./src/app/about/page.tsx:2:1
+Error: Module not found: Can't resolve '@/components/primepart/about/AboutExperience'
+  1 | ...ort type { Metadata } from "next";
+> 2 | ...ort AboutExperience from "@/components/primepart/about/AboutExperien...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  3 | ...ort SiteFooter from "@/components/primepart/SiteFooter";
+  4 | ...
+  5 | ...ort const metadata: Metadata = {
+
+Import map: aliased to relative './src/components/primepart/about/AboutExperience' inside of [project]/
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:995
+[  175512ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[  175604ms] [ERROR] ./src/app/about/page.tsx:2:1
+Error: Module not found: Can't resolve '@/components/primepart/about/AboutExperience'
+  1 | ...ort type { Metadata } from "next";
+> 2 | ...ort AboutExperience from "@/components/primepart/about/AboutExperien...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  3 | ...ort SiteFooter from "@/components/primepart/SiteFooter";
+  4 | ...
+  5 | ...ort const metadata: Metadata = {
+
+Import map: aliased to relative './src/components/primepart/about/AboutExperience' inside of [project]/
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:995
+[  175821ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[  176958ms] [ERROR] ./src/app/about/page.tsx:2:1
+Error: Module not found: Can't resolve '@/components/primepart/about/AboutExperience'
+  1 | ...ort type { Metadata } from "next";
+> 2 | ...ort AboutExperience from "@/components/primepart/about/AboutExperien...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  3 | ...ort SiteFooter from "@/components/primepart/SiteFooter";
+  4 | ...
+  5 | ...ort const metadata: Metadata = {
+
+Import map: aliased to relative './src/components/primepart/about/AboutExperience' inside of [project]/
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:995
+[  176961ms] [ERROR] ./src/app/about/page.tsx:2:1
+Error: Module not found: Can't resolve '@/components/primepart/about/AboutExperience'
+  1 | ...ort type { Metadata } from "next";
+> 2 | ...ort AboutExperience from "@/components/primepart/about/AboutExperien...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  3 | ...ort SiteFooter from "@/components/primepart/SiteFooter";
+  4 | ...
+  5 | ...ort const metadata: Metadata = {
+
+Import map: aliased to relative './src/components/primepart/about/AboutExperience' inside of [project]/
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:995
+[  177438ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3000/about?_rsc=1QLSb0eMW0CyBgXA:0
+[  177553ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3000/about:0
+[  177950ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/_next/static/chunks/node_modules_react-dom_cjs_react-dom-client_development_1nq9a-7w2rk6e.js:16702
+[  178075ms] Error: ./src/app/about/page.tsx:2:1
+Error: Module not found: Can't resolve '@/components/primepart/about/AboutExperience'
+  1 | ...ort type { Metadata } from "next";
+> 2 | ...ort AboutExperience from "@/components/primepart/about/AboutExperien...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  3 | ...ort SiteFooter from "@/components/primepart/SiteFooter";
+  4 | ...
+  5 | ...ort const metadata: Metadata = {
+
+Import map: aliased to relative './src/components/primepart/about/AboutExperience' inside of [project]/
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at Object.getCompilationErrors (file://C:\Users\saran\Desktop\prime parts\prime-parts-app\node_modules\next\dist\server\dev\hot-reloader-turbopack.js:1518:37)
+    at DevBundlerService.getCompilationError (file://C:\Users\saran\Desktop\prime parts\prime-parts-app\node_modules\next\dist\server\lib\dev-bundler-service.js:63:55)
+    at DevServer.getCompilationError (file://C:\Users\saran\Desktop\prime parts\prime-parts-app\node_modules\next\dist\server\dev\next-dev-server.js:692:42)
+    at DevServer.findPageComponents (file://C:\Users\saran\Desktop\prime parts\prime-parts-app\node_modules\next\dist\server\dev\next-dev-server.js:662:43)
+    at async DevServer.renderErrorToResponseImpl (file://C:\Users\saran\Desktop\prime parts\prime-parts-app\node_modules\next\dist\server\base-server.js:2026:26)
+[  178076ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1gdrd03q-xsfc._.js:703
+[  178230ms] [ERROR] ./src/app/about/page.tsx:2:1
+Error: Module not found: Can't resolve '@/components/primepart/about/AboutExperience'
+  1 | ...ort type { Metadata } from "next";
+> 2 | ...ort AboutExperience from "@/components/primepart/about/AboutExperien...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  3 | ...ort SiteFooter from "@/components/primepart/SiteFooter";
+  4 | ...
+  5 | ...ort const metadata: Metadata = {
+
+Import map: aliased to relative './src/components/primepart/about/AboutExperience' inside of [project]/
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1gdrd03q-xsfc._.js:1760
+[  178339ms] [ERROR] ./src/app/about/page.tsx:2:1
+Error: Module not found: Can't resolve '@/components/primepart/about/AboutExperience'
+  1 | ...ort type { Metadata } from "next";
+> 2 | ...ort AboutExperience from "@/components/primepart/about/AboutExperien...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  3 | ...ort SiteFooter from "@/components/primepart/SiteFooter";
+  4 | ...
+  5 | ...ort const metadata: Metadata = {
+
+Import map: aliased to relative './src/components/primepart/about/AboutExperience' inside of [project]/
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1gdrd03q-xsfc._.js:1760
+[  178454ms] [ERROR] ./src/app/about/page.tsx:2:1
+Error: Module not found: Can't resolve '@/components/primepart/about/AboutExperience'
+  1 | ...ort type { Metadata } from "next";
+> 2 | ...ort AboutExperience from "@/components/primepart/about/AboutExperien...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  3 | ...ort SiteFooter from "@/components/primepart/SiteFooter";
+  4 | ...
+  5 | ...ort const metadata: Metadata = {
+
+Import map: aliased to relative './src/components/primepart/about/AboutExperience' inside of [project]/
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1gdrd03q-xsfc._.js:1760
+[  190353ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1gdrd03q-xsfc._.js:703
+[  190409ms] [LOG] [Fast Refresh] done in 160ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1gdrd03q-xsfc._.js:703
+[  191128ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[  191158ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3000/_next/image?url=%2Fimages%2Fabout%2Fsteel-forge.jpg&w=1920&q=75:0
+[  191202ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[  191513ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3000/_next/image?url=%2Fimages%2Fabout%2Fhydroelectric.jpg&w=1080&q=75:0
+[  191686ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3000/_next/image?url=%2Fimages%2Fabout%2Fsteel-forge.jpg&w=1080&q=75:0
+[  191711ms] [WARNING] Image with src "/primepart/hero/hydraulic-powerpack.png" has "fill" and a height value of 0. This is likely because the parent element of the image has not been styled to have a set height. @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[  191829ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3000/_next/image?url=%2Fimages%2Fabout%2Fpaper-mill.jpg&w=1080&q=75:0
+[  191907ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3000/_next/image?url=%2Fimages%2Fabout%2Fearthmoving.jpg&w=1080&q=75:0
+[  278199ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[  278362ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[  278661ms] [ERROR] A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <SegmentViewNode type="page" pagePath="about/page...">
+      <SegmentTrieNode>
+      <AboutPage>
+        <AboutExperience>
+        <SiteFooter>
+          <footer className="relative w...">
+            <img>
+            <img>
+            <div className="relative m...">
+              <div className="grid gap-9...">
+                <Reveal>
+                <Reveal>
+                <Reveal>
+                <Reveal>
+                <Reveal delay={0.32} className="sm:col-spa...">
+                  <motion.div initial={{opacity:0,y:20,x:0,scale:1}} whileInView={{opacity:1,y:0,x:0,scale:1}} ...>
+                    <div className="sm:col-spa..." style={{opacity:0, ...}} ref={function useMotionRef.useCallback}>
+                      <div>
+                        <h2>
+                        <p>
+                        <form onSubmit={function handleSubscribe} className="mt-5">
+                          <div className="flex items...">
+                            <label>
+                            <input
+                              id="newsletter-email"
+                              name="email"
+                              type="email"
+                              required={true}
+                              autoComplete="email"
+                              placeholder="Enter your email"
+                              className="min-w-0 flex-1 bg-transparent px-4 py-3.5 text-[13.5px] text-white placeholde..."
+-                             style={{caret-color:"transparent"}}
+                            >
+                            ...
+              ...
+            ...
+    ...
+ @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:995
+[  278701ms] [WARNING] Image with src "/primepart/hero/hydraulic-powerpack.png" has "fill" and a height value of 0. This is likely because the parent element of the image has not been styled to have a set height. @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[  284419ms] [WARNING] Image with src "/images/about/steel-forge.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[  309644ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/hmr?id=CkO1gmQC9rc06vYytCJj4' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_14zvornz047l2._.js:16398
+[  310648ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/hmr?id=CkO1gmQC9rc06vYytCJj4' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_14zvornz047l2._.js:16398
+[  314726ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[  318699ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[  318890ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[  319401ms] [WARNING] Image with src "/primepart/hero/hydraulic-powerpack.png" has "fill" and a height value of 0. This is likely because the parent element of the image has not been styled to have a set height. @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[  320493ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[  320549ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[  320985ms] [WARNING] Image with src "/primepart/hero/hydraulic-powerpack.png" has "fill" and a height value of 0. This is likely because the parent element of the image has not been styled to have a set height. @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[  325529ms] [WARNING] Image with src "/images/about/steel-forge.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[  332557ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[  335765ms] [LOG] [Fast Refresh] done in 3334ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[  336445ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[  336508ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[  340150ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[  341264ms] [LOG] [Fast Refresh] done in 1220ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[  342136ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[  345078ms] [LOG] [Fast Refresh] done in 3057ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[  382888ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[  383063ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[  459555ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[  459631ms] [LOG] [Fast Refresh] done in 121ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[  467588ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[  467630ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[  493045ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[  493130ms] [LOG] [Fast Refresh] done in 103ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[  499704ms] [LOG] [Fast Refresh] done in 103ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[  500001ms] [LOG] [Fast Refresh] done in 103ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[  500085ms] [LOG] [Fast Refresh] done in 103ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[  500287ms] [LOG] [Fast Refresh] done in 103ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[  502108ms] [LOG] [Fast Refresh] done in 103ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[  506060ms] [LOG] [Fast Refresh] done in 103ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[  506069ms] [LOG] [Fast Refresh] done in 103ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[  506070ms] [LOG] [Fast Refresh] done in 103ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[  514982ms] [LOG] [Fast Refresh] done in 103ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[  516730ms] [LOG] [Fast Refresh] done in 103ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[  518809ms] [LOG] [Fast Refresh] done in 103ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[  519815ms] [LOG] [Fast Refresh] done in 103ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[  520157ms] [LOG] [Fast Refresh] done in 103ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[  529262ms] [LOG] [Fast Refresh] done in 103ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[  529356ms] [LOG] [Fast Refresh] done in 103ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[  529654ms] [LOG] [Fast Refresh] done in 103ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[ 1759329ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[ 1759418ms] [LOG] [Fast Refresh] done in 103ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[ 1759470ms] [LOG] [Fast Refresh] done in 103ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[14414994ms] [WARNING] WebSocket connection to 'ws://localhost:3000/_next/hmr?id=MqtGPpudiVBwvJHcWAXqW' failed: WebSocket is closed before the connection is established. @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_14zvornz047l2._.js:16396
+[14420043ms] [WARNING] WebSocket connection to 'ws://localhost:3000/_next/hmr?id=MqtGPpudiVBwvJHcWAXqW' failed: WebSocket is closed before the connection is established. @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_14zvornz047l2._.js:16396
+[14433039ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[14440683ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[14450860ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[14451288ms] [LOG] [Fast Refresh] done in 103ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[14451759ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[14451835ms] [LOG] [Fast Refresh] done in 103ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[14452783ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[14452861ms] [LOG] [Fast Refresh] done in 103ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[14454453ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[14454518ms] [LOG] [Fast Refresh] done in 103ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[14455456ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[14455522ms] [LOG] [Fast Refresh] done in 103ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[14458661ms] [WARNING] WebSocket connection to 'ws://localhost:3000/_next/hmr?id=MqtGPpudiVBwvJHcWAXqW' failed: WebSocket is closed before the connection is established. @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_14zvornz047l2._.js:16396
+[14462292ms] [WARNING] WebSocket connection to 'ws://localhost:3000/_next/hmr?id=MqtGPpudiVBwvJHcWAXqW' failed: WebSocket is closed before the connection is established. @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_14zvornz047l2._.js:16396
+[14465880ms] [WARNING] WebSocket connection to 'ws://localhost:3000/_next/hmr?id=MqtGPpudiVBwvJHcWAXqW' failed: WebSocket is closed before the connection is established. @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_14zvornz047l2._.js:16396
+[14467633ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/hmr?id=MqtGPpudiVBwvJHcWAXqW' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_14zvornz047l2._.js:16398
+[14467652ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/hmr?id=MqtGPpudiVBwvJHcWAXqW' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_14zvornz047l2._.js:16398
+[14468663ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/hmr?id=MqtGPpudiVBwvJHcWAXqW' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_14zvornz047l2._.js:16398
+[14476477ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[14487427ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[14487518ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[14487816ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[14488943ms] [LOG] [Fast Refresh] done in 1241ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[14489241ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[14490081ms] [LOG] [Fast Refresh] done in 950ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[14490313ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[14490889ms] [LOG] [Fast Refresh] done in 687ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[14491152ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[14491999ms] [LOG] [Fast Refresh] done in 951ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[14492232ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[14492821ms] [LOG] [Fast Refresh] done in 697ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[14493053ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[14493476ms] [LOG] [Fast Refresh] done in 526ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[14493709ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[14494381ms] [LOG] [Fast Refresh] done in 782ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[14494616ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[14495225ms] [LOG] [Fast Refresh] done in 718ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[14495484ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[14495884ms] [LOG] [Fast Refresh] done in 503ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[14496129ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[14496537ms] [LOG] [Fast Refresh] done in 511ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[14496770ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[14497054ms] [LOG] [Fast Refresh] done in 391ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[14497311ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[14497754ms] [LOG] [Fast Refresh] done in 552ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[14497979ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[14498363ms] [LOG] [Fast Refresh] done in 484ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[14498597ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[14499114ms] [LOG] [Fast Refresh] done in 627ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[14499359ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[14499904ms] [LOG] [Fast Refresh] done in 649ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[14500292ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[14500684ms] [LOG] [Fast Refresh] done in 497ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[14500911ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[14501473ms] [LOG] [Fast Refresh] done in 668ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[14501699ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[14502183ms] [LOG] [Fast Refresh] done in 584ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[14502458ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[14503051ms] [LOG] [Fast Refresh] done in 699ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[14503299ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[14503689ms] [LOG] [Fast Refresh] done in 496ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[14504328ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[14504836ms] [LOG] [Fast Refresh] done in 617ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[14505263ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[14506376ms] [LOG] [Fast Refresh] done in 1222ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[14507330ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[14508848ms] [LOG] [Fast Refresh] done in 1619ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[14509079ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[14509753ms] [LOG] [Fast Refresh] done in 779ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[14509979ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719

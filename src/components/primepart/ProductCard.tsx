@@ -8,13 +8,19 @@ import type { Product } from "./products-data";
 type ProductCardProps = {
   product: Product;
   index: number;
-  priority?: boolean;
+  /**
+   * Marks the card most likely to be the first one read. It raises the
+   * image's fetch priority but does not preload it: the rail sits a
+   * viewport below the hero on the home page, and a preload link there
+   * only takes bandwidth from the hero plate that is actually on screen.
+   */
+  eager?: boolean;
 };
 
 export default function ProductCard({
   product,
   index,
-  priority,
+  eager,
 }: ProductCardProps) {
   return (
     <motion.article
@@ -35,7 +41,7 @@ export default function ProductCard({
             src={product.image}
             alt={product.title}
             fill
-            priority={priority}
+            fetchPriority={eager ? "high" : "auto"}
             sizes="(max-width: 640px) 85vw, (max-width: 1024px) 45vw, 25vw"
             className="object-contain p-5 transition-transform duration-300 ease-out group-hover:scale-[1.035]"
           />

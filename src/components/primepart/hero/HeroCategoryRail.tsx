@@ -32,14 +32,15 @@ const icons: Record<CategoryKey, typeof Cog> = {
  */
 export default function HeroCategoryRail() {
   return (
-    <div className="relative z-20 mt-6 xl:absolute xl:right-[calc(var(--u)*46)] xl:top-[6.64%] xl:mt-0 xl:w-[calc(var(--u)*265)]">
+    <div className="hero2-depth-rail relative z-20 mt-6 xl:absolute xl:right-[calc(var(--u)*46)] xl:top-[6.64%] xl:mt-0 xl:w-[calc(var(--u)*265)]">
       <ul className="-mx-5 flex min-w-0 snap-x snap-mandatory gap-3 overflow-x-auto overscroll-x-contain scroll-px-5 px-5 pb-2 [scrollbar-width:none] sm:-mx-7 sm:scroll-px-7 sm:px-7 md:mx-0 md:grid md:grid-cols-2 md:gap-3 md:overflow-visible md:px-0 md:pb-0 xl:flex xl:flex-col xl:gap-[calc(var(--u)*12)] [&::-webkit-scrollbar]:hidden">
-        {categories.map((category) => {
+        {categories.map((category, index) => {
           const Icon = icons[category.key];
           return (
             <li
               key={category.key}
-              className="w-[78%] shrink-0 snap-start sm:w-[58%] md:w-auto md:shrink"
+              style={{ "--d": `${460 + index * 65}ms` } as React.CSSProperties}
+              className="hero2-in w-[78%] shrink-0 snap-start sm:w-[58%] md:w-auto md:shrink"
             >
               <a
                 href={category.href}

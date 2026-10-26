@@ -1,94 +1,52 @@
-"use client";
-
 import Image from "next/image";
-import { useSyncExternalStore } from "react";
-
-/**
- * The industrial composition, running as a transparent loop.
- *
- * The artwork is keyed off the flat #F6F6F6 it was delivered on, so
- * whatever sits behind it — the desktop navy split, the mobile forge
- * glow — reads straight through.
- *
- * Transparency is why the loop is VP9/WebM only: Safari plays WebM but
- * drops its alpha channel and paints the cutout black, and the one
- * format it does key, HEVC with alpha, can only be encoded on Apple
- * hardware. So every WebKit browser, and anyone asking for reduced
- * motion, gets the matching transparent still instead. The still is
- * also what the server renders, and the loop's own poster, so the swap
- * after hydration lands on the same frame.
- */
 
 export const loopDescription =
-  "Cutting tools, hydraulic and pneumatic components, bearings and a robotic arm arranged on machined plinths";
+  "PrimePart hydraulic powerpack with motor, pressure-control manifold and cooling system";
 
-/** A phone pulls 1.5MB over cell data instead of the desktop cut's 3.8MB. */
-const cuts = {
-  wide: {
-    src: "/primepart/hero/machines-alive.webm",
-    poster: "/primepart/hero/machines-alive-poster.webp",
-  },
-  phone: {
-    src: "/primepart/hero/machines-alive-sm.webm",
-    poster: "/primepart/hero/machines-alive-poster-sm.webp",
-  },
-} as const;
-
-const wide = "(min-width: 768px)";
-
-/** Only the width can change after load, so that is all we listen to. */
-const watchWidth = (onChange: () => void) => {
-  const query = window.matchMedia(wide);
-  query.addEventListener("change", onChange);
-  return () => query.removeEventListener("change", onChange);
-};
-
-const onServer = () => "still" as const;
-
-/**
- * Every browser on iOS is WebKit underneath, Chrome and Firefox
- * included, so the engine is what has to be read, not the brand in the
- * UA string. `vendor` stays Apple's for all of them and turns into
- * Google's or an empty string everywhere else.
- */
-const onWebKit = () =>
-  navigator.vendor === "Apple Computer, Inc." || /iP(hone|ad|od)/.test(navigator.userAgent);
-
-const inBrowser = () => {
-  if (onWebKit()) return "still" as const;
-  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return "still" as const;
-  return window.matchMedia(wide).matches ? "wide" : "phone";
-};
-
+/** The supplied product image, with lightweight live machine telemetry. */
 export default function HeroLoop({ className, sizes }: { className: string; sizes: string }) {
-  const variant = useSyncExternalStore(watchWidth, inBrowser, onServer);
-
-  if (variant === "still") {
-    return (
+  return (
+    <div className="hero-machine-live relative h-full w-full" role="img" aria-label={loopDescription}>
       <Image
-        src="/primepart/hero/machines-alive.png"
-        alt={loopDescription}
-        width={1440}
-        height={1080}
-        priority
+        src="/primepart/hero/hydraulic-powerpack.png"
+        alt=""
+        aria-hidden
+        fill
+        // Not `preload`. This loop is mounted twice - once by HeroMobile,
+        // once by HeroVisual - and only one of the two is ever visible.
+        // A preload link is emitted per instance regardless of CSS, so
+        // every visitor fetched both renders of the same plate. Lazy
+        // loading skips the `display: none` copy on its own, and
+        // fetchPriority still puts the visible one at the front.
+        fetchPriority="high"
         sizes={sizes}
         className={className}
       />
-    );
-  }
 
-  return (
-    <video
-      key={variant}
-      src={cuts[variant].src}
-      poster={cuts[variant].poster}
-      autoPlay
-      loop
-      muted
-      playsInline
-      preload="auto"
-      aria-label={loopDescription}
-      className={className}
-    />
+      <svg
+        aria-hidden
+        viewBox="0 0 1448 1086"
+        className="pointer-events-none absolute inset-0 h-full w-full"
+      >
+        <g className="hero-machine-gauges" fill="none" stroke="#f8c544" strokeWidth="4">
+          <path d="M673 289 691 269" />
+          <path d="M731 353 747 332" />
+          <path d="M994 276 1011 257" />
+        </g>
+
+        <g className="hero-machine-fan" fill="none" stroke="#f8c544" strokeWidth="3">
+          <circle cx="1320" cy="454" r="77" opacity=".28" />
+          <path d="M1320 385v138M1251 454h138M1271 405l98 98M1369 405l-98 98" opacity=".38" />
+        </g>
+
+        <g className="hero-machine-pressure" fill="none" stroke="#f8c544" strokeWidth="5">
+          <path pathLength="1" d="M787 153C925 120 1037 178 1116 270" />
+          <path pathLength="1" d="M891 352c105-30 179 4 240 82" />
+          <path pathLength="1" d="M728 517c151 79 314 72 421-8" />
+        </g>
+      </svg>
+
+      <span aria-hidden className="hero-machine-scan absolute inset-x-[5%] top-[12%] h-px" />
+    </div>
   );
 }
