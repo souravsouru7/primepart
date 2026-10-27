@@ -18,7 +18,6 @@ import {
 } from "lucide-react";
 import AnimatedCounter from "../AnimatedCounter";
 import HeroLoop from "./HeroLoop";
-import HeroMobileNav from "./HeroMobileNav";
 import WatchStoryButton from "./WatchStoryButton";
 import { categories, trustMarkers, type CategoryKey } from "./hero-content";
 
@@ -102,23 +101,7 @@ export default function HeroMobile() {
         <div className="herom-breathe absolute inset-x-[7%] top-[18%] h-[52vh] bg-[radial-gradient(ellipse_90%_54%_at_50%_50%,rgba(244,174,19,0.3),rgba(244,174,19,0.1)_52%,transparent_76%)] md:inset-x-[10%] md:top-[10%] md:h-[62vh]" />
       </div>
 
-      {/* ── floating brand bar ─────────────────────────────────── */}
-      <div className={`relative z-20 pt-4 ${shell}`}>
-        <div className="hero2-in flex items-center justify-between gap-4 rounded-2xl border border-white/10 bg-white/95 px-4 py-2.5 shadow-[0_18px_40px_-24px_rgba(0,0,0,0.9)] backdrop-blur">
-          <a href="#home" className="inline-block shrink-0">
-            <Image
-              src="/primepart/hero/logo.png"
-              alt="PrimePart — Quality at your doorstep"
-              width={760}
-              height={175}
-              loading="eager"
-              fetchPriority="high"
-              className="h-9 w-auto sm:h-10"
-            />
-          </a>
-          <HeroMobileNav />
-        </div>
-      </div>
+      <div aria-hidden className="h-20" />
 
       {/* copy and frame share a grid from md so neither is stranded */}
       <div

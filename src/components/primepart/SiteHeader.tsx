@@ -3,8 +3,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, MapPin, Phone } from "lucide-react";
-import { motion, useMotionValueEvent, useReducedMotion, useScroll } from "motion/react";
-import { useState } from "react";
 import HeroMobileNav from "./hero/HeroMobileNav";
 import HeroSidebar from "./hero/HeroSidebar";
 
@@ -20,26 +18,10 @@ import HeroSidebar from "./hero/HeroSidebar";
  */
 
 export default function SiteHeader() {
-  const reduced = useReducedMotion();
-  const [hidden, setHidden] = useState(false);
-  const { scrollY } = useScroll();
-
-  // These pages are too long to let the bar scroll off as the home page
-  // does, so it retracts on the way down and returns on the way up.
-  useMotionValueEvent(scrollY, "change", (y) => {
-    if (reduced) return;
-    const prev = scrollY.getPrevious() ?? 0;
-    setHidden(y > prev && y > 220);
-  });
-
   return (
     <>
       {/* phone and tablet: the hero's brand bar, to the pixel */}
-      <motion.header
-        animate={{ y: hidden ? -120 : 0 }}
-        transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-        className="fixed inset-x-0 top-0 z-[60] pt-4 xl:hidden"
-      >
+      <header className="fixed inset-x-0 top-0 z-[60] pt-4 xl:hidden">
         <div className="mx-auto w-full max-w-[1180px] px-5 sm:px-7 md:px-8">
           <div className="flex items-center justify-between gap-4 rounded-2xl border border-white/10 bg-white px-4 py-2.5 shadow-[0_18px_40px_-24px_rgba(0,0,0,0.9)]">
             <Link href="/" className="inline-block shrink-0">
@@ -56,7 +38,7 @@ export default function SiteHeader() {
             <HeroMobileNav site />
           </div>
         </div>
-      </motion.header>
+      </header>
 
       {/* The bar is fixed and out of flow, and these pages were built to
           clear a 60px rail. The floating card ends 22px lower, so this
