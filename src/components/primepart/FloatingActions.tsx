@@ -84,7 +84,7 @@ export default function FloatingActions() {
       <ContactButton
         href="mailto:primepart.official@gmail.com"
         label="Email PrimePart"
-        className="bg-[#F7FAFA] text-[#0A161F] ring-1 ring-black/10 shadow-[0_14px_30px_-14px_rgba(0,0,0,0.9)]"
+        className="bg-[#0D8884] text-white shadow-[0_14px_30px_-14px_rgba(0,0,0,0.9)]"
       >
         <Mail className="h-6 w-6" strokeWidth={1.8} />
       </ContactButton>
