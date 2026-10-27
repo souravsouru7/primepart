@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ArrowUp, Phone } from "lucide-react";
+import { ArrowUp, Mail, Phone } from "lucide-react";
 import {
   AnimatePresence,
   motion,
@@ -20,7 +20,7 @@ const WHATSAPP_TEXT = "Hello PrimePart, I'd like to enquire about a part.";
 const SHOW_UP_AFTER = 480;
 
 /**
- * Bottom-right corner on every page: WhatsApp and call, always in reach,
+ * Bottom-right corner on every page: email, WhatsApp and call, always in reach,
  * in the landing page's gold and navy, and above them a
  * back-to-top button that appears once the reader is some way down,
  * its ring filling with the scroll.
@@ -80,6 +80,14 @@ export default function FloatingActions() {
           </motion.button>
         ) : null}
       </AnimatePresence>
+
+      <ContactButton
+        href="mailto:primepart.official@gmail.com"
+        label="Email PrimePart"
+        className="bg-[#F7FAFA] text-[#0A161F] ring-1 ring-black/10 shadow-[0_14px_30px_-14px_rgba(0,0,0,0.9)]"
+      >
+        <Mail className="h-6 w-6" strokeWidth={1.8} />
+      </ContactButton>
 
       <ContactButton
         href={`https://wa.me/${PHONE.slice(1)}?text=${encodeURIComponent(WHATSAPP_TEXT)}`}

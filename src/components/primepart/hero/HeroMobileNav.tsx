@@ -157,15 +157,6 @@ export default function HeroMobileNav({ site = false }: { site?: boolean }) {
                 Explore Our Products
               </SmartLink>
 
-              <a
-                href="mailto:primepart.official@gmail.com"
-                onClick={() => setOpen(false)}
-                className="mt-2.5 flex items-center justify-center gap-2 rounded-full border border-black/10 bg-white px-6 py-3.5 text-[14.5px] font-bold text-[#0B1017] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F4AE13]"
-              >
-                <Mail className="h-4 w-4" strokeWidth={1.8} />
-                Email Us
-              </a>
-
               <div className="mt-4 flex items-center justify-between">
                 <span className="flex items-center gap-1.5 text-[11.5px] font-semibold uppercase tracking-[0.16em] text-[#0B1017]">
                   <MapPin className="h-4 w-4 text-[#F4AE13]" strokeWidth={1.8} />
