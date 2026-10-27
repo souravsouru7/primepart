@@ -265,8 +265,8 @@ export default function AboutPage() {
     };
   }, [reduced]);
 
-  const mono = { fontFamily: "var(--font-jet)" } as const;
-  const serif = { fontFamily: "var(--font-fraunces)" } as const;
+  const mono = { fontFamily: "var(--font-inter)", fontWeight: 700 } as const;
+  const serif = { fontFamily: "var(--font-inter)", letterSpacing: "-0.02em" } as const;
   const body = { fontFamily: "var(--font-inter)" } as const;
 
   return (
@@ -279,7 +279,7 @@ export default function AboutPage() {
           className="pointer-events-none fixed inset-0 z-0"
           style={{
             backgroundImage:
-              "linear-gradient(to right, rgba(247,181,0,0.045) 1px, transparent 1px), linear-gradient(to bottom, rgba(247,181,0,0.045) 1px, transparent 1px)",
+              "linear-gradient(to right, rgba(244,174,19,0.045) 1px, transparent 1px), linear-gradient(to bottom, rgba(244,174,19,0.045) 1px, transparent 1px)",
             backgroundSize: "64px 64px",
           }}
         />
@@ -292,14 +292,14 @@ export default function AboutPage() {
             className="pointer-events-none fixed inset-0 z-10 hidden opacity-0 transition-opacity duration-500 [@media(pointer:fine)]:block"
             style={{
               background:
-                "radial-gradient(36vw 36vw at var(--mx, 50%) var(--my, 50%), rgba(247,181,0,0.16), rgba(247,181,0,0.04) 42%, transparent 72%)",
+                "radial-gradient(36vw 36vw at var(--mx, 50%) var(--my, 50%), rgba(244,174,19,0.16), rgba(244,174,19,0.04) 42%, transparent 72%)",
               mixBlendMode: "screen",
             }}
           />
         )}
 
         {/* ────────── Fixed drawing title block (top) ────────── */}
-        <header className="pointer-events-none fixed inset-x-0 top-[60px] z-50 border-b border-gold/30 bg-ink/85 backdrop-blur-md">
+        <header className="pointer-events-none fixed inset-x-0 top-[82px] z-50 xl:left-[var(--rail)] xl:top-0 border-b border-gold/30 bg-ink/95">
           <div
             className="relative mx-auto flex max-w-[1700px] items-center gap-6 px-4 py-2 text-[10px] uppercase tracking-[0.26em] tabular-nums text-paper/65 sm:px-8 sm:text-[11px]"
             style={mono}
@@ -338,7 +338,7 @@ export default function AboutPage() {
         {/* ────────── Fixed journal spine (desktop) ────────── */}
         <nav
           aria-label="Journal spine"
-          className="pointer-events-none fixed left-4 top-1/2 z-40 hidden -translate-y-1/2 lg:block"
+          className="pointer-events-none fixed left-4 top-1/2 z-40 hidden -translate-y-1/2 lg:block xl:left-[calc(var(--rail)+1rem)]"
         >
           <ol className="flex flex-col gap-5">
             {SHEETS.map((s, i) => {
@@ -385,7 +385,7 @@ export default function AboutPage() {
         {/* ────────── Fixed telemetry (bottom-right) ────────── */}
         <aside
           aria-hidden
-          className="pointer-events-none fixed bottom-5 right-5 z-40 hidden items-end gap-3 sm:bottom-8 sm:right-8 sm:flex"
+          className="pointer-events-none fixed bottom-5 right-24 z-40 hidden items-end gap-3 sm:bottom-8 sm:right-28 sm:flex"
           style={mono}
         >
           <span className="relative flex h-2.5 w-2.5">
@@ -396,7 +396,7 @@ export default function AboutPage() {
               transition={{ repeat: Infinity, duration: 2.6 }}
             />
           </span>
-          <div className="min-w-[180px] border border-paper/15 bg-ink/70 px-3 py-2 text-right backdrop-blur-md">
+          <div className="min-w-[180px] border border-paper/15 bg-ink/90 px-3 py-2 text-right">
             <div className="text-[9px] uppercase tracking-[0.3em] text-paper/40">
               LIVE READOUT
             </div>
@@ -464,7 +464,7 @@ export default function AboutPage() {
                     className="relative flex min-h-[clamp(72px,16vw,220px)] items-center justify-center border-r border-paper/10 last:border-r-0"
                   >
                     <span
-                      className="text-[clamp(44px,10vw,146px)] font-light leading-none tracking-[-0.04em] text-paper"
+                      className="text-[clamp(44px,10vw,146px)] font-extrabold leading-none tracking-[-0.04em] text-paper"
                       style={serif}
                     >
                       {cell.ch}
@@ -490,7 +490,7 @@ export default function AboutPage() {
                   style={body}
                 >
                   <span
-                    className="float-left mr-3 text-[clamp(56px,6vw,96px)] font-light leading-[0.82] tracking-[-0.04em] text-gold"
+                    className="float-left mr-3 text-[clamp(56px,6vw,96px)] font-extrabold leading-[0.82] tracking-[-0.04em] text-gold"
                     style={serif}
                   >
                     E
@@ -523,7 +523,7 @@ export default function AboutPage() {
                       cy="100"
                       r="86"
                       fill="none"
-                      stroke="#F2F1EC"
+                      stroke="#FDFCFB"
                       strokeOpacity="0.12"
                       strokeWidth="1"
                     />
@@ -532,7 +532,7 @@ export default function AboutPage() {
                       cy="100"
                       r="78"
                       fill="none"
-                      stroke="#F7B500"
+                      stroke="#F4AE13"
                       strokeOpacity="0.35"
                       strokeWidth="0.6"
                     />
@@ -549,7 +549,7 @@ export default function AboutPage() {
                           y1={round(100 + Math.sin(a) * r1v)}
                           x2={round(100 + Math.cos(a) * r2v)}
                           y2={round(100 + Math.sin(a) * r2v)}
-                          stroke="#F2F1EC"
+                          stroke="#FDFCFB"
                           strokeOpacity={i % 3 === 0 ? 0.6 : 0.25}
                           strokeWidth="1"
                         />
@@ -568,18 +568,18 @@ export default function AboutPage() {
                         y1="100"
                         x2="100"
                         y2="30"
-                        stroke="#F7B500"
+                        stroke="#F4AE13"
                         strokeWidth="2"
                         strokeLinecap="round"
                       />
-                      <circle cx="100" cy="100" r="6" fill="#F7B500" />
-                      <circle cx="100" cy="100" r="2.5" fill="#0A0F14" />
+                      <circle cx="100" cy="100" r="6" fill="#F4AE13" />
+                      <circle cx="100" cy="100" r="2.5" fill="#0A161F" />
                     </motion.g>
                     {/* 0 / 210 bar — the documented extreme-duty rating */}
                     <text
                       x="40"
                       y="150"
-                      fill="#F2F1EC"
+                      fill="#FDFCFB"
                       fillOpacity="0.5"
                       fontSize="9"
                       style={mono}
@@ -589,7 +589,7 @@ export default function AboutPage() {
                     <text
                       x="150"
                       y="150"
-                      fill="#F2F1EC"
+                      fill="#FDFCFB"
                       fillOpacity="0.5"
                       fontSize="9"
                       style={mono}
@@ -698,7 +698,7 @@ export default function AboutPage() {
                     </div>
                     <div>
                       <p
-                        className="text-[clamp(22px,2.4vw,32px)] font-light italic leading-[1.25] text-paper"
+                        className="text-[clamp(22px,2.4vw,32px)] font-normal italic leading-[1.25] text-paper"
                         style={serif}
                       >
                         {row.q}
@@ -766,7 +766,7 @@ export default function AboutPage() {
               className="relative mt-16 border-y border-gold/40 py-14 sm:py-20"
               style={{
                 backgroundImage:
-                  "repeating-linear-gradient(0deg, transparent 0 44px, rgba(247,181,0,0.04) 44px 45px)",
+                  "repeating-linear-gradient(0deg, transparent 0 44px, rgba(244,174,19,0.04) 44px 45px)",
               }}
             >
               <div
@@ -791,12 +791,12 @@ export default function AboutPage() {
                       <div
                         className={
                           op
-                            ? `px-2 text-[clamp(44px,7vw,96px)] font-light text-gold`
+                            ? `px-2 text-[clamp(44px,7vw,96px)] font-extrabold text-gold`
                             : `relative border border-paper/20 bg-ink/60 px-[clamp(14px,2.4vw,32px)] py-[clamp(10px,1.8vw,20px)]`
                         }
                       >
                         <span
-                          className={`block text-[clamp(28px,4.4vw,60px)] font-light leading-none tracking-[-0.02em] ${
+                          className={`block text-[clamp(28px,4.4vw,60px)] font-extrabold leading-none tracking-[-0.02em] ${
                             op ? "text-gold" : "text-paper"
                           }`}
                           style={serif}
@@ -990,7 +990,7 @@ export default function AboutPage() {
                 className="relative"
               >
                 <div
-                  className="relative border-[6px] border-gold px-[clamp(28px,6vw,96px)] py-[clamp(18px,3vw,36px)] text-[clamp(44px,10vw,160px)] font-light leading-none tracking-[-0.04em] text-gold"
+                  className="relative border-[6px] border-gold px-[clamp(28px,6vw,96px)] py-[clamp(18px,3vw,36px)] text-[clamp(44px,10vw,160px)] font-extrabold leading-none tracking-[-0.04em] text-gold"
                   style={serif}
                 >
                   DELIVERED.
@@ -1006,7 +1006,7 @@ export default function AboutPage() {
 
             {/* closing statement */}
             <p
-              className="mx-auto mt-10 max-w-[800px] text-center text-[clamp(22px,2.4vw,34px)] font-light italic leading-[1.35] text-paper"
+              className="mx-auto mt-10 max-w-[800px] text-center text-[clamp(22px,2.4vw,34px)] font-normal italic leading-[1.35] text-paper"
               style={serif}
             >
               Engineering partners, not transactions.
@@ -1020,7 +1020,7 @@ export default function AboutPage() {
               {[
                 { k: "Office", v: "Nagpur, 2025" },
                 { k: "Principal", v: "Parag Sonkusale" },
-                { k: "Set in", v: "Fraunces · JetBrains · Inter" },
+                { k: "Set in", v: "Inter" },
                 { k: "Next issue", v: "Q1 — on request" },
               ].map((c) => (
                 <div key={c.k}>
@@ -1051,19 +1051,19 @@ export default function AboutPage() {
 /* ───────────────────────────── Local helpers ───────────────────────────── */
 
 function SheetHeader({ num, title }: { num: string; title: string }) {
-  const mono = { fontFamily: "var(--font-jet)" } as const;
-  const serif = { fontFamily: "var(--font-fraunces)" } as const;
+  const mono = { fontFamily: "var(--font-inter)", fontWeight: 700 } as const;
+  const serif = { fontFamily: "var(--font-inter)", letterSpacing: "-0.02em" } as const;
   return (
     <div className="flex items-end justify-between gap-6 border-b border-gold/30 pb-5">
       <div className="flex items-baseline gap-4">
         <span
-          className="text-[clamp(28px,3.8vw,52px)] font-light leading-none tracking-[-0.02em] text-gold"
+          className="text-[clamp(28px,3.8vw,52px)] font-extrabold leading-none tracking-[-0.02em] text-gold"
           style={serif}
         >
           §{num}
         </span>
         <span
-          className="text-[clamp(22px,2.6vw,36px)] font-light leading-none tracking-[-0.01em] text-paper"
+          className="text-[clamp(22px,2.6vw,36px)] font-extrabold leading-none tracking-[-0.01em] text-paper"
           style={serif}
         >
           {title}
@@ -1091,8 +1091,8 @@ function DispatchRow({
   stage: MotionValue<number>;
   reduced: boolean | null;
 }) {
-  const mono = { fontFamily: "var(--font-jet)" } as const;
-  const serif = { fontFamily: "var(--font-fraunces)" } as const;
+  const mono = { fontFamily: "var(--font-inter)", fontWeight: 700 } as const;
+  const serif = { fontFamily: "var(--font-inter)", letterSpacing: "-0.02em" } as const;
   // each row progresses from its own threshold
   const own = useTransform(stage, [index, index + 0.9], [0, 1]);
   const x = useTransform(own, [0, 1], ["24vw", "0vw"]);
@@ -1112,7 +1112,7 @@ function DispatchRow({
         {row.id}
       </div>
       <div
-        className="text-[clamp(16px,1.4vw,20px)] font-light leading-[1.2] tracking-[-0.01em] text-paper"
+        className="text-[clamp(16px,1.4vw,20px)] font-bold leading-[1.2] tracking-[-0.01em] text-paper"
         style={serif}
       >
         {row.sector}
@@ -1157,8 +1157,8 @@ function RecordCard({
   stamp: string | null;
   z: number;
 }) {
-  const mono = { fontFamily: "var(--font-jet)" } as const;
-  const serif = { fontFamily: "var(--font-fraunces)" } as const;
+  const mono = { fontFamily: "var(--font-inter)", fontWeight: 700 } as const;
+  const serif = { fontFamily: "var(--font-inter)", letterSpacing: "-0.02em" } as const;
   return (
     <motion.div
       onMouseEnter={onEnter}
@@ -1182,7 +1182,7 @@ function RecordCard({
           className="absolute inset-x-0 top-0 h-px"
           style={{
             backgroundImage:
-              "repeating-linear-gradient(to right, rgba(10,15,20,0.4) 0 6px, transparent 6px 12px)",
+              "repeating-linear-gradient(to right, rgba(10,22,31,0.4) 0 6px, transparent 6px 12px)",
           }}
         />
         <div
@@ -1192,7 +1192,7 @@ function RecordCard({
           Form · PP/2025
         </div>
         <h3
-          className="mt-2 text-[clamp(22px,2.4vw,28px)] font-light leading-[1.1] tracking-[-0.01em]"
+          className="mt-2 text-[clamp(22px,2.4vw,28px)] font-extrabold leading-[1.1] tracking-[-0.01em]"
           style={serif}
         >
           {title}
@@ -1218,7 +1218,7 @@ function RecordCard({
                 aria-hidden
                 className="relative mx-0.5 flex-1 translate-y-[-5px]"
                 style={{
-                  borderBottom: "1px dotted rgba(10,15,20,0.45)",
+                  borderBottom: "1px dotted rgba(10,22,31,0.45)",
                   height: 0,
                 }}
               />
@@ -1231,7 +1231,7 @@ function RecordCard({
           <div
             className="absolute bottom-6 right-6 border-2 border-gold px-2.5 py-1 text-[12px] font-bold tracking-[0.2em] text-gold"
             style={{
-              fontFamily: "var(--font-fraunces)",
+              fontFamily: "var(--font-inter)",
               transform: "rotate(-6deg)",
             }}
           >

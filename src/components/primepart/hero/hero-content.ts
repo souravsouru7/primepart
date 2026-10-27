@@ -15,15 +15,27 @@ export type NavKey =
   | "support"
   | "contact";
 
-export const navItems: { key: NavKey; label: string; href: string }[] = [
-  { key: "home", label: "Home", href: "#home" },
-  { key: "products", label: "Products", href: "/products" },
-  { key: "brands", label: "Team", href: "/team" },
-  { key: "industries", label: "Industries", href: "#products" },
-  { key: "about", label: "About", href: "/about" },
-  { key: "support", label: "Services", href: "/services" },
-  { key: "contact", label: "Contact", href: "/contact" },
+/**
+ * `href` is the link on the home page; `route` is the same destination
+ * from every other page, where the in-page anchors do not exist.
+ */
+export const navItems: { key: NavKey; label: string; href: string; route: string }[] = [
+  { key: "home", label: "Home", href: "#home", route: "/" },
+  { key: "products", label: "Products", href: "/products", route: "/products" },
+  { key: "brands", label: "Team", href: "/team", route: "/team" },
+  { key: "industries", label: "Industries", href: "/industries", route: "/industries" },
+  { key: "about", label: "About", href: "/about", route: "/about" },
+  { key: "support", label: "Services", href: "/services", route: "/services" },
+  { key: "contact", label: "Contact", href: "/contact", route: "/contact" },
 ];
+
+/** The nav item a pathname belongs to, for the pages outside the hero. */
+export function navKeyForPath(pathname: string): NavKey | null {
+  const match = navItems.find(
+    (item) => !item.route.includes("#") && item.route !== "/" && pathname.startsWith(item.route),
+  );
+  return match ? match.key : pathname === "/" ? "home" : null;
+}
 
 export type CategoryKey =
   | "cutting"
@@ -89,43 +101,6 @@ export const categories: {
     image: "/primepart/hero/card-automation.png",
     focus: "object-bottom",
     href: "#industries",
-  },
-];
-
-/**
- * Gold annotations over the industrial composition. `position` is a
- * percentage of the visual box and `thread` the length of the connector
- * in reference pixels, each aimed so its dot lands on the component it
- * names: the end mills, the hydraulic manifolds and the pneumatic
- * cylinders. Both are only applied from `xl` up.
- */
-export const annotations: {
-  key: "cutting" | "hydraulics" | "pneumatics";
-  title: string;
-  lines: string[];
-  position: string;
-  thread: number;
-}[] = [
-  {
-    key: "cutting",
-    title: "Cutting Tools",
-    lines: ["High performance", "machining"],
-    position: "xl:left-[25%] xl:top-[-4%]",
-    thread: 120,
-  },
-  {
-    key: "hydraulics",
-    title: "Hydraulics",
-    lines: ["Power in motion"],
-    position: "xl:left-[49%] xl:top-[19%]",
-    thread: 95,
-  },
-  {
-    key: "pneumatics",
-    title: "Pneumatics",
-    lines: ["Cleaner. Smarter.", "Automation."],
-    position: "xl:left-[60%] xl:top-[40%]",
-    thread: 80,
   },
 ];
 

@@ -1,272 +1,142 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import {
-  AnimatePresence,
-  motion,
-  useMotionValueEvent,
-  useReducedMotion,
-  useScroll,
-} from "motion/react";
-import { useEffect, useState } from "react";
+import { ArrowRight, MapPin, Phone } from "lucide-react";
+import { motion, useMotionValueEvent, useReducedMotion, useScroll } from "motion/react";
+import { useState } from "react";
+import HeroMobileNav from "./hero/HeroMobileNav";
+import HeroSidebar from "./hero/HeroSidebar";
 
 /**
- * Site navigation for the interior pages. The home page keeps its own
- * hero-integrated rail, so this header is mounted per page rather than
- * in the root layout.
+ * The home page's navigation, carried to every other page. It is mounted
+ * per page rather than in the root layout, because the home page draws
+ * its own inside the hero.
  *
- * It owns the scroll-progress hairline along its bottom edge, so the
- * interior pages do not each render their own.
+ * Below `xl` it is the hero's floating white bar and menu sheet. From
+ * `xl` it is the hero's vertical rail, fixed down the left edge on the
+ * pages' navy, with a quick-contact card at its foot; globals.css pads
+ * the page by `--rail` so nothing sits beneath it.
  */
-
-const mono = { fontFamily: "var(--font-jet)" } as const;
-const serif = { fontFamily: "var(--font-fraunces)" } as const;
-
-export const HEADER_H = 60;
-
-const LINKS = [
-  { href: "/", label: "Home" },
-  { href: "/about", label: "About" },
-  { href: "/products", label: "Products" },
-  { href: "/services", label: "Services" },
-  { href: "/team", label: "Team" },
-  { href: "/faq", label: "FAQ" },
-];
 
 export default function SiteHeader() {
   const reduced = useReducedMotion();
-  const pathname = usePathname();
   const [hidden, setHidden] = useState(false);
-  const [menu, setMenu] = useState(false);
-  const { scrollY, scrollYProgress } = useScroll();
+  const { scrollY } = useScroll();
 
-  // retract on the way down, return on the way up
+  // These pages are too long to let the bar scroll off as the home page
+  // does, so it retracts on the way down and returns on the way up.
   useMotionValueEvent(scrollY, "change", (y) => {
-    if (reduced || menu) return;
+    if (reduced) return;
     const prev = scrollY.getPrevious() ?? 0;
     setHidden(y > prev && y > 220);
   });
 
-  // close the overlay on route change, and lock the page behind it
-  useEffect(() => setMenu(false), [pathname]);
-  useEffect(() => {
-    document.body.style.overflow = menu ? "hidden" : "";
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [menu]);
-
-  const isActive = (href: string) =>
-    href === "/" ? pathname === "/" : pathname.startsWith(href);
-
   return (
     <>
+      {/* phone and tablet: the hero's brand bar, to the pixel */}
       <motion.header
-        animate={{ y: hidden ? -HEADER_H - 6 : 0 }}
+        animate={{ y: hidden ? -120 : 0 }}
         transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-        className="fixed inset-x-0 top-0 z-[60] border-b border-white/10 bg-ink/90 backdrop-blur-md"
-        style={{ height: HEADER_H }}
+        className="fixed inset-x-0 top-0 z-[60] pt-4 xl:hidden"
       >
-        <nav
-          aria-label="Primary"
-          className="mx-auto flex h-full max-w-[1320px] items-center gap-6 px-5 sm:px-10"
-        >
-          {/* wordmark */}
-          <Link
-            href="/"
-            className="group flex shrink-0 cursor-pointer items-center gap-2.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold"
-          >
-            <span className="relative flex h-7 w-7 items-center justify-center">
-              <span className="absolute inset-0 rotate-45 rounded-[7px] bg-gradient-to-br from-[#FFD36A] to-gold transition-transform duration-500 group-hover:rotate-[135deg]" />
-              <span className="absolute inset-[4px] rotate-45 rounded-[4px] bg-ink" />
-              <span className="absolute inset-[7px] rotate-45 rounded-[3px] bg-gold" />
-            </span>
-            <span
-              className="text-[17px] font-light leading-none tracking-[-0.01em] text-paper"
-              style={serif}
-            >
-              Prime<span className="text-gold">Part</span>
-            </span>
-          </Link>
-
-          {/* desktop links */}
-          <ul className="ml-auto hidden items-center gap-1 lg:flex">
-            {LINKS.map((l) => {
-              const active = isActive(l.href);
-              return (
-                <li key={l.href}>
-                  <Link
-                    href={l.href}
-                    aria-current={active ? "page" : undefined}
-                    className={`relative block cursor-pointer px-3.5 py-2 text-[11px] uppercase tracking-[0.2em] transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold ${
-                      active ? "text-gold" : "text-paper/65 hover:text-paper"
-                    }`}
-                    style={mono}
-                  >
-                    {l.label}
-                    {active && (
-                      <motion.span
-                        layoutId={reduced ? undefined : "nav-active"}
-                        className="absolute inset-x-3 -bottom-px h-px bg-gold"
-                        transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-                      />
-                    )}
-                  </Link>
-                </li>
-              );
-            })}
-          </ul>
-
-          {/* desktop CTA */}
-          <Link
-            href="/contact"
-            className="ml-auto hidden shrink-0 cursor-pointer items-center gap-2.5 bg-gold px-5 py-2.5 text-[10.5px] uppercase tracking-[0.22em] text-ink transition-opacity duration-200 hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-ink lg:ml-3 lg:inline-flex"
-            style={mono}
-          >
-            Contact
-            <span aria-hidden>→</span>
-          </Link>
-
-          {/* mobile toggle */}
-          <button
-            type="button"
-            onClick={() => setMenu((m) => !m)}
-            aria-expanded={menu}
-            aria-controls="mobile-nav"
-            aria-label={menu ? "Close menu" : "Open menu"}
-            className="ml-auto grid h-10 w-10 shrink-0 cursor-pointer place-items-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold lg:hidden"
-          >
-            <span className="relative block h-3.5 w-6">
-              <motion.span
-                className="absolute left-0 block h-px w-full bg-paper"
-                animate={{
-                  top: menu ? "50%" : 0,
-                  rotate: menu ? 45 : 0,
-                }}
-                transition={{ duration: reduced ? 0 : 0.3 }}
+        <div className="mx-auto w-full max-w-[1180px] px-5 sm:px-7 md:px-8">
+          <div className="flex items-center justify-between gap-4 rounded-2xl border border-white/10 bg-white px-4 py-2.5 shadow-[0_18px_40px_-24px_rgba(0,0,0,0.9)]">
+            <Link href="/" className="inline-block shrink-0">
+              <Image
+                src="/primepart/hero/logo.png"
+                alt="PrimePart — Quality at your doorstep"
+                width={760}
+                height={175}
+                loading="eager"
+                fetchPriority="high"
+                className="h-9 w-auto sm:h-10"
               />
-              <motion.span
-                className="absolute left-0 top-1/2 block h-px w-full bg-paper"
-                animate={{ opacity: menu ? 0 : 1 }}
-                transition={{ duration: reduced ? 0 : 0.2 }}
-              />
-              <motion.span
-                className="absolute left-0 block h-px w-full bg-paper"
-                animate={{
-                  bottom: menu ? "50%" : 0,
-                  rotate: menu ? -45 : 0,
-                }}
-                transition={{ duration: reduced ? 0 : 0.3 }}
-              />
-            </span>
-          </button>
-        </nav>
-
-        {/* scroll progress along the header's own edge */}
-        <motion.div
-          aria-hidden
-          className="absolute inset-x-0 bottom-0 h-[2px] origin-left bg-gold"
-          style={{ scaleX: reduced ? 1 : scrollYProgress }}
-        />
+            </Link>
+            <HeroMobileNav site />
+          </div>
+        </div>
       </motion.header>
 
-      {/* mobile overlay */}
-      <AnimatePresence>
-        {menu && (
-          <motion.div
-            id="mobile-nav"
-            initial={reduced ? false : { opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={reduced ? undefined : { opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-[55] bg-ink lg:hidden"
-            style={{ paddingTop: HEADER_H }}
-          >
-            <div
-              aria-hidden
-              className="pointer-events-none absolute inset-0"
-              style={{
-                backgroundImage:
-                  "linear-gradient(to right, rgba(247,181,0,0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(247,181,0,0.05) 1px, transparent 1px)",
-                backgroundSize: "64px 64px",
-              }}
-            />
-            <nav
-              aria-label="Mobile"
-              className="relative flex h-full flex-col justify-center px-6 pb-20"
-            >
-              <ul>
-                {[...LINKS, { href: "/contact", label: "Contact" }].map(
-                  (l, i) => {
-                    const active = isActive(l.href);
-                    return (
-                      <li
-                        key={l.href}
-                        className="overflow-hidden border-b border-paper/10"
-                      >
-                        <motion.div
-                          initial={reduced ? false : { y: "100%", opacity: 0 }}
-                          animate={{ y: 0, opacity: 1 }}
-                          transition={{
-                            duration: 0.5,
-                            delay: 0.06 + i * 0.05,
-                            ease: [0.16, 1, 0.3, 1],
-                          }}
-                        >
-                          <Link
-                            href={l.href}
-                            className="flex items-baseline gap-4 py-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold"
-                          >
-                            <span
-                              className="text-[10px] tabular-nums tracking-[0.28em] text-gold"
-                              style={mono}
-                            >
-                              0{i + 1}
-                            </span>
-                            <span
-                              className={`text-[clamp(26px,8vw,40px)] font-light leading-none tracking-[-0.025em] ${
-                                active ? "italic text-gold" : "text-paper"
-                              }`}
-                              style={serif}
-                            >
-                              {l.label}
-                            </span>
-                          </Link>
-                        </motion.div>
-                      </li>
-                    );
-                  },
-                )}
-              </ul>
+      {/* The bar is fixed and out of flow, and these pages were built to
+          clear a 60px rail. The floating card ends 22px lower, so this
+          makes up exactly that difference. It carries the mastheads' ink
+          so the strip cannot be seen. */}
+      <div aria-hidden className="h-[22px] bg-ink xl:hidden" />
 
-              <motion.div
-                initial={reduced ? false : { opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.4, delay: 0.45 }}
-                className="mt-10 text-[10px] uppercase leading-[1.8] tracking-[0.26em] text-paper/45"
-                style={mono}
-              >
-                <a
-                  href="tel:+919579639978"
-                  className="block cursor-pointer transition-colors hover:text-gold"
-                >
-                  +91 95796 39978
-                </a>
-                <a
-                  href="mailto:primepart.official@gmail.com"
-                  className="block cursor-pointer break-all transition-colors hover:text-gold"
-                >
-                  primepart.official@gmail.com
-                </a>
-                <span className="mt-2 block text-paper/30">
-                  Nagpur · Maharashtra
-                </span>
-              </motion.div>
-            </nav>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {/* Laptop and up: the hero's rail, at the hero's scale, but on the
+          pages' own navy so rail and masthead read as one surface rather
+          than a pearl strip bolted to a dark page. */}
+      <aside className="site-rail fixed inset-y-0 left-0 z-[60] hidden overflow-hidden border-r border-white/[0.06] bg-ink xl:block">
+        {/* atmosphere: the masthead grid, a warm glow, a gold seam */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 [mask-image:linear-gradient(to_bottom,#000_0%,#000_45%,transparent_90%)]"
+          style={{
+            backgroundImage:
+              "linear-gradient(to right, rgba(244,174,19,0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(244,174,19,0.05) 1px, transparent 1px)",
+            backgroundSize: "72px 72px",
+          }}
+        />
+        <div
+          aria-hidden
+          className="pointer-events-none absolute -left-1/3 -top-[10%] h-[55%] w-[160%] bg-[radial-gradient(closest-side,rgba(244,174,19,0.10),transparent)]"
+        />
+        <span
+          aria-hidden
+          className="pointer-events-none absolute inset-y-[8%] right-0 w-px bg-gradient-to-b from-transparent via-[#F4AE13]/35 to-transparent"
+        />
+
+        <Link
+          href="/"
+          className="absolute left-[calc(var(--u)*42)] top-[calc(var(--u)*45)] inline-block"
+        >
+          <Image
+            src="/primepart/hero/logo-light.png"
+            alt="PrimePart — Quality at your doorstep"
+            width={640}
+            height={147}
+            loading="eager"
+            className="h-auto w-[calc(var(--u)*200)]"
+          />
+        </Link>
+        <div className="absolute left-[calc(var(--u)*42)] top-[calc(var(--u)*174)]">
+          <HeroSidebar site />
+        </div>
+
+        {/* quick contact, filling the foot of the rail; it steps aside on
+            windows too short to hold both it and the links */}
+        <div className="absolute bottom-[calc(var(--u)*40)] left-[calc(var(--u)*42)] w-[calc(var(--u)*204)] rounded-[calc(var(--u)*14)] border border-white/10 bg-white/[0.06] p-[calc(var(--u)*18)] [@media(max-height:640px)]:hidden">
+          <p className="text-[calc(var(--u)*12)] font-bold uppercase tracking-[0.18em] text-[#F4AE13]">
+            Need a part?
+          </p>
+          <p className="mt-[calc(var(--u)*6)] text-[calc(var(--u)*14)] leading-snug text-white/60">
+            Talk to our engineers today.
+          </p>
+          <a
+            href="tel:+919579639978"
+            className="mt-[calc(var(--u)*14)] flex items-center gap-[calc(var(--u)*8)] text-[calc(var(--u)*15)] font-semibold text-white transition-colors hover:text-[#F4AE13]"
+          >
+            <Phone className="h-[calc(var(--u)*16)] w-[calc(var(--u)*16)] shrink-0 text-[#F4AE13]" strokeWidth={1.8} />
+            +91 95796 39978
+          </a>
+          <Link
+            href="/contact"
+            className="group relative mt-[calc(var(--u)*14)] flex items-center justify-center gap-[calc(var(--u)*8)] overflow-hidden rounded-full bg-[#F4AE13] py-[calc(var(--u)*11)] text-[calc(var(--u)*14)] font-bold text-[#1B1403] shadow-[0_14px_30px_-16px_rgba(244,174,19,0.95)] transition-all duration-200 hover:brightness-105"
+          >
+            <span
+              aria-hidden
+              className="absolute inset-y-0 -left-full w-1/2 skew-x-[-18deg] bg-white/40 transition-all duration-700 group-hover:left-[140%]"
+            />
+            <span className="relative">Request a quote</span>
+            <ArrowRight className="relative h-[calc(var(--u)*15)] w-[calc(var(--u)*15)] transition-transform duration-200 group-hover:translate-x-1" />
+          </Link>
+          <p className="mt-[calc(var(--u)*14)] flex items-center gap-[calc(var(--u)*6)] text-[calc(var(--u)*11)] font-semibold uppercase tracking-[0.16em] text-white/45">
+            <MapPin className="h-[calc(var(--u)*14)] w-[calc(var(--u)*14)] text-[#F4AE13]" strokeWidth={1.8} />
+            Pan India · Nagpur
+          </p>
+        </div>
+      </aside>
     </>
   );
 }

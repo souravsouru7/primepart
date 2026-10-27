@@ -2,16 +2,15 @@
 
 import { useState, type FormEvent } from "react";
 import Image from "next/image";
-import { ArrowRight, ArrowUp } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import {
   FacebookIcon,
   InstagramIcon,
   LinkedInIcon,
   YouTubeIcon,
 } from "./SocialIcons";
-import { useReducedMotion } from "motion/react";
 import Reveal from "./Reveal";
-import { getLenis } from "./SmoothScroll";
+import SmartLink from "./SmartLink";
 
 const columns = [
   {
@@ -21,7 +20,7 @@ const columns = [
       { label: "About Us", href: "/about" },
       { label: "Products", href: "/#products" },
       { label: "Our Team", href: "/team" },
-      { label: "Industries", href: "/#products" },
+      { label: "Industries", href: "/industries" },
     ],
   },
   {
@@ -52,7 +51,6 @@ const socials = [
 ];
 
 export default function SiteFooter() {
-  const reduced = useReducedMotion();
   const [newsletterStatus, setNewsletterStatus] = useState<string | null>(null);
 
   const handleSubscribe = (event: FormEvent<HTMLFormElement>) => {
@@ -60,15 +58,6 @@ export default function SiteFooter() {
     setNewsletterStatus(
       "Newsletter signup is not connected to a mailing list yet.",
     );
-  };
-
-  const scrollToTop = () => {
-    const lenis = getLenis();
-    if (lenis && !reduced) {
-      lenis.scrollTo(0, { duration: 1.4 });
-      return;
-    }
-    window.scrollTo({ top: 0, behavior: reduced ? "auto" : "smooth" });
   };
 
   return (
@@ -96,21 +85,19 @@ export default function SiteFooter() {
           {/* Brand */}
           <Reveal className="sm:col-span-2 lg:col-span-1">
             <div>
-              <span className="flex items-center gap-2.5">
-                <span className="relative flex h-10 w-10 items-center justify-center">
-                  <span className="absolute inset-0 rotate-45 rounded-[10px] bg-gradient-to-br from-[#FFC72C] via-[#F7B500] to-[#8a5a00]" />
-                  <span className="absolute inset-[5px] rotate-45 rounded-[6px] bg-[#071218]" />
-                  <span className="absolute inset-[9px] rotate-45 rounded-[4px] bg-gradient-to-br from-[#FFD36A] to-[#F7B500]" />
-                </span>
-                <span className="leading-none">
-                  <span className="block text-[25px] font-extrabold tracking-tight text-white">
-                    Prime<span className="text-[#F7B500]">Part</span>
-                  </span>
-                  <span className="mt-1 block text-[9px] font-medium tracking-[0.18em] text-white/40">
-                    Quality at your doorstep
-                  </span>
-                </span>
-              </span>
+              {/* The real logo, as the header and the home page show it.
+                  This was a gold diamond and the words set in type — a
+                  stand-in that read as a different brand beside the
+                  artwork everywhere else. The light lockup, since the
+                  footer is dark. The tagline is part of the artwork, so
+                  it is not set again underneath. */}
+              <Image
+                src="/primepart/hero/logo-light.png"
+                alt="PrimePart — Quality at your doorstep"
+                width={640}
+                height={147}
+                className="h-11 w-auto"
+              />
 
               <p className="mt-5 max-w-[26rem] text-[13.5px] leading-relaxed text-white/60">
                 Your trusted partner for quality industrial parts, reliable
@@ -146,12 +133,12 @@ export default function SiteFooter() {
                 <ul className="mt-5 grid gap-3.5">
                   {column.links.map((link) => (
                     <li key={link.label}>
-                      <a
+                      <SmartLink
                         href={link.href}
                         className="text-[14px] text-white/55 transition-colors duration-200 hover:text-[#FDD144] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FDD144]"
                       >
                         {link.label}
-                      </a>
+                      </SmartLink>
                     </li>
                   ))}
                 </ul>
@@ -208,17 +195,6 @@ export default function SiteFooter() {
         </div>
       </div>
 
-      {/* Scroll to top */}
-      <button
-        type="button"
-        onClick={scrollToTop}
-        aria-label="Back to top"
-        className="absolute bottom-28 right-5 h-11 w-11 rounded-full transition-transform duration-300 hover:scale-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FDD144] focus-visible:ring-offset-2 focus-visible:ring-offset-[#071218] sm:bottom-20 sm:right-8 lg:bottom-24"
-      >
-        <span className="flex h-full w-full items-center justify-center rounded-full border border-[#FDD144]/50 bg-[#0E1A24] text-[#FDD144]">
-          <ArrowUp className="h-4 w-4" strokeWidth={2} />
-        </span>
-      </button>
     </footer>
   );
 }

@@ -140,6 +140,7 @@ export default function HeroSection() {
             // wordmark and preload it ahead of the hero plate.
             width={760}
             height={175}
+            loading="eager"
             fetchPriority="high"
             className="h-11 w-auto sm:h-14 xl:h-auto xl:w-[calc(var(--u)*285)]"
           />

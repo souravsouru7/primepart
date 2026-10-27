@@ -24,9 +24,9 @@ export default function SmoothScroll() {
     if (reduced.matches || coarse.matches) return;
 
     const lenis = new Lenis({
-      duration: 1.05,
-      // gentle exponential ease-out — settles without feeling floaty
-      easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      // per-frame catch-up rather than a fixed 1s glide per wheel step:
+      // stays close behind the wheel, so it reads as smooth, not floaty
+      lerp: 0.12,
       smoothWheel: true,
       // leave touch scrolling to the platform
       syncTouch: false,

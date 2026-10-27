@@ -11,6 +11,7 @@ import {
 import { useEffect, useRef, useState } from "react";
 import SiteFooter from "@/components/primepart/SiteFooter";
 import SiteHeader from "@/components/primepart/SiteHeader";
+import Link from "next/link";
 
 /* ═══════════════════════════════════════════════════════════════
    PrimePart — Our Team of Technocrats
@@ -21,8 +22,8 @@ import SiteHeader from "@/components/primepart/SiteHeader";
    a giant ghost numeral tracking behind whichever is open.
 ═══════════════════════════════════════════════════════════════ */
 
-const mono = { fontFamily: "var(--font-jet)" } as const;
-const serif = { fontFamily: "var(--font-fraunces)" } as const;
+const mono = { fontFamily: "var(--font-inter)", fontWeight: 700 } as const;
+const serif = { fontFamily: "var(--font-inter)", letterSpacing: "-0.02em" } as const;
 const sans = { fontFamily: "var(--font-inter)" } as const;
 
 const GOLD_DEEP = "#B07C00";
@@ -114,7 +115,7 @@ export default function TeamPage() {
             className="pointer-events-none absolute inset-0"
             style={{
               backgroundImage:
-                "linear-gradient(to right, rgba(247,181,0,0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(247,181,0,0.05) 1px, transparent 1px)",
+                "linear-gradient(to right, rgba(244,174,19,0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(244,174,19,0.05) 1px, transparent 1px)",
               backgroundSize: "72px 72px",
             }}
           />
@@ -125,7 +126,7 @@ export default function TeamPage() {
             initial={reduced ? false : { opacity: 0, scale: 1.1 }}
             animate={{ opacity: 0.05, scale: 1 }}
             transition={{ duration: 1.4, ease: RISE }}
-            className="pointer-events-none absolute -right-[4vw] top-[6vh] select-none text-[42vw] font-light leading-none tracking-[-0.06em] text-gold"
+            className="pointer-events-none absolute -right-[4vw] top-[6vh] select-none text-[42vw] font-extrabold leading-none tracking-[-0.06em] text-gold"
             style={serif}
           >
             06
@@ -147,11 +148,11 @@ export default function TeamPage() {
             </motion.div>
 
             <h1
-              className="mt-8 max-w-[15ch] text-[clamp(40px,7vw,116px)] font-light leading-[0.93] tracking-[-0.035em]"
+              className="mt-8 max-w-[15ch] text-[clamp(40px,7vw,116px)] font-extrabold leading-[0.93] tracking-[-0.035em]"
               style={serif}
             >
               <Words text="Meet the" reduced={reduced} onLoad delay={0.15} />{" "}
-              <span className="italic text-gold">
+              <span className="text-gold">
                 <Words text="technocrats" reduced={reduced} onLoad delay={0.3} />
               </span>{" "}
               <Words
@@ -222,7 +223,7 @@ export default function TeamPage() {
                 animate={{ opacity: 0.06, y: 0 }}
                 exit={reduced ? undefined : { opacity: 0, y: -40 }}
                 transition={{ duration: 0.5, ease: EASE }}
-                className="select-none text-[30vw] font-light leading-none tracking-[-0.06em] text-ink"
+                className="select-none text-[30vw] font-extrabold leading-none tracking-[-0.06em] text-ink"
                 style={serif}
               >
                 {TEAM[open].n}
@@ -233,11 +234,11 @@ export default function TeamPage() {
           <div className="relative mx-auto w-full max-w-[1320px] px-5 py-20 sm:px-10 sm:py-28">
             <div className="flex flex-wrap items-end justify-between gap-5 border-b border-ink/15 pb-5">
               <h2
-                className="max-w-[18ch] text-[clamp(26px,3.6vw,48px)] font-light leading-[1.04] tracking-[-0.028em]"
+                className="max-w-[18ch] text-[clamp(26px,3.6vw,48px)] font-extrabold leading-[1.04] tracking-[-0.028em]"
                 style={serif}
               >
                 <Words text="Six disciplines," reduced={reduced} />{" "}
-                <span className="italic" style={{ color: GOLD_DEEP }}>
+                <span className="text-accent">
                   <Words text="one equation." reduced={reduced} delay={0.18} />
                 </span>
               </h2>
@@ -271,17 +272,17 @@ export default function TeamPage() {
             className="pointer-events-none absolute inset-0"
             style={{
               backgroundImage:
-                "linear-gradient(to right, rgba(247,181,0,0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(247,181,0,0.05) 1px, transparent 1px)",
+                "linear-gradient(to right, rgba(244,174,19,0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(244,174,19,0.05) 1px, transparent 1px)",
               backgroundSize: "72px 72px",
             }}
           />
           <div className="relative mx-auto w-full max-w-[1320px] px-5 py-24 sm:px-10 sm:py-32">
             <h2
-              className="max-w-[17ch] text-[clamp(30px,5vw,74px)] font-light leading-[1.0] tracking-[-0.032em]"
+              className="max-w-[17ch] text-[clamp(30px,5vw,74px)] font-extrabold leading-[1.0] tracking-[-0.032em]"
               style={serif}
             >
               <Words text="We do not view you" reduced={reduced} />{" "}
-              <span className="italic text-gold">
+              <span className="text-gold">
                 <Words
                   text="as a transaction."
                   reduced={reduced}
@@ -314,14 +315,14 @@ export default function TeamPage() {
                   →
                 </span>
               </a>
-              <a
+              <Link
                 href="/about"
                 className="group inline-flex cursor-pointer items-center gap-3 text-[11px] uppercase tracking-[0.3em] text-paper/70 transition-colors duration-200 hover:text-gold focus-visible:text-gold focus-visible:outline-none"
                 style={mono}
               >
                 About the firm
                 <span className="block h-px w-8 bg-paper/40 transition-all duration-300 group-hover:w-14 group-hover:bg-gold" />
-              </a>
+              </Link>
             </div>
           </div>
         </section>
@@ -374,7 +375,7 @@ function RosterRow({
 
         <span
           className="relative shrink-0 text-[11px] tracking-[0.3em] tabular-nums transition-colors duration-200"
-          style={{ ...mono, color: isOpen ? GOLD_DEEP : "rgba(10,15,20,0.4)" }}
+          style={{ ...mono, color: isOpen ? GOLD_DEEP : "rgba(10,22,31,0.4)" }}
         >
           {m.n}
         </span>
@@ -389,7 +390,7 @@ function RosterRow({
             </span>
           )}
           <span
-            className={`block text-[clamp(19px,2.6vw,36px)] font-light leading-[1.14] tracking-[-0.02em] transition-colors duration-200 ${
+            className={`block text-[clamp(19px,2.6vw,36px)] font-extrabold leading-[1.14] tracking-[-0.02em] transition-colors duration-200 ${
               isOpen ? "text-ink" : "text-ink/75 group-hover:text-ink"
             }`}
             style={serif}
@@ -403,18 +404,18 @@ function RosterRow({
           aria-hidden
           className="relative grid h-9 w-9 shrink-0 place-items-center rounded-full border transition-colors duration-200"
           style={{
-            borderColor: isOpen ? GOLD_DEEP : "rgba(10,15,20,0.25)",
+            borderColor: isOpen ? GOLD_DEEP : "rgba(10,22,31,0.25)",
           }}
         >
           <span
             className="absolute h-px w-3.5 transition-colors duration-200"
-            style={{ background: isOpen ? GOLD_DEEP : "rgba(10,15,20,0.55)" }}
+            style={{ background: isOpen ? GOLD_DEEP : "rgba(10,22,31,0.55)" }}
           />
           <motion.span
             className="absolute h-3.5 w-px"
             animate={{ rotate: isOpen ? 90 : 0, opacity: isOpen ? 0 : 1 }}
             transition={{ duration: reduced ? 0 : 0.28, ease: EASE }}
-            style={{ background: isOpen ? GOLD_DEEP : "rgba(10,15,20,0.55)" }}
+            style={{ background: isOpen ? GOLD_DEEP : "rgba(10,22,31,0.55)" }}
           />
         </span>
       </button>

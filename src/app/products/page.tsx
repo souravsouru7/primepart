@@ -22,8 +22,8 @@ import SiteHeader from "@/components/primepart/SiteHeader";
    thing they have in common.
 ═══════════════════════════════════════════════════════════════ */
 
-const mono = { fontFamily: "var(--font-jet)" } as const;
-const serif = { fontFamily: "var(--font-fraunces)" } as const;
+const mono = { fontFamily: "var(--font-inter)", fontWeight: 700 } as const;
+const serif = { fontFamily: "var(--font-inter)", letterSpacing: "-0.02em" } as const;
 const sans = { fontFamily: "var(--font-inter)" } as const;
 
 const STATIONS = [
@@ -279,13 +279,13 @@ export default function ProductsPage() {
           className="pointer-events-none fixed inset-0 z-0"
           style={{
             backgroundImage:
-              "linear-gradient(to right, rgba(247,181,0,0.04) 1px, transparent 1px), linear-gradient(to bottom, rgba(247,181,0,0.04) 1px, transparent 1px)",
+              "linear-gradient(to right, rgba(244,174,19,0.04) 1px, transparent 1px), linear-gradient(to bottom, rgba(244,174,19,0.04) 1px, transparent 1px)",
             backgroundSize: "64px 64px",
           }}
         />
 
         {/* ───── fixed title block ───── */}
-        <header className="pointer-events-none fixed inset-x-0 top-[60px] z-50 border-b border-gold/30 bg-ink/85 backdrop-blur-md">
+        <header className="pointer-events-none fixed inset-x-0 top-[82px] z-50 xl:left-[var(--rail)] xl:top-0 border-b border-gold/30 bg-ink/95">
           <div
             className="mx-auto flex max-w-[1700px] items-center gap-5 px-4 py-2 text-[10px] uppercase tracking-[0.26em] tabular-nums text-paper/60 sm:px-8 sm:text-[11px]"
             style={mono}
@@ -354,12 +354,12 @@ export default function ProductsPage() {
           </div>
 
           <h1
-            className="mt-[clamp(40px,9vh,96px)] max-w-[20ch] text-[clamp(38px,7vw,118px)] font-light leading-[0.93] tracking-[-0.03em] text-paper"
+            className="mt-[clamp(40px,9vh,96px)] max-w-[20ch] text-[clamp(38px,7vw,118px)] font-extrabold leading-[0.93] tracking-[-0.03em] text-paper"
             style={serif}
           >
             A comprehensive portfolio of{" "}
-            <span className="italic text-gold">hydraulic</span> &amp; fluid
-            power <span className="italic text-gold/85">innovations</span>.
+            <span className="text-gold">hydraulic</span> &amp; fluid
+            power <span className="text-gold/85">innovations</span>.
           </h1>
 
           <p
@@ -449,7 +449,7 @@ export default function ProductsPage() {
         <section className="relative z-10 mx-auto w-full max-w-[1700px] px-6 py-28 sm:px-12 lg:px-20">
           <div className="flex flex-wrap items-end justify-between gap-5 border-b border-gold/40 pb-4">
             <h2
-              className="text-[clamp(26px,3.4vw,46px)] font-light leading-none tracking-[-0.02em] text-paper"
+              className="text-[clamp(26px,3.4vw,46px)] font-extrabold leading-none tracking-[-0.02em] text-paper"
               style={serif}
             >
               <span className="text-gold">BOM</span> — compatible with
@@ -483,7 +483,7 @@ export default function ProductsPage() {
                   {String(i + 1).padStart(3, "0")}
                 </span>
                 <span
-                  className="text-[clamp(16px,1.6vw,24px)] font-light leading-none tracking-[-0.01em] text-paper transition-colors group-hover:text-gold"
+                  className="text-[clamp(16px,1.6vw,24px)] font-bold leading-none tracking-[-0.01em] text-paper transition-colors group-hover:text-gold"
                   style={serif}
                 >
                   {b}
@@ -584,7 +584,7 @@ function StationShell({
           {symbol}
         </Node>
         <h2
-          className="mx-auto max-w-[24ch] text-center text-[clamp(26px,3.6vw,50px)] font-light leading-[1.05] tracking-[-0.025em] text-paper"
+          className="mx-auto max-w-[24ch] text-center text-[clamp(26px,3.6vw,50px)] font-extrabold leading-[1.05] tracking-[-0.025em] text-paper"
           style={serif}
         >
           {title}
@@ -862,7 +862,7 @@ function StationSystems({
               {/* big stat */}
               <div className="sm:w-[132px]">
                 <div
-                  className="text-[clamp(28px,3.4vw,46px)] font-light leading-none tracking-[-0.02em] text-gold"
+                  className="text-[clamp(28px,3.4vw,46px)] font-extrabold leading-none tracking-[-0.02em] text-gold"
                   style={serif}
                 >
                   {u.stat}
@@ -878,7 +878,7 @@ function StationSystems({
               <div>
                 <SubHead n={u.n} label="Unit" />
                 <h3
-                  className="mt-4 text-[clamp(19px,2vw,26px)] font-light leading-[1.2] tracking-[-0.01em] text-paper"
+                  className="mt-4 text-[clamp(19px,2vw,26px)] font-extrabold leading-[1.2] tracking-[-0.01em] text-paper"
                   style={serif}
                 >
                   {u.name}
@@ -1229,7 +1229,7 @@ function StationPower({
                 <PumpRotor spin={!reduced} />
                 <span className="flex-1">
                   <span
-                    className="block text-[clamp(16px,1.6vw,21px)] font-light leading-none tracking-[-0.01em] text-paper"
+                    className="block text-[clamp(16px,1.6vw,21px)] font-bold leading-none tracking-[-0.01em] text-paper"
                     style={serif}
                   >
                     {p.n}
@@ -1342,7 +1342,7 @@ function StationStorage({
           style={{
             opacity: reduced ? 0.3 : heat,
             background:
-              "linear-gradient(to top, rgba(247,181,0,0.16), transparent)",
+              "linear-gradient(to top, rgba(244,174,19,0.16), transparent)",
           }}
         />
 
@@ -1387,7 +1387,7 @@ function StationStorage({
                     />
                   </svg>
                   <span
-                    className="text-[clamp(16px,1.5vw,20px)] font-light tracking-[-0.01em] text-paper"
+                    className="text-[clamp(16px,1.5vw,20px)] font-bold tracking-[-0.01em] text-paper"
                     style={serif}
                   >
                     {a.n}
@@ -1453,7 +1453,7 @@ function StationStorage({
                   </svg>
                   <span className="flex-1">
                     <span
-                      className="block text-[clamp(16px,1.5vw,20px)] font-light tracking-[-0.01em] text-paper"
+                      className="block text-[clamp(16px,1.5vw,20px)] font-bold tracking-[-0.01em] text-paper"
                       style={serif}
                     >
                       {c.n}
@@ -1548,7 +1548,7 @@ function StationHardware({
               </span>
               <span>
                 <span
-                  className="block text-[clamp(15px,1.4vw,19px)] font-light leading-[1.15] tracking-[-0.01em] text-paper transition-colors group-hover:text-gold"
+                  className="block text-[clamp(15px,1.4vw,19px)] font-bold leading-[1.15] tracking-[-0.01em] text-paper transition-colors group-hover:text-gold"
                   style={serif}
                 >
                   {b.n}

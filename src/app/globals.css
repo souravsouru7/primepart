@@ -1,20 +1,22 @@
 @import "tailwindcss";
 
 :root {
-  --background: #070b10;
+  --background: #0a161f;
   --foreground: #f4f6f8;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --color-gold: #f7b500;
-  --color-gold-light: #ffc72c;
-  --color-ink: #0a0f14;
-  --color-steel: #121a20;
-  --color-paper: #f2f1ec;
+  --color-gold: #f4ae13;
+  --color-gold-light: #fcc84b;
+  --color-ink: #0a161f;
+  --color-steel: #16202e;
+  --color-paper: #fdfcfb;
+  /* the landing page's accent for highlighted words on light sections */
+  --color-accent: #0a2fe9;
   --font-sans: var(--font-inter);
-  --font-mono: var(--font-jet);
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 }
 
 body {
@@ -43,8 +45,8 @@ body {
 .pp-fluid {
   background-image: repeating-linear-gradient(
     to bottom,
-    rgba(247, 181, 0, 0.95) 0 9px,
-    rgba(247, 181, 0, 0) 9px 28px
+    rgba(244, 174, 19, 0.95) 0 9px,
+    rgba(244, 174, 19, 0) 9px 28px
   );
   background-size: 100% 28px;
   animation: pp-fluid 1.15s linear infinite;
@@ -54,10 +56,10 @@ body {
 @keyframes pp-node {
   0%,
   100% {
-    box-shadow: 0 0 0 0 rgba(247, 181, 0, 0.45);
+    box-shadow: 0 0 0 0 rgba(244, 174, 19, 0.45);
   }
   60% {
-    box-shadow: 0 0 0 16px rgba(247, 181, 0, 0);
+    box-shadow: 0 0 0 16px rgba(244, 174, 19, 0);
   }
 }
 
@@ -121,8 +123,8 @@ body {
   .pp-fluid {
     background-image: linear-gradient(
       to bottom,
-      rgba(247, 181, 0, 0.5),
-      rgba(247, 181, 0, 0.5)
+      rgba(244, 174, 19, 0.5),
+      rgba(244, 174, 19, 0.5)
     );
   }
 }
@@ -168,10 +170,10 @@ body {
 @keyframes pp-ok {
   0%,
   100% {
-    box-shadow: 0 0 0 0 rgba(247, 181, 0, 0.5);
+    box-shadow: 0 0 0 0 rgba(244, 174, 19, 0.5);
   }
   70% {
-    box-shadow: 0 0 0 10px rgba(247, 181, 0, 0);
+    box-shadow: 0 0 0 10px rgba(244, 174, 19, 0);
   }
 }
 
@@ -208,171 +210,12 @@ body {
 }
 
 /* ---------------------------------------------------------------
-   Hero motion system
-   Entrance animations use --delay so elements can be staggered.
----------------------------------------------------------------- */
-
-@keyframes hero-rise {
-  from {
-    opacity: 0;
-    transform: translate3d(0, 28px, 0);
-  }
-  to {
-    opacity: 1;
-    transform: translate3d(0, 0, 0);
-  }
-}
-
-@keyframes hero-slide-left {
-  from {
-    opacity: 0;
-    transform: translate3d(36px, 0, 0);
-  }
-  to {
-    opacity: 1;
-    transform: translate3d(0, 0, 0);
-  }
-}
-
-@keyframes hero-fade {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes hero-spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes hero-pulse {
-  0%,
-  100% {
-    opacity: 0.55;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.9;
-    transform: scale(1.06);
-  }
-}
-
-@keyframes hero-shimmer {
-  0% {
-    background-position: -120% 0;
-  }
-  60%,
-  100% {
-    background-position: 220% 0;
-  }
-}
-
-@keyframes hero-sweep {
-  0% {
-    opacity: 0;
-    transform: translate3d(-30%, 0, 0) skewX(-12deg);
-  }
-  35% {
-    opacity: 0.5;
-  }
-  100% {
-    opacity: 0;
-    transform: translate3d(240%, 0, 0) skewX(-12deg);
-  }
-}
-
-@utility hero-rise {
-  opacity: 0;
-  animation: hero-rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-  animation-delay: var(--delay, 0ms);
-}
-
-@utility hero-slide-left {
-  opacity: 0;
-  animation: hero-slide-left 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-  animation-delay: var(--delay, 0ms);
-}
-
-@utility hero-fade-in {
-  opacity: 0;
-  animation: hero-fade 1.2s ease-out forwards;
-  animation-delay: var(--delay, 0ms);
-}
-
-@utility hero-spin-slow {
-  animation: hero-spin 44s linear infinite;
-}
-
-@utility hero-pulse-glow {
-  animation: hero-pulse 5.5s ease-in-out infinite;
-}
-
-@utility hero-sweep {
-  animation: hero-sweep 6s ease-in-out infinite;
-  animation-delay: var(--delay, 0ms);
-}
-
-@utility hero-shimmer-text {
-  background-image: linear-gradient(
-    100deg,
-    #f0a500 0%,
-    #ffd45e 38%,
-    #fff6d6 48%,
-    #ffd45e 58%,
-    #f0a500 100%
-  );
-  background-size: 220% 100%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  animation: hero-shimmer 7s ease-in-out infinite;
-  animation-delay: var(--delay, 0ms);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .about-pressure-line {
-    transform: none !important;
-  }
-
-  .hero-rise,
-  .hero-slide-left,
-  .hero-fade-in,
-  .hero-spin-slow,
-  .hero-pulse-glow,
-  .hero-sweep,
-  .hero-shimmer-text {
-    animation: none !important;
-    opacity: 1 !important;
-    transform: none !important;
-  }
-}
-
-/* ---------------------------------------------------------------
    Products + statistics
 ---------------------------------------------------------------- */
 
-@keyframes primepart-map-glow {
-  0%,
-  100% {
-    filter: drop-shadow(0 0 6px rgba(56, 132, 255, 0.35));
-  }
-  50% {
-    filter: drop-shadow(0 0 16px rgba(56, 132, 255, 0.6));
-  }
-}
-
+/* a still glow: animating a filter repaints the map every frame */
 @utility primepart-map-glow {
-  animation: primepart-map-glow 6s ease-in-out infinite;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .primepart-map-glow {
-    animation: none !important;
-  }
+  filter: drop-shadow(0 0 10px rgba(244, 174, 19, 0.35));
 }
 
 @keyframes primepart-energy-pulse {
@@ -398,25 +241,9 @@ body {
 }
 
 /* ---------------------------------------------------------------
-   Site opening sequence
+   Site opening sequence — the two halves that part on the diagonal
+   (StoryOpener). Transform-only, so the opening stays on the GPU.
 ---------------------------------------------------------------- */
-
-@keyframes primepart-race-spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes primepart-wordmark-in {
-  from {
-    opacity: 0;
-    letter-spacing: 0.3em;
-  }
-  to {
-    opacity: 1;
-    letter-spacing: -0.02em;
-  }
-}
 
 @keyframes primepart-panel-top-out {
   to {
@@ -430,21 +257,6 @@ body {
   }
 }
 
-@keyframes primepart-intro-content-out {
-  to {
-    opacity: 0;
-    transform: scale(1.04);
-  }
-}
-
-.primepart-race-spin {
-  animation: primepart-race-spin 3.4s linear infinite;
-}
-
-.primepart-wordmark-in {
-  animation: primepart-wordmark-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
-}
-
 .primepart-panel-top-out {
   animation: primepart-panel-top-out 0.85s cubic-bezier(0.76, 0, 0.24, 1) 0.12s both;
 }
@@ -453,16 +265,9 @@ body {
   animation: primepart-panel-bottom-out 0.85s cubic-bezier(0.76, 0, 0.24, 1) 0.12s both;
 }
 
-.primepart-intro-content-out {
-  animation: primepart-intro-content-out 0.3s ease-in both;
-}
-
 @media (prefers-reduced-motion: reduce) {
-  .primepart-race-spin,
-  .primepart-wordmark-in,
   .primepart-panel-top-out,
-  .primepart-panel-bottom-out,
-  .primepart-intro-content-out {
+  .primepart-panel-bottom-out {
     animation: none !important;
   }
 }
@@ -488,14 +293,14 @@ section[id] {
 }
 
 ::selection {
-  background: rgba(247, 181, 0, 0.28);
+  background: rgba(244, 174, 19, 0.28);
   color: #0b0f19;
 }
 
 /* slim industrial scrollbar */
 * {
   scrollbar-width: thin;
-  scrollbar-color: rgba(247, 181, 0, 0.45) transparent;
+  scrollbar-color: rgba(244, 174, 19, 0.45) transparent;
 }
 
 ::-webkit-scrollbar {
@@ -508,14 +313,14 @@ section[id] {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(247, 181, 0, 0.4);
+  background: rgba(244, 174, 19, 0.4);
   border: 3px solid transparent;
   border-radius: 999px;
   background-clip: content-box;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(247, 181, 0, 0.7);
+  background: rgba(244, 174, 19, 0.7);
   background-clip: content-box;
 }
 
@@ -524,7 +329,7 @@ a:focus-visible,
 button:focus-visible,
 input:focus-visible,
 textarea:focus-visible {
-  outline: 2px solid #f7b500;
+  outline: 2px solid #f4ae13;
   outline-offset: 2px;
 }
 
@@ -570,14 +375,6 @@ html.lenis body {
 
 .lenis.lenis-smooth iframe {
   pointer-events: none;
-}
-
-/* Hold the hero entrance until the opening sequence clears */
-.intro-active .hero-rise,
-.intro-active .hero-slide-left,
-.intro-active .hero-fade-in,
-.intro-active .hero-shimmer-text {
-  animation-play-state: paused;
 }
 
 /* Repeat visits / reduced motion: never paint the intro at all */
@@ -754,6 +551,31 @@ body {
   }
 }
 
+/* ---------------------------------------------------------------
+   Site rail
+
+   Every page other than home wears the hero's vertical nav, fixed down
+   the left edge (SiteHeader). It is drawn at the hero's own scale, so
+   `--site-u` repeats the stage's formula, and the body is padded by
+   the rail's width so no page content sits beneath it.
+---------------------------------------------------------------- */
+
+@media (min-width: 1280px) {
+  :root {
+    --site-u: min(calc(max(640px, 100svh) / 927), calc(100vw / 1536));
+    --rail: calc(var(--site-u) * 270);
+  }
+
+  .site-rail {
+    --u: var(--site-u);
+    width: var(--rail);
+  }
+
+  body:has(.site-rail) {
+    padding-left: var(--rail);
+  }
+}
+
 /* thin gold connector that drops from an annotation to the machinery */
 @keyframes hero2-thread {
   0%,
@@ -849,19 +671,6 @@ body {
 }
 
 /* Live telemetry layered over the supplied hydraulic powerpack. */
-@keyframes hero-machine-hum {
-  0%,
-  100% {
-    transform: translate3d(0, 0, 0);
-  }
-  48% {
-    transform: translate3d(0.5px, -0.5px, 0);
-  }
-  52% {
-    transform: translate3d(-0.5px, 0.5px, 0);
-  }
-}
-
 @keyframes hero-machine-pressure {
   to {
     stroke-dashoffset: -1;
@@ -903,14 +712,10 @@ body {
   }
 }
 
-.hero-machine-live > img {
-  animation: hero-machine-hum 0.22s linear infinite;
-}
-
 .hero-machine-pressure path {
   stroke-dasharray: 0.07 0.93;
   stroke-dashoffset: 0;
-  filter: drop-shadow(0 0 8px rgba(248, 197, 68, 0.95));
+  stroke-width: 6;
   animation: hero-machine-pressure 2.6s linear infinite;
 }
 
@@ -932,7 +737,6 @@ body {
   transform-box: fill-box;
   transform-origin: center;
   animation: hero-machine-gauges 2.8s ease-in-out infinite;
-  filter: drop-shadow(0 0 6px rgba(248, 197, 68, 0.8));
 }
 
 .hero-machine-scan {
@@ -1022,13 +826,11 @@ body {
 .hero2-energy-trace {
   stroke-dasharray: 0.055 0.945;
   animation: hero2-energy-trace 6.5s linear infinite;
-  filter: drop-shadow(0 0 5px rgba(244, 174, 19, 0.75));
 }
 
 @media (prefers-reduced-motion: reduce) {
   .hero2-float,
   .hero2-energy-trace,
-  .hero-machine-live > img,
   .hero-machine-pressure path,
   .hero-machine-fan,
   .hero-machine-gauges,

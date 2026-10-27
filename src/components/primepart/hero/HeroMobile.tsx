@@ -20,7 +20,7 @@ import AnimatedCounter from "../AnimatedCounter";
 import HeroLoop from "./HeroLoop";
 import HeroMobileNav from "./HeroMobileNav";
 import WatchStoryButton from "./WatchStoryButton";
-import { annotations, categories, trustMarkers, type CategoryKey } from "./hero-content";
+import { categories, trustMarkers, type CategoryKey } from "./hero-content";
 
 /**
  * The hero below `xl`.
@@ -111,6 +111,7 @@ export default function HeroMobile() {
               alt="PrimePart — Quality at your doorstep"
               width={760}
               height={175}
+              loading="eager"
               fetchPriority="high"
               className="h-9 w-auto sm:h-10"
             />
@@ -218,22 +219,6 @@ export default function HeroMobile() {
               aria-hidden
               className="herom-scan pointer-events-none absolute inset-x-0 top-0 h-[16%] bg-[linear-gradient(to_bottom,transparent,rgba(244,174,19,0.12)_62%,rgba(248,197,68,0.75)_100%)]"
             />
-
-            {/* readout */}
-            <ul className="relative flex items-center justify-between gap-1 border-t border-white/[0.07] bg-[#040E14]/50 px-4 py-3">
-              {annotations.map((annotation, index) => (
-                <li
-                  key={annotation.key}
-                  style={{ "--d": `${index * 1.1}s` } as React.CSSProperties}
-                  className="flex min-w-0 items-center gap-1.5"
-                >
-                  <span aria-hidden className="herom-blip h-1.5 w-1.5 shrink-0 bg-[#F4AE13]" />
-                  <span className="truncate text-[9.5px] font-bold uppercase tracking-[0.12em] text-white/70">
-                    {annotation.title}
-                  </span>
-                </li>
-              ))}
-            </ul>
           </div>
         </div>
 

@@ -22,8 +22,8 @@ import SiteHeader from "@/components/primepart/SiteHeader";
    is revealed by shutters rather than simply appearing.
 ═══════════════════════════════════════════════════════════════ */
 
-const mono = { fontFamily: "var(--font-jet)" } as const;
-const serif = { fontFamily: "var(--font-fraunces)" } as const;
+const mono = { fontFamily: "var(--font-inter)", fontWeight: 700 } as const;
+const serif = { fontFamily: "var(--font-inter)", letterSpacing: "-0.02em" } as const;
 const sans = { fontFamily: "var(--font-inter)" } as const;
 
 const ALERT = "#E5484D";
@@ -90,7 +90,7 @@ export default function ServicesPage() {
       <SiteHeader />
       <main className="relative flex-1 overflow-x-clip bg-paper">
         {/* ───── fixed incident strip ───── */}
-        <header className="pointer-events-none fixed inset-x-0 top-[60px] z-50 border-b border-white/10 bg-ink/92 backdrop-blur-md">
+        <header className="pointer-events-none fixed inset-x-0 top-[82px] z-50 xl:left-[var(--rail)] xl:top-0 border-b border-white/10 bg-ink/95">
           <div
             className="mx-auto flex max-w-[1360px] items-center gap-4 px-5 py-2.5 text-[10px] uppercase tracking-[0.24em] tabular-nums sm:gap-7 sm:px-10 sm:text-[11px]"
             style={mono}
@@ -103,7 +103,7 @@ export default function ServicesPage() {
                 className={`h-[7px] w-[7px] shrink-0 rounded-full ${
                   p.tone === "alert" ? "pp-alert" : p.tone === "ok" ? "pp-ok" : ""
                 }`}
-                style={{ background: p.tone === "alert" ? ALERT : "#F7B500" }}
+                style={{ background: p.tone === "alert" ? ALERT : "#F4AE13" }}
               />
               <motion.span
                 key={p.k}
@@ -111,7 +111,7 @@ export default function ServicesPage() {
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                 className="whitespace-nowrap"
-                style={{ color: p.tone === "alert" ? ALERT : "#F7B500" }}
+                style={{ color: p.tone === "alert" ? ALERT : "#F4AE13" }}
               >
                 {p.k}
               </motion.span>
@@ -149,13 +149,13 @@ export default function ServicesPage() {
 
             {/* headline — line-by-line mask reveal */}
             <h1
-              className="mt-10 max-w-[17ch] text-[clamp(40px,6.6vw,104px)] font-light leading-[0.95] tracking-[-0.03em] sm:mt-14"
+              className="mt-10 max-w-[17ch] text-[clamp(40px,6.6vw,104px)] font-extrabold leading-[0.95] tracking-[-0.03em] sm:mt-14"
               style={serif}
             >
               {[
                 <>Beyond components:</>,
                 <>
-                  <span className="italic text-gold">comprehensive</span>{" "}
+                  <span className="text-gold">comprehensive</span>{" "}
                   technical
                 </>,
                 <>services &amp; engineering support.</>,
@@ -226,7 +226,7 @@ export default function ServicesPage() {
                         {s.t}
                       </span>
                       <span
-                        className="mt-1.5 block text-[15px] font-light leading-tight text-paper/80 transition-colors group-hover:text-paper"
+                        className="mt-1.5 block text-[15px] font-bold leading-tight text-paper/80 transition-colors group-hover:text-paper"
                         style={serif}
                       >
                         {s.k}
@@ -244,7 +244,7 @@ export default function ServicesPage() {
               src="/images/primepart/contact/background-workers-banner.png"
               alt="PrimePart engineers reviewing system data on the plant floor"
               clip={CLIP.shear}
-              shutter="#0A0F14"
+              shutter="#0A161F"
               bars={7}
               axis="v"
               eager
@@ -273,10 +273,10 @@ export default function ServicesPage() {
               <div>
                 <MaskHeading
                   reduced={reduced}
-                  className="max-w-[16ch] text-[clamp(30px,4.2vw,62px)] font-light leading-[1.01] tracking-[-0.025em]"
+                  className="max-w-[16ch] text-[clamp(30px,4.2vw,62px)] font-extrabold leading-[1.01] tracking-[-0.025em]"
                 >
                   Your dedicated fluid power{" "}
-                  <span className="italic" style={{ color: GOLD_DEEP }}>
+                  <span className="text-accent">
                     engineering partner
                   </span>
                   .
@@ -365,13 +365,13 @@ export default function ServicesPage() {
                   src="/images/primepart/section-3/industry-maintenance-worker-transparent.png"
                   alt="PrimePart maintenance engineer logging equipment condition on a tablet"
                   clip={CLIP.notch}
-                  shutter="#F2F1EC"
+                  shutter="#FDFCFB"
                   bars={6}
                   axis="h"
                   sizes="(min-width: 1024px) 38vw, 90vw"
                   className="aspect-[4/5] w-full"
                   objectClass="object-cover object-top"
-                  plate="#0A0F14"
+                  plate="#0A161F"
                 />
                 <figcaption
                   className="mt-4 text-[9.5px] uppercase tracking-[0.3em] text-ink/40"
@@ -410,10 +410,10 @@ export default function ServicesPage() {
 
               <MaskHeading
                 reduced={reduced}
-                className="mt-9 max-w-[17ch] text-[clamp(32px,4.8vw,70px)] font-light leading-[1.0] tracking-[-0.025em]"
+                className="mt-9 max-w-[17ch] text-[clamp(32px,4.8vw,70px)] font-extrabold leading-[1.0] tracking-[-0.025em]"
               >
                 Not a product. A{" "}
-                <span className="italic" style={{ color: GOLD_DEEP }}>
+                <span className="text-accent">
                   complete, optimized
                 </span>{" "}
                 solution.
@@ -505,13 +505,13 @@ function ServiceDesign({ reduced }: { reduced: boolean | null }) {
             src="/primepart/hero/hydraulic-powerpack.png"
             alt="Skid-mounted PrimePart hydraulic powerpack built to a customized configuration"
             clip={CLIP.chamfer}
-            shutter="#F2F1EC"
+            shutter="#FDFCFB"
             bars={6}
             axis="v"
             sizes="(min-width: 1024px) 46vw, 92vw"
             className="aspect-[5/4] w-full"
             objectClass="object-contain p-2"
-            plate="#0A0F14"
+            plate="#0A161F"
             scan
           />
           {/* technical dimension annotations that draw in */}
@@ -530,7 +530,7 @@ function ServiceDesign({ reduced }: { reduced: boolean | null }) {
                 key={i}
                 d={l.d}
                 fill="none"
-                stroke="#F7B500"
+                stroke="#F4AE13"
                 strokeWidth="0.4"
                 vectorEffect="non-scaling-stroke"
                 initial={reduced ? false : { pathLength: 0 }}
@@ -624,7 +624,7 @@ function ServiceDesign({ reduced }: { reduced: boolean | null }) {
                   Constraint
                 </div>
                 <div
-                  className="mt-2.5 text-[clamp(17px,1.7vw,24px)] font-light leading-[1.2] tracking-[-0.01em] text-ink/80"
+                  className="mt-2.5 text-[clamp(17px,1.7vw,24px)] font-bold leading-[1.2] tracking-[-0.01em] text-ink/80"
                   style={serif}
                 >
                   {row.c}
@@ -673,7 +673,7 @@ function ServiceDesign({ reduced }: { reduced: boolean | null }) {
                   Engineered
                 </div>
                 <div
-                  className="mt-2.5 text-[clamp(17px,1.7vw,24px)] font-light leading-[1.2] tracking-[-0.01em] text-ink"
+                  className="mt-2.5 text-[clamp(17px,1.7vw,24px)] font-bold leading-[1.2] tracking-[-0.01em] text-ink"
                   style={serif}
                 >
                   {row.s}
@@ -885,7 +885,7 @@ function ServiceAudit({ reduced }: { reduced: boolean | null }) {
                     ease: [0.22, 1, 0.36, 1],
                   }}
                   style={{
-                    backgroundColor: hit ? "#F7B500" : "#0A0F14",
+                    backgroundColor: hit ? "#F4AE13" : "#0A161F",
                     ...(reduced ? { opacity: hit ? 1 : 0.12 } : null),
                   }}
                 />
@@ -894,7 +894,7 @@ function ServiceAudit({ reduced }: { reduced: boolean | null }) {
           </div>
           <div className="mt-7">
             <div
-              className="text-[clamp(44px,5.4vw,80px)] font-light leading-none tracking-[-0.035em]"
+              className="text-[clamp(44px,5.4vw,80px)] font-extrabold leading-none tracking-[-0.035em]"
               style={{ ...serif, color: GOLD_DEEP }}
             >
               <CountUp to={75} reduced={reduced} />
@@ -945,7 +945,7 @@ function ServiceAudit({ reduced }: { reduced: boolean | null }) {
                 Before
               </div>
               <div
-                className="mt-3 text-[clamp(19px,2vw,26px)] font-light leading-[1.2] text-ink/85"
+                className="mt-3 text-[clamp(19px,2vw,26px)] font-bold leading-[1.2] text-ink/85"
                 style={serif}
               >
                 Reactive repairs
@@ -989,7 +989,7 @@ function ServiceAudit({ reduced }: { reduced: boolean | null }) {
                 After
               </div>
               <div
-                className="mt-3 text-[clamp(19px,2vw,26px)] font-light leading-[1.2] text-ink"
+                className="mt-3 text-[clamp(19px,2vw,26px)] font-bold leading-[1.2] text-ink"
                 style={serif}
               >
                 Predictive maintenance
@@ -1096,7 +1096,7 @@ function ServiceResponse({ reduced }: { reduced: boolean | null }) {
                 </span>
                 <span className="relative">
                   <span
-                    className="block text-[clamp(18px,2.1vw,29px)] font-light leading-none tracking-[-0.015em] text-paper"
+                    className="block text-[clamp(18px,2.1vw,29px)] font-bold leading-none tracking-[-0.015em] text-paper"
                     style={serif}
                   >
                     {c.d}
@@ -1142,7 +1142,7 @@ function ServiceResponse({ reduced }: { reduced: boolean | null }) {
             src="/primepart/hero/card-engineering.png"
             alt="PrimePart engineer cross-checking a component drawing against the CAD model"
             clip={CLIP.blade}
-            shutter="#0A0F14"
+            shutter="#0A161F"
             bars={6}
             axis="v"
             sizes="(min-width: 1024px) 42vw, 92vw"
@@ -1246,7 +1246,7 @@ function CutImage({
           style={{
             x: scanPos,
             background:
-              "linear-gradient(90deg, transparent, rgba(247,181,0,0.4), transparent)",
+              "linear-gradient(90deg, transparent, rgba(244,174,19,0.4), transparent)",
             mixBlendMode: "screen",
           }}
         />
@@ -1308,7 +1308,7 @@ function CutImage({
 /** Drawing crop marks that draw themselves around a figure. */
 function CropMarks({ tone }: { tone: "ink" | "paper" }) {
   const reduced = useReducedMotion();
-  const color = tone === "ink" ? "rgba(247,181,0,0.75)" : GOLD_DEEP;
+  const color = tone === "ink" ? "rgba(244,174,19,0.75)" : GOLD_DEEP;
   const corners = [
     "left-[-10px] top-[-10px]",
     "right-[-10px] top-[-10px]",
@@ -1405,7 +1405,7 @@ function GridWash() {
       className="pointer-events-none absolute inset-0"
       style={{
         backgroundImage:
-          "linear-gradient(to right, rgba(247,181,0,0.045) 1px, transparent 1px), linear-gradient(to bottom, rgba(247,181,0,0.045) 1px, transparent 1px)",
+          "linear-gradient(to right, rgba(244,174,19,0.045) 1px, transparent 1px), linear-gradient(to bottom, rgba(244,174,19,0.045) 1px, transparent 1px)",
         backgroundSize: "64px 64px",
       }}
     />
@@ -1446,7 +1446,7 @@ function Shell({
         <div className="flex flex-wrap items-baseline justify-between gap-4">
           <div className="flex items-baseline gap-5 overflow-hidden">
             <motion.span
-              className={`text-[clamp(30px,4vw,58px)] font-light leading-none tracking-[-0.02em] ${
+              className={`text-[clamp(30px,4vw,58px)] font-extrabold leading-none tracking-[-0.02em] ${
                 dark ? "text-gold" : ""
               }`}
               style={{ ...serif, ...(dark ? null : { color: GOLD_DEEP }) }}
@@ -1481,7 +1481,7 @@ function Shell({
         <div className="mt-7 grid gap-6 lg:grid-cols-[1.45fr_1fr] lg:items-end lg:gap-14">
           <MaskHeading
             reduced={reduced}
-            className="max-w-[18ch] text-[clamp(28px,3.9vw,52px)] font-light leading-[1.02] tracking-[-0.025em]"
+            className="max-w-[18ch] text-[clamp(28px,3.9vw,52px)] font-extrabold leading-[1.02] tracking-[-0.025em]"
           >
             {title}
           </MaskHeading>

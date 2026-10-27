@@ -16,6 +16,7 @@ import {
   SUGGESTED_TERMS,
   type FaqGroup,
 } from "./faq-data";
+import Link from "next/link";
 
 /* ═══════════════════════════════════════════════════════════════
    PrimePart — FAQ & Industrial Resource Center
@@ -25,8 +26,8 @@ import {
    in place, and the list reflows with layout animation.
 ═══════════════════════════════════════════════════════════════ */
 
-const mono = { fontFamily: "var(--font-jet)" } as const;
-const serif = { fontFamily: "var(--font-fraunces)" } as const;
+const mono = { fontFamily: "var(--font-inter)", fontWeight: 700 } as const;
+const serif = { fontFamily: "var(--font-inter)", letterSpacing: "-0.02em" } as const;
 const sans = { fontFamily: "var(--font-inter)" } as const;
 
 const GOLD_DEEP = "#B07C00";
@@ -91,7 +92,7 @@ export default function FaqPage() {
             className="pointer-events-none absolute inset-0"
             style={{
               backgroundImage:
-                "linear-gradient(to right, rgba(247,181,0,0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(247,181,0,0.05) 1px, transparent 1px)",
+                "linear-gradient(to right, rgba(244,174,19,0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(244,174,19,0.05) 1px, transparent 1px)",
               backgroundSize: "72px 72px",
             }}
           />
@@ -100,7 +101,7 @@ export default function FaqPage() {
             initial={reduced ? false : { opacity: 0, scale: 1.12 }}
             animate={{ opacity: 0.05, scale: 1 }}
             transition={{ duration: 1.4, ease: RISE }}
-            className="pointer-events-none absolute -right-[3vw] top-[4vh] select-none text-[34vw] font-light leading-none tracking-[-0.06em] text-gold"
+            className="pointer-events-none absolute -right-[3vw] top-[4vh] select-none text-[34vw] font-extrabold leading-none tracking-[-0.06em] text-gold"
             style={serif}
           >
             ?
@@ -122,11 +123,11 @@ export default function FaqPage() {
             </motion.div>
 
             <h1
-              className="mt-8 max-w-[16ch] text-[clamp(38px,6.4vw,104px)] font-light leading-[0.94] tracking-[-0.035em]"
+              className="mt-8 max-w-[16ch] text-[clamp(38px,6.4vw,104px)] font-extrabold leading-[0.94] tracking-[-0.035em]"
               style={serif}
             >
               <Words text="Frequently asked" reduced={reduced} onLoad delay={0.15} />{" "}
-              <span className="italic text-gold">
+              <span className="text-gold">
                 <Words text="questions." reduced={reduced} onLoad delay={0.34} />
               </span>
             </h1>
@@ -254,7 +255,7 @@ export default function FaqPage() {
                 className="mt-12 border border-ink/15 bg-white/50 p-8 sm:p-12"
               >
                 <p
-                  className="text-[clamp(20px,2.4vw,30px)] font-light leading-[1.2] text-ink"
+                  className="text-[clamp(20px,2.4vw,30px)] font-bold leading-[1.2] text-ink"
                   style={serif}
                 >
                   No answer matches &ldquo;{query.trim()}&rdquo; yet.
@@ -299,17 +300,17 @@ export default function FaqPage() {
             className="pointer-events-none absolute inset-0"
             style={{
               backgroundImage:
-                "linear-gradient(to right, rgba(247,181,0,0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(247,181,0,0.05) 1px, transparent 1px)",
+                "linear-gradient(to right, rgba(244,174,19,0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(244,174,19,0.05) 1px, transparent 1px)",
               backgroundSize: "72px 72px",
             }}
           />
           <div className="relative mx-auto w-full max-w-[1320px] px-5 py-24 sm:px-10 sm:py-32">
             <h2
-              className="max-w-[17ch] text-[clamp(30px,5vw,74px)] font-light leading-[1.0] tracking-[-0.032em]"
+              className="max-w-[17ch] text-[clamp(30px,5vw,74px)] font-extrabold leading-[1.0] tracking-[-0.032em]"
               style={serif}
             >
               <Words text="Still have a" reduced={reduced} />{" "}
-              <span className="italic text-gold">
+              <span className="text-gold">
                 <Words text="technical question?" reduced={reduced} delay={0.2} />
               </span>
             </h2>
@@ -338,14 +339,14 @@ export default function FaqPage() {
                   →
                 </span>
               </a>
-              <a
+              <Link
                 href="/products"
                 className="group inline-flex cursor-pointer items-center gap-3 text-[11px] uppercase tracking-[0.3em] text-paper/70 transition-colors duration-200 hover:text-gold focus-visible:text-gold focus-visible:outline-none"
                 style={mono}
               >
                 Browse the catalogue
                 <span className="block h-px w-8 bg-paper/40 transition-all duration-300 group-hover:w-14 group-hover:bg-gold" />
-              </a>
+              </Link>
             </div>
           </div>
         </section>
@@ -383,7 +384,7 @@ function Chip({
       {label}
       <span
         className="ml-2.5 tabular-nums"
-        style={{ color: active ? GOLD_DEEP : "rgba(10,15,20,0.35)" }}
+        style={{ color: active ? GOLD_DEEP : "rgba(10,22,31,0.35)" }}
       >
         {String(count).padStart(2, "0")}
       </span>
@@ -428,12 +429,12 @@ function FaqRow({
           />
           <span
             className="relative mt-1 shrink-0 text-[11px] tracking-[0.3em] tabular-nums transition-colors duration-200"
-            style={{ ...mono, color: isOpen ? GOLD_DEEP : "rgba(10,15,20,0.4)" }}
+            style={{ ...mono, color: isOpen ? GOLD_DEEP : "rgba(10,22,31,0.4)" }}
           >
             Q{item.n}
           </span>
           <span
-            className={`relative min-w-0 flex-1 text-[clamp(17px,2vw,27px)] font-light leading-[1.25] tracking-[-0.015em] transition-colors duration-200 ${
+            className={`relative min-w-0 flex-1 text-[clamp(17px,2vw,27px)] font-bold leading-[1.25] tracking-[-0.015em] transition-colors duration-200 ${
               isOpen ? "text-ink" : "text-ink/78 group-hover:text-ink"
             }`}
             style={serif}
@@ -443,17 +444,17 @@ function FaqRow({
           <span
             aria-hidden
             className="relative mt-0.5 grid h-8 w-8 shrink-0 place-items-center rounded-full border transition-colors duration-200"
-            style={{ borderColor: isOpen ? GOLD_DEEP : "rgba(10,15,20,0.25)" }}
+            style={{ borderColor: isOpen ? GOLD_DEEP : "rgba(10,22,31,0.25)" }}
           >
             <span
               className="absolute h-px w-3 transition-colors duration-200"
-              style={{ background: isOpen ? GOLD_DEEP : "rgba(10,15,20,0.55)" }}
+              style={{ background: isOpen ? GOLD_DEEP : "rgba(10,22,31,0.55)" }}
             />
             <motion.span
               className="absolute h-3 w-px"
               animate={{ rotate: isOpen ? 90 : 0, opacity: isOpen ? 0 : 1 }}
               transition={{ duration: reduced ? 0 : 0.28, ease: EASE }}
-              style={{ background: isOpen ? GOLD_DEEP : "rgba(10,15,20,0.55)" }}
+              style={{ background: isOpen ? GOLD_DEEP : "rgba(10,22,31,0.55)" }}
             />
           </span>
         </button>

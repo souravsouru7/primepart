@@ -2,6 +2,7 @@
 
 import { useEffect, useId, useRef, useState } from "react";
 import { createPortal } from "react-dom";
+import { usePathname } from "next/navigation";
 import {
   ChevronDown,
   Factory,
@@ -16,7 +17,8 @@ import {
   User,
   X,
 } from "lucide-react";
-import { navItems, type NavKey } from "./hero-content";
+import { navItems, navKeyForPath, type NavKey } from "./hero-content";
+import SmartLink from "../SmartLink";
 
 const icons: Record<NavKey, typeof Home> = {
   home: Home,
@@ -37,10 +39,15 @@ const icons: Record<NavKey, typeof Home> = {
  * The sheet is portalled to `document.body`: the hero's bars sit inside
  * stacking contexts of their own, so a fixed overlay rendered in place
  * would be trapped beneath the headline however high its z-index.
+ *
+ * With `site` it serves every other page: links go to the real routes
+ * and the page being read is the one marked.
  */
-export default function HeroMobileNav() {
+export default function HeroMobileNav({ site = false }: { site?: boolean }) {
+  const pathname = usePathname();
   const [open, setOpen] = useState(false);
-  const [active, setActive] = useState<NavKey>("home");
+  const [picked, setPicked] = useState<NavKey>("home");
+  const active = site ? navKeyForPath(pathname) : picked;
   const panelId = useId();
   const buttonRef = useRef<HTMLButtonElement>(null);
   const firstLinkRef = useRef<HTMLAnchorElement>(null);
@@ -80,7 +87,7 @@ export default function HeroMobileNav() {
       {open
         ? createPortal(
         <div
-          className="fixed inset-0 z-[130] bg-[#040E14]/55 backdrop-blur-sm"
+          className="fixed inset-0 z-[130] bg-[#040E14]/70"
           onClick={(event) => {
             if (event.target === event.currentTarget) setOpen(false);
           }}
@@ -113,12 +120,12 @@ export default function HeroMobileNav() {
                   const isActive = active === item.key;
                   return (
                     <li key={item.key}>
-                      <a
+                      <SmartLink
                         ref={index === 0 ? firstLinkRef : undefined}
-                        href={item.href}
+                        href={site ? item.route : item.href}
                         aria-current={isActive ? "page" : undefined}
                         onClick={() => {
-                          setActive(item.key);
+                          setPicked(item.key);
                           setOpen(false);
                         }}
                         className={`flex items-center gap-3 rounded-xl px-4 py-3.5 text-[15px] font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F4AE13] ${
@@ -134,7 +141,7 @@ export default function HeroMobileNav() {
                           strokeWidth={1.7}
                         />
                         {item.label}
-                      </a>
+                      </SmartLink>
                     </li>
                   );
                 })}
@@ -142,13 +149,13 @@ export default function HeroMobileNav() {
             </nav>
 
             <div className="border-t border-black/10 px-5 py-4">
-              <a
-                href="#products"
+              <SmartLink
+                href={site ? "/products" : "#products"}
                 onClick={() => setOpen(false)}
                 className="flex items-center justify-center rounded-full bg-[#F4AE13] px-6 py-3.5 text-[14.5px] font-bold text-[#1B1403] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0B1017]"
               >
                 Explore Our Products
-              </a>
+              </SmartLink>
 
               <div className="mt-4 flex items-center justify-between">
                 <span className="flex items-center gap-1.5 text-[11.5px] font-semibold uppercase tracking-[0.16em] text-[#0B1017]">

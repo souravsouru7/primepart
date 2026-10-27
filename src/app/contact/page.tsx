@@ -20,8 +20,8 @@ import SiteHeader from "@/components/primepart/SiteHeader";
    a line down will call rather than fill in a form.
 ═══════════════════════════════════════════════════════════════ */
 
-const mono = { fontFamily: "var(--font-jet)" } as const;
-const serif = { fontFamily: "var(--font-fraunces)" } as const;
+const mono = { fontFamily: "var(--font-inter)", fontWeight: 700 } as const;
+const serif = { fontFamily: "var(--font-inter)", letterSpacing: "-0.02em" } as const;
 const sans = { fontFamily: "var(--font-inter)" } as const;
 
 const GOLD_DEEP = "#B07C00";
@@ -184,7 +184,7 @@ export default function ContactPage() {
             className="pointer-events-none absolute inset-0"
             style={{
               backgroundImage:
-                "linear-gradient(to right, rgba(247,181,0,0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(247,181,0,0.05) 1px, transparent 1px)",
+                "linear-gradient(to right, rgba(244,174,19,0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(244,174,19,0.05) 1px, transparent 1px)",
               backgroundSize: "72px 72px",
             }}
           />
@@ -204,11 +204,11 @@ export default function ContactPage() {
             </motion.div>
 
             <h1
-              className="mt-8 max-w-[14ch] text-[clamp(40px,7vw,116px)] font-light leading-[0.93] tracking-[-0.035em]"
+              className="mt-8 max-w-[14ch] text-[clamp(40px,7vw,116px)] font-extrabold leading-[0.93] tracking-[-0.035em]"
               style={serif}
             >
               <Words text="Partner with" reduced={reduced} onLoad delay={0.15} />{" "}
-              <span className="italic text-gold">
+              <span className="text-gold">
                 <Words
                   text="PrimePart today."
                   reduced={reduced}
@@ -287,11 +287,11 @@ export default function ContactPage() {
                 </div>
 
                 <h2
-                  className="mt-7 max-w-[18ch] text-[clamp(26px,3.4vw,46px)] font-light leading-[1.05] tracking-[-0.028em]"
+                  className="mt-7 max-w-[18ch] text-[clamp(26px,3.4vw,46px)] font-extrabold leading-[1.05] tracking-[-0.028em]"
                   style={serif}
                 >
                   <Words text="Send it to the" reduced={reduced} />{" "}
-                  <span className="italic" style={{ color: GOLD_DEEP }}>
+                  <span className="text-accent">
                     <Words text="engineers." reduced={reduced} delay={0.16} />
                   </span>
                 </h2>
@@ -309,7 +309,7 @@ export default function ContactPage() {
                       style={{ borderColor: GOLD_DEEP }}
                     >
                       <p
-                        className="text-[clamp(20px,2.4vw,30px)] font-light leading-[1.2]"
+                        className="text-[clamp(20px,2.4vw,30px)] font-bold leading-[1.2]"
                         style={serif}
                       >
                         Your email client is opening.
@@ -613,7 +613,7 @@ export default function ContactPage() {
 
                 {/* vendor registration sheet */}
                 <div
-                  className="relative mt-10 bg-white p-7 shadow-[0_30px_70px_-40px_rgba(10,15,20,0.45)]"
+                  className="relative mt-10 bg-white p-7 shadow-[0_30px_70px_-40px_rgba(10,22,31,0.45)]"
                   style={{
                     clipPath:
                       "polygon(26px 0, 100% 0, 100% calc(100% - 26px), calc(100% - 26px) 100%, 0 100%, 0 26px)",
@@ -626,7 +626,7 @@ export default function ContactPage() {
                     For vendor registration
                   </div>
                   <h3
-                    className="mt-2 text-[clamp(18px,2vw,24px)] font-light leading-[1.15]"
+                    className="mt-2 text-[clamp(18px,2vw,24px)] font-extrabold leading-[1.15]"
                     style={serif}
                   >
                     Corporate fact sheet
@@ -645,7 +645,7 @@ export default function ContactPage() {
                           aria-hidden
                           className="relative mx-1 flex-1 translate-y-[-5px]"
                           style={{
-                            borderBottom: "1px dotted rgba(10,15,20,0.4)",
+                            borderBottom: "1px dotted rgba(10,22,31,0.4)",
                             height: 0,
                           }}
                         />
@@ -700,7 +700,7 @@ function Channel({
         {kind}
       </span>
       <span
-        className="relative text-[clamp(17px,1.9vw,23px)] font-light leading-none tracking-[-0.01em] text-paper"
+        className="relative text-[clamp(17px,1.9vw,23px)] font-bold leading-none tracking-[-0.01em] text-paper"
         style={serif}
       >
         {value}
@@ -765,7 +765,7 @@ function Field({
         className="mt-2.5 w-full border bg-white/50 px-4 py-3.5 text-[14.5px] text-ink outline-none transition-colors duration-200 focus:border-gold focus-visible:ring-2 focus-visible:ring-gold/40"
         style={{
           ...sans,
-          borderColor: error ? ALERT : "rgba(10,15,20,0.25)",
+          borderColor: error ? ALERT : "rgba(10,22,31,0.25)",
         }}
       />
       {error && (

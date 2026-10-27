@@ -66,6 +66,9 @@ export default function HeroBackdrop() {
           <Image
             src="/primepart/hero/silk-wave.png"
             alt=""
+            // the page's largest paint on desktop: fetch it first
+            loading="eager"
+            fetchPriority="high"
             fill
             sizes="100vw"
             quality={60}
